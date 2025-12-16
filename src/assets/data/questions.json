@@ -1,0 +1,202 @@
+{
+  "subject": "Mixed Test - History, Math, Literature",
+  "version": "1.0.0",
+  "totalQuestions": 15,
+  "questions": [
+    {
+      "id": 1,
+      "category": "history",
+      "question": "Which river was crucial to Ancient Egypt's civilization?",
+      "answers": [
+        "Nile River",
+        "Tigris River",
+        "Euphrates River",
+        "Amazon River"
+      ],
+      "correct": 0,
+      "explanation": "The Nile River provided water, fertile soil through annual floods, and transportation for Ancient Egypt."
+    },
+    {
+      "id": 2,
+      "category": "history",
+      "question": "What were the massive stone structures built by Ancient Egyptians called?",
+      "answers": [
+        "Temples",
+        "Pyramids",
+        "Ziggurats",
+        "Castles"
+      ],
+      "correct": 1,
+      "explanation": "Pyramids were built as tombs for pharaohs. The Great Pyramid of Giza is one of the Seven Wonders of the Ancient World."
+    },
+    {
+      "id": 3,
+      "category": "history",
+      "question": "Who was the famous young pharaoh whose tomb was discovered in 1922?",
+      "answers": [
+        "Ramses II",
+        "Cleopatra",
+        "Tutankhamun",
+        "Hatshepsut"
+      ],
+      "correct": 2,
+      "explanation": "King Tutankhamun's tomb was discovered by Howard Carter. It contained amazing treasures and his famous golden mask."
+    },
+    {
+      "id": 4,
+      "category": "history",
+      "question": "What type of paper did Ancient Egyptians make from plants?",
+      "answers": [
+        "Parchment",
+        "Papyrus",
+        "Vellum",
+        "Rice paper"
+      ],
+      "correct": 1,
+      "explanation": "Papyrus was made from the papyrus plant that grew along the Nile. It was one of the first forms of paper."
+    },
+    {
+      "id": 5,
+      "category": "history",
+      "question": "What is the name of the ancient Egyptian writing system using pictures?",
+      "answers": [
+        "Cuneiform",
+        "Hieroglyphics",
+        "Sanskrit",
+        "Runes"
+      ],
+      "correct": 1,
+      "explanation": "Hieroglyphics used pictures and symbols to represent words and sounds. The Rosetta Stone helped decode this ancient language."
+    },
+    {
+      "id": 6,
+      "category": "math",
+      "question": "What is 15 + 27?",
+      "answers": [
+        "42",
+        "41",
+        "43",
+        "40"
+      ],
+      "correct": 0,
+      "explanation": "15 + 27 = 42. You can solve this by adding 15 + 20 = 35, then adding the remaining 7 to get 42."
+    },
+    {
+      "id": 7,
+      "category": "math",
+      "question": "What is 8 × 7?",
+      "answers": [
+        "54",
+        "56",
+        "63",
+        "48"
+      ],
+      "correct": 1,
+      "explanation": "8 × 7 = 56. You can think of this as 8 groups of 7, or 7 groups of 8."
+    },
+    {
+      "id": 8,
+      "category": "math",
+      "question": "If you have 100 cookies and eat 35, how many are left?",
+      "answers": [
+        "75",
+        "65",
+        "70",
+        "60"
+      ],
+      "correct": 1,
+      "explanation": "100 - 35 = 65. You can solve this by subtracting 30 first (leaving 70), then subtracting 5 more."
+    },
+    {
+      "id": 9,
+      "category": "math",
+      "question": "What is 1/2 + 1/4?",
+      "answers": [
+        "1/3",
+        "2/6",
+        "3/4",
+        "1/6"
+      ],
+      "correct": 2,
+      "explanation": "1/2 + 1/4 = 2/4 + 1/4 = 3/4. You need to convert 1/2 to 2/4 so both fractions have the same denominator."
+    },
+    {
+      "id": 10,
+      "category": "math",
+      "question": "How many sides does a hexagon have?",
+      "answers": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "correct": 1,
+      "explanation": "A hexagon has 6 sides. The prefix 'hex' means six. Beehive cells are hexagonal!"
+    },
+    {
+      "id": 11,
+      "category": "literature",
+      "question": "In 'Charlotte's Web', what type of animal is Charlotte?",
+      "answers": [
+        "Pig",
+        "Rat",
+        "Spider",
+        "Goose"
+      ],
+      "correct": 2,
+      "explanation": "Charlotte is a wise and caring spider who saves her friend Wilbur the pig by writing words in her web."
+    },
+    {
+      "id": 12,
+      "category": "literature",
+      "question": "Who wrote the 'Harry Potter' series?",
+      "answers": [
+        "J.R.R. Tolkien",
+        "C.S. Lewis",
+        "Roald Dahl",
+        "J.K. Rowling"
+      ],
+      "correct": 3,
+      "explanation": "J.K. Rowling wrote all seven Harry Potter books. The series has sold over 500 million copies worldwide!"
+    },
+    {
+      "id": 13,
+      "category": "literature",
+      "question": "In 'The Lion, the Witch and the Wardrobe', what magical land do the children discover?",
+      "answers": [
+        "Wonderland",
+        "Narnia",
+        "Oz",
+        "Neverland"
+      ],
+      "correct": 1,
+      "explanation": "The children discover Narnia through a wardrobe. Narnia is a magical world with talking animals and mythical creatures."
+    },
+    {
+      "id": 14,
+      "category": "literature",
+      "question": "What is the name of the boy who never grows up in J.M. Barrie's story?",
+      "answers": [
+        "Tom Sawyer",
+        "Peter Pan",
+        "Oliver Twist",
+        "Huckleberry Finn"
+      ],
+      "correct": 1,
+      "explanation": "Peter Pan is the boy who never grows up. He lives in Neverland with the Lost Boys and can fly!"
+    },
+    {
+      "id": 15,
+      "category": "literature",
+      "question": "In 'Matilda' by Roald Dahl, what special power does Matilda have?",
+      "answers": [
+        "She can fly",
+        "She can become invisible",
+        "She can move things with her mind",
+        "She can talk to animals"
+      ],
+      "correct": 2,
+      "explanation": "Matilda develops telekinetic powers - the ability to move objects with her mind. She uses this power to stand up to the mean headmistress Miss Trunchbull."
+    }
+  ]
+}
