@@ -1,202 +1,202 @@
 {
-  "subject": "Mixed Test - History, Math, Literature",
+  "subject": "Bộ câu hỏi hỗn hợp - Lịch sử, Toán học, Văn học",
   "version": "1.0.0",
   "totalQuestions": 15,
   "questions": [
     {
       "id": 1,
       "category": "history",
-      "question": "Which river was crucial to Ancient Egypt's civilization?",
+      "question": "Con sông nào đóng vai trò quan trọng với nền văn minh Ai Cập cổ đại?",
       "answers": [
-        "Nile River",
-        "Tigris River",
-        "Euphrates River",
-        "Amazon River"
+        "Sông Nin",
+        "Sông Tigris",
+        "Sông Euphrates",
+        "Sông Hồng"
       ],
       "correct": 0,
-      "explanation": "The Nile River provided water, fertile soil through annual floods, and transportation for Ancient Egypt."
+      "explanation": "Sông Nin cung cấp nước và phù sa màu mỡ giúp phát triển nông nghiệp. Nhờ lũ sông Nin hằng năm tạo nên những đồng bằng tươi tốt nuôi sống cư dân Ai Cập."
     },
     {
       "id": 2,
       "category": "history",
-      "question": "What were the massive stone structures built by Ancient Egyptians called?",
+      "question": "Kim tự tháp Ai Cập cổ đại chứng minh người Ai Cập đã có trình độ cao về môn học nào?",
       "answers": [
-        "Temples",
-        "Pyramids",
-        "Ziggurats",
-        "Castles"
+        "Văn học",
+        "Toán học và Hình học",
+        "Âm nhạc",
+        "Hội họa"
       ],
       "correct": 1,
-      "explanation": "Pyramids were built as tombs for pharaohs. The Great Pyramid of Giza is one of the Seven Wonders of the Ancient World."
+      "explanation": "Người Ai Cập đã đạt tới trình độ toán học và hình học cao để xây kim tự tháp. Ngày nay chúng ta kế thừa về đường thẳng, góc và ứng dụng trong xây dựng công trình."
     },
     {
       "id": 3,
       "category": "history",
-      "question": "Who was the famous young pharaoh whose tomb was discovered in 1922?",
+      "question": "Hệ thống đếm cơ số 60 của nền văn minh Lưỡng Hà được dùng để làm gì ngày nay?",
       "answers": [
-        "Ramses II",
-        "Cleopatra",
-        "Tutankhamun",
-        "Hatshepsut"
+        "Đếm tiền",
+        "Tính thời gian và đo góc",
+        "Đo chiều dài",
+        "Đo khối lượng"
       ],
-      "correct": 2,
-      "explanation": "King Tutankhamun's tomb was discovered by Howard Carter. It contained amazing treasures and his famous golden mask."
+      "correct": 1,
+      "explanation": "Hệ thống đếm cơ số 60 được dùng để tính thời gian (60 giây = 1 phút; 60 phút = 1 giờ) và đo góc trong toán học (360 độ)."
     },
     {
       "id": 4,
       "category": "history",
-      "question": "What type of paper did Ancient Egyptians make from plants?",
+      "question": "An Dương Vương đã đổi tên nước thành gì sau khi đánh bại quân Tần?",
       "answers": [
-        "Parchment",
-        "Papyrus",
-        "Vellum",
-        "Rice paper"
+        "Văn Lang",
+        "Đại Việt",
+        "Âu Lạc",
+        "Giao Chỉ"
       ],
-      "correct": 1,
-      "explanation": "Papyrus was made from the papyrus plant that grew along the Nile. It was one of the first forms of paper."
+      "correct": 2,
+      "explanation": "Sau kháng chiến chống Tần, Thục Phán tự xưng là An Dương Vương và đổi tên nước thành Âu Lạc, dời đô về Phong Khê (thành Cổ Loa)."
     },
     {
       "id": 5,
       "category": "history",
-      "question": "What is the name of the ancient Egyptian writing system using pictures?",
+      "question": "Mục đích của chính sách đồng hóa của nhà Hán đối với người Việt là gì?",
       "answers": [
-        "Cuneiform",
-        "Hieroglyphics",
-        "Sanskrit",
-        "Runes"
+        "Giúp người Việt phát triển kinh tế",
+        "Biến người Việt thành người Hán hóa để dễ cai trị",
+        "Dạy người Việt khoa học kỹ thuật",
+        "Xây dựng trường học cho người Việt"
       ],
       "correct": 1,
-      "explanation": "Hieroglyphics used pictures and symbols to represent words and sounds. The Rosetta Stone helped decode this ancient language."
+      "explanation": "Nhà Hán bắt nhân dân ta học chữ Hán, nói tiếng Hán, thay đổi phong tục tập quán nhằm đồng hóa về tôn giáo, lễ nghi, văn hóa để dễ cai trị và biến người Việt thành người Hán hóa."
     },
     {
       "id": 6,
       "category": "math",
-      "question": "What is 15 + 27?",
+      "question": "Tính 23 + 45 = ?",
       "answers": [
-        "42",
-        "41",
-        "43",
-        "40"
+        "68",
+        "67",
+        "69",
+        "66"
       ],
       "correct": 0,
-      "explanation": "15 + 27 = 42. You can solve this by adding 15 + 20 = 35, then adding the remaining 7 to get 42."
+      "explanation": "23 + 45 = 68. Bạn có thể tính bằng cách cộng 23 + 40 = 63, rồi cộng thêm 5 để được 68."
     },
     {
       "id": 7,
       "category": "math",
-      "question": "What is 8 × 7?",
+      "question": "Tính 9 × 8 = ?",
       "answers": [
-        "54",
-        "56",
         "63",
-        "48"
+        "72",
+        "81",
+        "64"
       ],
       "correct": 1,
-      "explanation": "8 × 7 = 56. You can think of this as 8 groups of 7, or 7 groups of 8."
+      "explanation": "9 × 8 = 72. Bạn có thể nghĩ đây là 9 nhóm, mỗi nhóm có 8 đơn vị, hoặc 8 nhóm, mỗi nhóm có 9 đơn vị."
     },
     {
       "id": 8,
       "category": "math",
-      "question": "If you have 100 cookies and eat 35, how many are left?",
+      "question": "Nếu bạn có 50 viên kẹo và chia đều cho 5 bạn, mỗi bạn được bao nhiêu viên?",
       "answers": [
-        "75",
-        "65",
-        "70",
-        "60"
+        "8 viên",
+        "10 viên",
+        "12 viên",
+        "15 viên"
       ],
       "correct": 1,
-      "explanation": "100 - 35 = 65. You can solve this by subtracting 30 first (leaving 70), then subtracting 5 more."
+      "explanation": "50 ÷ 5 = 10 viên. Khi chia 50 viên kẹo đều cho 5 bạn, mỗi bạn sẽ nhận được 10 viên kẹo."
     },
     {
       "id": 9,
       "category": "math",
-      "question": "What is 1/2 + 1/4?",
+      "question": "Một tam giác có tất cả bao nhiêu cạnh?",
       "answers": [
-        "1/3",
-        "2/6",
-        "3/4",
-        "1/6"
+        "2 cạnh",
+        "3 cạnh",
+        "4 cạnh",
+        "5 cạnh"
       ],
-      "correct": 2,
-      "explanation": "1/2 + 1/4 = 2/4 + 1/4 = 3/4. You need to convert 1/2 to 2/4 so both fractions have the same denominator."
+      "correct": 1,
+      "explanation": "Tam giác có 3 cạnh. Từ 'tam' trong tiếng Việt có nghĩa là số 3."
     },
     {
       "id": 10,
       "category": "math",
-      "question": "How many sides does a hexagon have?",
+      "question": "Tính 100 - 37 = ?",
       "answers": [
-        "5",
-        "6",
-        "7",
-        "8"
+        "73",
+        "63",
+        "67",
+        "62"
       ],
       "correct": 1,
-      "explanation": "A hexagon has 6 sides. The prefix 'hex' means six. Beehive cells are hexagonal!"
+      "explanation": "100 - 37 = 63. Bạn có thể trừ 30 trước (còn 70), rồi trừ tiếp 7 để được 63."
     },
     {
       "id": 11,
       "category": "literature",
-      "question": "In 'Charlotte's Web', what type of animal is Charlotte?",
+      "question": "Trong truyện cổ tích Tấm Cám, ai là người chị độc ác với Tấm?",
       "answers": [
-        "Pig",
-        "Rat",
-        "Spider",
-        "Goose"
+        "Cám",
+        "Mẹ ghê",
+        "Bà tiên",
+        "Hoàng hậu"
       ],
-      "correct": 2,
-      "explanation": "Charlotte is a wise and caring spider who saves her friend Wilbur the pig by writing words in her web."
+      "correct": 0,
+      "explanation": "Cám là người em gái cùng cha khác mẹ với Tấm, luôn ganh tị và hãm hại Tấm với sự giúp sức của mẹ ghẻ."
     },
     {
       "id": 12,
       "category": "literature",
-      "question": "Who wrote the 'Harry Potter' series?",
+      "question": "Trong truyện Thạch Sanh, con vật nào đã giúp Thạch Sanh đánh bại yêu tinh?",
       "answers": [
-        "J.R.R. Tolkien",
-        "C.S. Lewis",
-        "Roald Dahl",
-        "J.K. Rowling"
+        "Chim ưng",
+        "Con rồng",
+        "Chó thần",
+        "Ngựa bạch"
       ],
-      "correct": 3,
-      "explanation": "J.K. Rowling wrote all seven Harry Potter books. The series has sold over 500 million copies worldwide!"
+      "correct": 0,
+      "explanation": "Chim ưng là người bạn trung thành của Thạch Sanh, đã giúp anh đánh bại yêu tinh và cứu công chúa."
     },
     {
       "id": 13,
       "category": "literature",
-      "question": "In 'The Lion, the Witch and the Wardrobe', what magical land do the children discover?",
+      "question": "Sọ Dừa trong truyện cổ tích có đặc điểm gì khi mới sinh ra?",
       "answers": [
-        "Wonderland",
-        "Narnia",
-        "Oz",
-        "Neverland"
+        "Đầu to như quả dừa",
+        "Có thể bay",
+        "Biết nói từ nhỏ",
+        "Có sức mạnh thần kỳ"
       ],
-      "correct": 1,
-      "explanation": "The children discover Narnia through a wardrobe. Narnia is a magical world with talking animals and mythical creatures."
+      "correct": 0,
+      "explanation": "Sọ Dừa là một cậu bé có đầu to như quả dừa khi mới sinh, nhưng sau này trở thành một chàng trai đẹp trai và dũng cảm."
     },
     {
       "id": 14,
       "category": "literature",
-      "question": "What is the name of the boy who never grows up in J.M. Barrie's story?",
+      "question": "Trong truyện Cây tre trăm đốt, ai là người đã giải cứu công chúa?",
       "answers": [
-        "Tom Sawyer",
-        "Peter Pan",
-        "Oliver Twist",
-        "Huckleberry Finn"
+        "Hoàng tử",
+        "Lão nông",
+        "Quan võ",
+        "Sư thầy"
       ],
       "correct": 1,
-      "explanation": "Peter Pan is the boy who never grows up. He lives in Neverland with the Lost Boys and can fly!"
+      "explanation": "Lão nông nghèo khổ nhưng có tấm lòng nhân hậu đã vượt qua thử thách cây tre trăm đốt để giải cứu công chúa."
     },
     {
       "id": 15,
       "category": "literature",
-      "question": "In 'Matilda' by Roald Dahl, what special power does Matilda have?",
+      "question": "Chú Cuội trong truyện truyền thuyết Việt Nam đã ở đâu?",
       "answers": [
-        "She can fly",
-        "She can become invisible",
-        "She can move things with her mind",
-        "She can talk to animals"
+        "Trên mặt trăng",
+        "Dưới biển sâu",
+        "Trong rừng già",
+        "Trên đỉnh núi"
       ],
-      "correct": 2,
-      "explanation": "Matilda develops telekinetic powers - the ability to move objects with her mind. She uses this power to stand up to the mean headmistress Miss Trunchbull."
+      "correct": 0,
+      "explanation": "Chú Cuội đã bay lên mặt trăng cùng gốc cây đa thần và theo truyền thuyết, chú vẫn ở đó cho đến ngày nay."
     }
   ]
 }

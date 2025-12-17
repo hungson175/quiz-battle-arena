@@ -40,15 +40,62 @@ npm install
 ## Development
 
 ```bash
-# Start development server (opens browser automatically)
+# Start development server (opens browser automatically on port 3335)
 npm run dev
 
 # Build for production
-npm build
+npm run build
 
 # Preview production build
 npm run preview
 ```
+
+**Note**: Development server runs on port **3335** (not 3000) to avoid conflicts.
+
+## Development Workflow
+
+### Test-Driven Development (TDD) - REQUIRED ⚠️
+
+**All code MUST follow TDD approach**:
+
+1. **Write tests FIRST** - Before writing any implementation code
+2. **Run tests** - Verify they fail (red)
+3. **Write minimal code** - Make tests pass (green)
+4. **Refactor** - Improve code while keeping tests passing
+5. **Repeat** - For each new feature/fix
+
+**Example TDD Workflow**:
+```bash
+# 1. Write test first
+# Edit: tests/healthManager.test.js
+# Add test: "should decrease health by 1 on wrong answer"
+
+# 2. Run test - should FAIL
+npm test
+
+# 3. Write minimal implementation
+# Edit: src/utils/healthManager.js
+# Add code to make test pass
+
+# 4. Run test - should PASS
+npm test
+
+# 5. Refactor if needed, tests still pass
+npm test
+```
+
+**Why TDD?**
+- ✅ Prevents bugs before they're written
+- ✅ Forces clear requirements thinking
+- ✅ Provides built-in regression testing
+- ✅ Makes refactoring safe
+- ✅ Documents expected behavior
+
+**TDD Rules**:
+- ❌ NEVER write production code without a failing test first
+- ❌ NEVER commit code with failing tests
+- ✅ ALWAYS run full test suite before committing
+- ✅ ALWAYS write tests for bug fixes (test fails → fix → test passes)
 
 ## Testing
 

@@ -208,7 +208,13 @@ tm-send %GD_PANE_ID "PM [11:30]: FE asks: Should power-ups be automatic or manua
 
 ### Assigning Implementation
 ```bash
-tm-send %FE_PANE_ID "PM [14:00]: Sprint 1 assigned. Implement core game loop per docs/specs/sprint-1.md. Start with MVP: question display + 4 clickable targets + scoring. See research doc for gamification patterns."
+tm-send %FE_PANE_ID "PM [14:00]: Sprint 1 assigned. Implement core game loop per docs/specs/sprint-1.md.
+
+⚠️ CRITICAL REMINDERS:
+1. TDD REQUIRED: Write tests FIRST before implementation (Red-Green-Refactor)
+2. REPORT BACK: Notify me after completing each deliverable (don't wait until sprint end)
+
+Start with MVP: question display + 4 clickable targets + scoring. See research doc for gamification patterns. Expected first commit: ~30-60 min."
 ```
 
 ### Requesting Code Review
@@ -268,10 +274,13 @@ This is the **SINGLE SOURCE OF TRUTH** for project progress. You MUST maintain t
    - Update milestone status to 🔴 Blocked if necessary
 
 4. **Determine Next Sprint**:
+   - **Review milestone deliverables** (docs/plan/main-milestones.md)
+   - **Review backlog** (docs/plan/backlog.md)
    - Which milestone are we currently in?
    - What's the next logical deliverable in that milestone?
+   - Are there high-priority backlog items to include?
    - Pull items from backlog if current milestone items complete early
-   - Assign next sprint based on milestone roadmap
+   - Assign next sprint based on milestone roadmap + backlog priorities
 
 ### Backlog Management
 
