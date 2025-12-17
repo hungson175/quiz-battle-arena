@@ -83,6 +83,8 @@ npm run lint  # If configured
 ```
 
 **Step 4: Manual Testing**
+
+**Option A: Manual Browser Testing**
 ```bash
 # Actually play the game!
 npm run dev
@@ -94,6 +96,42 @@ npm run dev
 # - Check browser console for errors
 # - Verify UI on different screen sizes
 ```
+
+**Option B: Automated Browser Testing with MCP Playwright (OPTIONAL)**
+
+You have access to **MCP Playwright** for automated browser testing. This is **NOT mandatory** - only use if you want to verify visual behavior, animations, or complex interactions programmatically.
+
+**When to use MCP Playwright**:
+- Verify animations work correctly (fade transitions, health loss effects)
+- Check UI interactions (button clicks, hover states)
+- Test game flow automatically (question progression, game over triggers)
+- Capture screenshots for documentation
+- Verify browser console has no errors
+
+**When NOT to use MCP Playwright**:
+- Simple code reviews (reading code is sufficient)
+- Test coverage is already comprehensive
+- Manual testing already completed by FE
+- Review focused on code quality, not runtime behavior
+
+**Example Usage** (if you choose to use it):
+```bash
+# MCP Playwright can:
+# - Launch browser and navigate to http://localhost:3335
+# - Click elements (targets, buttons)
+# - Verify text content appears
+# - Check CSS properties (animations, colors)
+# - Capture screenshots
+# - Get browser console logs
+
+# Use MCP tools to:
+# 1. Navigate to game URL
+# 2. Interact with game elements
+# 3. Verify expected behavior
+# 4. Check for errors in console
+```
+
+**Note**: MCP Playwright is a powerful tool but optional. Most reviews can be completed with code reading + npm test + manual play testing. Use your judgment based on the sprint complexity.
 
 **Step 5: Create Review Document**
 

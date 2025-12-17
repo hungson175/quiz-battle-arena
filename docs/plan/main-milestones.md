@@ -1,9 +1,9 @@
 # Main Milestones - Quiz Battle Arena
 
 **Project**: Educational Quiz Game (Subject-Agnostic)
-**Last Updated**: 2025-12-17 01:40
-**Current Milestone**: M0 - Project Setup
-**Overall Progress**: 5% (M0 Started - BOSS Approved)
+**Last Updated**: 2025-12-17 02:17
+**Current Milestone**: M1 - Core MVP (Sprint 1 Complete)
+**Overall Progress**: 20% (M0 Complete, M1 Sprint 1 Complete)
 
 ---
 
@@ -11,8 +11,8 @@
 
 | Milestone | Name | Sprints | Duration | Status |
 |-----------|------|---------|----------|--------|
-| **M0** | Project Setup & Foundation | Pre-Sprint | 1 week | 🟡 In Progress |
-| **M1** | Core MVP - Playable Game | Sprint 1-3 | 3-4 weeks | ⚪ Pending |
+| **M0** | Project Setup & Foundation | Pre-Sprint | 1 week | 🟢 Complete |
+| **M1** | Core MVP - Playable Game | Sprint 1-3 | 3-4 weeks | 🟡 In Progress (Sprint 1✅) |
 | **M2** | Polish & Enhancements | Sprint 4-6 | 4-5 weeks | ⚪ Pending |
 | **M3** | Advanced Features | Sprint 7-9 | 4-5 weeks | ⚪ Pending |
 | **M4** | Production Ready | Sprint 10+ | 2-3 weeks | ⚪ Pending |
@@ -39,26 +39,26 @@
 **Goal**: Establish development environment, tooling, and project structure before first sprint
 
 **Duration**: 1 week
-**Status**: 🟡 In Progress (Started: 2025-12-17 01:40)
+**Status**: 🟢 Complete (Finished: 2025-12-17 01:58)
 **Owner**: PM + FE + GD
 
 ### Deliverables
 
 #### 1. Git Repository Setup
-- [ ] Initialize Git repository
-- [ ] Create `.gitignore` (node_modules, .env, build artifacts)
-- [ ] Set up branch strategy (main, feature branches)
-- [ ] First commit: "Initial project setup"
+- [x] Initialize Git repository
+- [x] Create `.gitignore` (node_modules, .env, build artifacts)
+- [x] Set up branch strategy (main, feature branches)
+- [x] First commit: "Initial project setup"
 
 #### 2. Development Environment
-- [ ] Install Node.js and npm
-- [ ] Install Phaser 3 (via npm)
-- [ ] Install Vite (build tool)
-- [ ] Install Jest (testing framework)
-- [ ] Verify environment: `npm run dev` works
+- [x] Install Node.js and npm
+- [x] Install Phaser 3 (via npm) - v3.70.0
+- [x] Install Vite (build tool) - v5.0.0
+- [x] Install Jest (testing framework) - v29.7.0
+- [x] Verify environment: `npm run dev` works on port 3335
 
 #### 3. Project Structure
-- [ ] Create folder structure:
+- [x] Create folder structure:
   ```
   src/
     ├── scenes/
@@ -69,41 +69,44 @@
   tests/
   docs/
   ```
-- [ ] Create basic HTML entry point
-- [ ] Configure Vite for Phaser 3
+- [x] Create basic HTML entry point
+- [x] Configure Vite for Phaser 3
 
 #### 4. Asset Pipeline Setup (MCP Integration)
-- [ ] **NOT IN M0** - Asset generation deferred to M2 (Polish phase)
-- [ ] Use placeholder graphics in M1 (colored shapes, basic sprites)
-- [ ] Document MCP installation plan for M2
+- [x] **NOT IN M0** - Asset generation deferred to M2 (Polish phase)
+- [x] Use placeholder graphics in M1 (colored shapes, basic sprites)
+- [x] Document MCP installation plan for M2
 
 **Rationale**: Progressive development means we start with placeholders and upgrade to professional assets in Phase 2 when game mechanics are proven.
 
 #### 5. Sample Question Data
-- [ ] Create `questions.json` with 15 test questions **IN VIETNAMESE**
-  - 5 history questions (extracted from data/output/DC_lichsu.md - Vietnamese history)
-  - 5 math questions (arithmetic - Vietnamese language)
-  - 5 literature questions (book characters - Vietnamese language)
-- [ ] Validates subject-agnostic design from day 1
-- [ ] **CRITICAL**: Game is Vietnamese language, sample must be Vietnamese
+- [x] Create `questions.json` with 15 test questions **IN VIETNAMESE**
+  - [x] 5 history questions: Sông Nin, Kim tự tháp, Hệ cơ số 60, An Dương Vương, Chính sách Hán
+  - [x] 5 math questions: Cộng, nhân, chia, hình học, trừ
+  - [x] 5 literature questions: Tấm Cám, Thạch Sanh, Sọ Dừa, Cây tre trăm đốt, Chú Cuội
+- [x] Validates subject-agnostic design from day 1
+- [x] **CRITICAL**: Game is Vietnamese language, sample is Vietnamese
+- [x] Age-appropriate for 8-12 year-olds
 
 #### 6. Documentation
-- [ ] README.md (setup instructions, how to run)
-- [ ] Architecture overview (Phaser scenes, component structure)
-- [ ] Contribution guidelines
+- [x] README.md (setup instructions, how to run)
+- [x] Architecture overview (Phaser scenes, component structure)
+- [x] Contribution guidelines
 
 ### Success Criteria
-- ✅ FE can run `npm run dev` and see blank Phaser canvas
+- ✅ FE can run `npm run dev` and see blank Phaser canvas (port 3335)
 - ✅ FE can run `npm test` and see 0/0 tests passing
-- ✅ Git repository has 3+ commits showing progressive setup
-- ✅ 15 test questions load without errors
+- ✅ Git repository has 3+ commits showing progressive setup (4 commits total)
+- ✅ 15 Vietnamese test questions load without errors
 
 ### Exit Gate
 **PM Checklist Before M1**:
-- [ ] Development environment working on FE's machine
-- [ ] Project structure matches technical architecture (PRD Section 9.2)
-- [ ] Sample questions validate subject-agnostic approach
-- [ ] GD has reviewed and approved placeholder graphics approach
+- [x] Development environment working on FE's machine
+- [x] Project structure matches technical architecture (PRD Section 9.2)
+- [x] Sample questions validate subject-agnostic approach (3 subjects in Vietnamese)
+- [x] GD has reviewed and approved placeholder graphics approach
+
+**M0 APPROVED** ✅ Ready for M1 Sprint 1
 
 ---
 
@@ -111,8 +114,9 @@
 
 **Goal**: Deliver a PLAYABLE core game loop - the minimum experience that proves the concept works
 
-**Duration**: 3-4 weeks (Sprint 1-3)
-**Status**: ⚪ Pending
+**Duration**: 3-4 weeks (Sprint 1-2B, 3)
+**Status**: 🟡 In Progress (Sprint 1 ✅, Sprint 2A ✅, Sprint 2B ✅, Sprint 3 ⏳)
+**Progress**: ~60% complete (3 of 5 sprints done)
 **Owner**: FE (implementation), GD (design specs), CR (review)
 
 ### Reference
@@ -121,30 +125,66 @@
 
 ### Deliverables
 
-#### Sprint 1: Core Mechanics (Week 1-1.5)
-- [ ] Question display system (FR-001)
-- [ ] 4 target system with answer text (FR-002)
-  - **Includes GD Rec #1**: Forgiving click detection (5-10px grace area)
-- [ ] Basic answer validation (FR-003)
-- [ ] Score tracking (base 100 points correct, 25 points learning)
-  - **Includes GD Rec #2**: +25 Learning Points for wrong answers
-  - **Includes GD Rec #2**: Supportive messages ("Not quite! But you learned something valuable!")
-- [ ] Tests: 5 unit tests for game logic
+#### Sprint 1: Core Mechanics ✅ COMPLETE (Actual: 2-3 hours, 2025-12-17)
+- [x] Question display system (FR-001) ✅
+- [x] 4 target system with answer text (FR-002) ✅
+  - **Includes GD Rec #1**: Forgiving click detection (10px grace area) ✅
+- [x] Basic answer validation (FR-003) ✅
+- [x] Score tracking (base 100 points correct, 25 points learning) ✅
+  - **Includes GD Rec #2**: +25 Learning Points for wrong answers ✅
+  - **Includes GD Rec #2**: Supportive messages ("Not quite! But you learned something valuable!") ✅
+- [x] Tests: 16 unit tests (320% of requirement) ✅
 
-**Deliverable**: Can answer 1 question, see score, get feedback
+**Deliverable**: Can answer 1 question, see score, get feedback ✅
+**CR Approved**: All checks passed, no critical issues
 
-#### Sprint 2: Game Loop & Health (Week 2-2.5)
-- [ ] Health system (5 hearts, -1 per wrong answer) (FR-005)
-- [ ] Question progression (load next question after answer)
-- [ ] Game over screen (0 health or questions exhausted) (FR-006)
-  - Display final score, correct/incorrect count
-  - "Try Again" and "Main Menu" buttons
-- [ ] **NEW - GD Rec #3**: Milestone celebrations
-  - Celebrations at 5, 10, 15, 20 questions answered
-  - Messages: "Quarter Way! 🎯", "Halfway Champion! 🏆", etc.
-- [ ] Tests: 10 total unit tests
+#### Sprint 2A: Game Loop (Core Mechanics) ✅ COMPLETE (Actual: ~1 hour, 2025-12-17)
+- [x] Health system (5 hearts, -1 per wrong answer, game over at 0) (FR-005) ✅
+  - Visual health HUD (5 hearts in top-right corner)
+  - Health loss animation (shake + red flash)
+  - Low health warning (pulse at 1-2 hearts)
+- [x] Question progression (auto-load next question after answer) ✅
+  - Fade transitions (0.8s: fade out → pause → fade in)
+  - Smooth transitions, no jarring jumps
+  - Victory trigger when all questions answered
+- [x] Basic game over screen (simple modal) ✅
+  - Display final score and correct/wrong counts
+  - "Chơi lại" (Play Again) button with restart functionality
+  - Zoom-in animation, game freeze
+- [x] Tests: 13 NEW unit tests (TDD approach) ✅
+  - Health Manager tests (7 tests)
+  - Game Progression tests (6 tests)
+  - Total: 29/29 passing (16 Sprint 1 + 13 Sprint 2A)
 
-**Deliverable**: Can play full game session from start to game over
+**Deliverable**: Can play through all 15 questions with health tracking, reaching game over ✅
+**CR Approved**: Excellent code quality, clean architecture, subject-agnostic validated
+**Time**: ~1 hour (50% faster than 2-3 hour estimate)
+
+**Note**: Sprint 2 was split into 2A (core loop) + 2B (polish) due to large scope (650-line design doc)
+
+#### Sprint 2B: Polish (Game Over & Celebrations) ✅ COMPLETE (Actual: ~1 hour, 2025-12-17)
+- [x] Full game over screen (defeat vs. victory states) (FR-006) ✅
+  - Defeat state (health = 0): "Hết cơ hội! Thử lại nhé!" (encouraging, not punishing)
+  - Victory state (all questions): "Hoàn thành! Xuất sắc!" (celebration message)
+  - Detailed statistics: score, correct/wrong counts, accuracy % with color coding
+  - Professional 500×400px modal with staggered animations
+  - Victory sparkle effect (6 stars around score)
+  - Interactive buttons: "Chơi lại" (restart) + "Menu chính" (placeholder for Sprint 3)
+- [x] **GD Rec #3**: Milestone celebrations ✅
+  - Celebrations at 5, 10, 15 questions answered
+  - 400×250px modal with animated icons (🎯, 🏆, 🚀, 🎉)
+  - Vietnamese messages: "Một phần tư rồi!", "Nửa chặng đường!", "Sắp xong rồi!"
+  - Progress bar animates from 0 to current %
+  - Auto-dismiss (2.5s) or click to skip
+  - Prevents duplicate celebrations
+- [x] Tests: 10 NEW unit tests (TDD approach) ✅
+  - Milestone detection tests (6 tests)
+  - Game statistics tests (4 tests)
+  - Total: 39/39 passing (29 previous + 10 Sprint 2B)
+
+**Deliverable**: Complete game session with polished game over and milestone celebrations ✅
+**CR Approved**: Outstanding quality, child psychology mastery, subject-agnostic validated
+**Time**: ~1 hour (under 2-3 hour estimate)
 
 #### Sprint 3: UI/UX & Polish (Week 3-4)
 - [ ] Main menu screen (FR-009)

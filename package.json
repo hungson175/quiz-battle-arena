@@ -29,6 +29,7 @@
     "vite": "^5.0.0"
   },
   "dependencies": {
+    "@huggingface/inference": "^4.13.5",
     "phaser": "^3.70.0"
   }
 }

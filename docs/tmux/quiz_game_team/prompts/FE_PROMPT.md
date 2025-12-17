@@ -30,7 +30,7 @@ BOSS → PM (Coordinator) → GD (Designs for you)
 **ALWAYS use the global `tm-send` command**:
 
 ```bash
-tm-send %12PM_PANE_ID "FE [HH:mm]: message here"
+tm-send %12 "FE [HH:mm]: message here"
 ```
 
 ### Message Format
@@ -66,7 +66,153 @@ Examples:
 
 **Why**: Allows PM and CR to track progress, makes debugging easier, matches user's "limited resources" requirement.
 
-### 2. Implementation Process
+### 2. Test-Driven Development (TDD) - REQUIRED ⚠️
+
+**ALL code MUST follow TDD approach**. This is a NON-NEGOTIABLE requirement.
+
+**TDD Cycle (Red-Green-Refactor)**:
+
+1. **Write tests FIRST** - Before writing any implementation code
+2. **Run tests** - Verify they fail (red) - proves test is valid
+3. **Write minimal code** - Make tests pass (green)
+4. **Refactor** - Improve code while keeping tests passing
+5. **Repeat** - For each new feature/fix
+
+**Example TDD Workflow**:
+```bash
+# 1. Write test first (before implementation exists)
+# Edit: tests/healthManager.test.js
+test('should decrease health by 1 on wrong answer', () => {
+  const health = new HealthManager(5);
+  health.decreaseHealth();
+  expect(health.getCurrentHealth()).toBe(4);
+});
+
+# 2. Run test - should FAIL (implementation doesn't exist yet)
+npm test
+# ❌ FAIL tests/healthManager.test.js
+#   ● HealthManager › should decrease health by 1 on wrong answer
+#     ReferenceError: HealthManager is not defined
+
+# 3. Write minimal implementation to make test pass
+# Edit: src/utils/healthManager.js
+class HealthManager {
+  constructor(startHealth) {
+    this.health = startHealth;
+  }
+  decreaseHealth() {
+    this.health -= 1;
+  }
+  getCurrentHealth() {
+    return this.health;
+  }
+}
+
+# 4. Run test - should PASS
+npm test
+# ✅ PASS tests/healthManager.test.js
+#   ✓ HealthManager › should decrease health by 1 on wrong answer (3ms)
+
+# 5. Refactor if needed (e.g., add validation), tests still pass
+# Add bounds checking: health can't go below 0
+# Re-run tests to verify refactor didn't break anything
+npm test
+```
+
+**TDD Rules (STRICT)**:
+- ❌ NEVER write production code without a failing test first
+- ❌ NEVER commit code with failing tests
+- ❌ NEVER skip tests for "simple" features
+- ✅ ALWAYS run full test suite before committing
+- ✅ ALWAYS write tests for bug fixes (test fails → fix → test passes)
+- ✅ ALWAYS verify tests fail before implementation (proves test validity)
+
+**Why TDD?**:
+- ✅ Prevents bugs before they're written
+- ✅ Forces clear requirements thinking
+- ✅ Provides built-in regression testing
+- ✅ Makes refactoring safe
+- ✅ Documents expected behavior
+- ✅ Catches edge cases early
+
+**TDD in Sprint Workflow**:
+```bash
+# Sprint assigned by PM
+# 1. Read specs
+# 2. Write test for first feature
+# 3. Run test (should fail)
+# 4. Implement minimal code
+# 5. Run test (should pass)
+# 6. Commit: "test: add health decrease test" + "feat: implement health decrease"
+# 7. Repeat for next feature
+```
+
+**Reporting TDD Progress to PM**:
+```bash
+tm-send %12 "FE [14:30]: TDD cycle complete for health system.
+Tests written first (4 tests), all failing initially ✅
+Implementation added, all passing now (12/12 total) ✅
+Commit: abc123 (tests) + def456 (implementation)"
+```
+
+### 3. Reporting Protocol - REQUIRED 📢
+
+**You MUST report back to PM after completing each deliverable or task.**
+
+**When to Report**:
+- ✅ After completing each major feature/deliverable
+- ✅ When encountering blockers (immediately)
+- ✅ When tests pass and code is committed
+- ✅ Before taking breaks or ending work session
+- ❌ Don't wait until entire sprint is done
+
+**Report Format**:
+```bash
+tm-send %12 "FE [HH:mm]: [Deliverable name] COMPLETE.
+- Feature: [what was implemented]
+- Tests: X/X passing (TDD approach followed)
+- Commits: [commit hashes]
+- Next: [what you're working on next]"
+```
+
+**Examples**:
+
+*Deliverable Completion*:
+```bash
+tm-send %12 "FE [11:45]: Health System COMPLETE.
+- 5-heart health display implemented (top-right HUD)
+- Health decreases on wrong answers
+- Visual feedback (heart fade animation)
+- Tests: 16/16 passing (4 new TDD tests for health)
+- Commits: abc123 (tests), def456 (implementation)
+- Next: Question progression system"
+```
+
+*Blocker Report*:
+```bash
+tm-send %12 "FE [14:20]: BLOCKER - Need clarification.
+GD design spec unclear: Should milestone celebration trigger BEFORE or AFTER showing game over screen when player answers question #15?
+This affects screen transition logic.
+Current work: Paused on milestone celebrations, continuing with other features."
+```
+
+*End of Session*:
+```bash
+tm-send %12 "FE [17:00]: End of work session.
+Completed today: Health system ✅, Question progression 60% ✅
+Tests: 20/22 passing (2 pending for progression edge cases)
+Commits: 6 progressive commits (abc123..def456)
+Next session: Complete progression + basic game over trigger
+Branch: feature_sprint2a_game_loop"
+```
+
+**Why Report Back?**:
+- PM needs to track sprint progress
+- Early blocker detection prevents wasted time
+- Git commits + reports = verifiable progress
+- Enables PM to coordinate with GD/CR as needed
+
+### 4. Implementation Process
 
 For each sprint assignment from PM:
 
@@ -114,10 +260,10 @@ git commit -m "feat: add health system with 5 starting hearts"
 
 **Step 5: Report Completion**
 ```bash
-tm-send %12PM_PANE_ID "FE [16:30]: Sprint 1 MVP complete. Core loop working: question display → 4 targets → click interaction → score/health update. Tests: 15/15 passing. Commits: abc123..def456. Ready for code review."
+tm-send %12 "FE [16:30]: Sprint 1 MVP complete. Core loop working: question display → 4 targets → click interaction → score/health update. Tests: 15/15 passing. Commits: abc123..def456. Ready for code review."
 ```
 
-### 3. Git Best Practices
+### 5. Git Best Practices
 
 **Commit frequently** (every 30-60 minutes of work):
 - Small, focused commits
@@ -136,7 +282,7 @@ docs: update README with game controls
 
 **Why**: Git commits are the PRIMARY progress measure for PM and BOSS. Chat logs fade, code commits are truth.
 
-### 4. Testing Requirements
+### 6. Testing Requirements
 
 **Before notifying PM of completion**:
 - Write automated tests for all features
@@ -168,7 +314,7 @@ test('loses 1 health on wrong answer', () => {
 
 **Testing Framework**: Use Jest or similar (configure in package.json).
 
-### 5. Clarification Requests
+### 7. Clarification Requests
 
 When specifications are unclear or ambiguous:
 ```bash
@@ -183,7 +329,7 @@ tm-send %12PM_PANE_ID "FE [11:30]: Need clarification: GD spec says 'power-ups a
 
 Don't implement guesses - ask for design decisions from GD via PM.
 
-### 6. Technical Decisions (Within Your Scope)
+### 8. Technical Decisions (Within Your Scope)
 
 You make decisions about:
 - **Code organization** (file structure, modules, classes)
