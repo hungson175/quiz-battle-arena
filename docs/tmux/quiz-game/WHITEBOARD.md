@@ -1,9 +1,10 @@
 # Team Whiteboard
 
-**Sprint:** 5
-**Goal:** Critical Bug Fixes - Wall-nut & Balance
-**Status:** IN PROGRESS - DEV investigating bugs
+**Sprint:** 6
+**Goal:** Wall-nut Collision + Question Flow + Balance
+**Status:** **IN PROGRESS**
 
+**Sprint 5 COMPLETE** - Boss Accepted ✅ (via PO), Retro Done
 **Sprint 4 COMPLETE** - Boss Accepted ✅, Retro Done
 **Sprint 3 COMPLETE** - Boss Accepted ✅, Retro Done
 **Sprint 2 COMPLETE** - Boss Accepted
@@ -11,14 +12,39 @@
 
 ---
 
-## Sprint 5 Items
+## Sprint 6 Items
 
 | ID | Item | Owner | Status |
 |----|------|-------|--------|
-| S5-001 | Fix Wall-nut placement hang | DEV | **QA TESTING** (bbe6b52) |
-| S5-002 | Fix Level 2 balance - enemy overlap | DEV+GD | **IN PROGRESS** |
+| S6-001 | Wall-nut must BLOCK zombies | DEV | DEV investigating |
+| S6-002 | Faster question intervals | DEV+GD | GD analysis DONE |
+| S6-003 | Level balance - make beatable | DEV+GD | GD analysis DONE |
 
-**IMP-001 COMPLETED** - Team internalized report-back behavior
+---
+
+## GD Recommendations (Sprint 6)
+
+**S6-002: Question Timing**
+- Current: [15000, 12000, 10000, 10000, 8000] ms
+- NEW: [12000, 10000, 8000, 8000, 6000] ms (~20% reduction)
+
+**S6-003: Level Balance (Full Curve Rebalance)**
+- waves: [2, 3, 4, 6, 8] (was [3, 3, 7, 9, 12])
+- spawnIntervals: [5000, 4500, 4000, 3500, 3000] ms
+- speedMultipliers: [1.0, 1.0, 1.0, 1.1, 1.2]
+- Total: 23 zombies (was 34)
+
+**Awaiting PO decision.**
+
+---
+
+## Boss Feedback for Sprint 6
+
+| Priority | Issue | Description |
+|----------|-------|-------------|
+| **BUG** | Wall-nut collision | Wall-nut doesn't block zombies - they walk through! |
+| **FEATURE** | Faster questions | Questions should appear faster after answering |
+| **BUG** | Level still unbeatable | S5-002 fix insufficient - need more balance work |
 
 ---
 
@@ -45,12 +71,12 @@ All 3 items Boss Accepted ✅
 
 | Role | Status | Current Task | Last Update |
 |------|--------|--------------|-------------|
-| PO   | Monitoring | Sprint 5 in progress | 15:01 |
-| SM   | Active | Monitoring Sprint 5 | 15:01 |
-| GD   | Done | S5-002 analysis delivered | 15:04 |
-| TL   | Done | S5-001 APPROVED | 15:10 |
-| DEV  | Working | S5-002 Wave 2 balance | 15:08 |
-| QA   | Testing | S5-001 Wall-nut fix | 15:10 |
+| PO   | Pending | Awaiting GD recommendations | 15:32 |
+| SM   | Active | Sprint 6 coordination | 15:32 |
+| GD   | Done | S6-002/S6-003 analysis delivered | 15:32 |
+| TL   | Standby | Ready for code review | 15:27 |
+| DEV  | Active | Investigating S6-001 | 15:27 |
+| QA   | Standby | Ready for testing | 15:27 |
 
 ---
 

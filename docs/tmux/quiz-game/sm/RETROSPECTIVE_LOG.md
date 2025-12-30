@@ -146,6 +146,38 @@
 
 ---
 
+## Sprint 5 Retrospective
+
+**Date:** 2025-12-30
+**Duration:** 3 min (Quick)
+**Facilitator:** SM
+
+### Active Improvement Check
+- **Previous:** None (IMP-001 completed Sprint 3)
+- **Status:** Team functioning well
+- **Evidence:** Fast bug fixes, smooth pipeline
+
+### What Went Well
+- Very fast sprint: ~17 min
+- Both bugs fixed quickly
+- GD provided excellent root cause analysis for S5-002
+- Pipeline flowed smoothly
+
+### What Problems Occurred
+- S5-002 fix (Wave 2 balance) didn't fully resolve difficulty issue
+- Boss found more bugs: Wall-nut collision, questions too slow
+- Balance tuning is iterative - single fix rarely solves everything
+
+### Decision
+- No process improvement needed
+- Bug fixes are working correctly through pipeline
+- Balance issues require multiple iterations (expected for game dev)
+
+### Prompt Updates
+- None needed
+
+---
+
 ## Template
 
 ```markdown

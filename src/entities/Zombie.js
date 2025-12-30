@@ -140,6 +140,14 @@ export class Zombie {
     }
     return ZOMBIE_CONFIG.attackDps * deltaSeconds;
   }
+
+  /**
+   * Get attack DPS (damage per second)
+   * @returns {number}
+   */
+  getDps() {
+    return ZOMBIE_CONFIG.attackDps;
+  }
 }
 
 // Static ID counter for unique zombie IDs

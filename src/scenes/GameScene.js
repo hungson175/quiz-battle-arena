@@ -588,6 +588,9 @@ export class GameScene extends Phaser.Scene {
     // Check collisions
     this.handleCollisions();
 
+    // Check zombie-plant collisions (blocking and attacking)
+    this.handleZombiePlantCollisions(delta);
+
     // Check for game over
     if (zombieEvents.reachedHouse.length > 0) {
       this.handleGameOver(zombieEvents.reachedHouse[0]);
@@ -681,6 +684,43 @@ export class GameScene extends Phaser.Scene {
             break; // Pea can only hit one zombie
           }
         }
+      }
+    }
+  }
+
+  /**
+   * Handle zombie-plant collisions (zombies attack plants)
+   * @param {number} delta - Time since last frame in ms
+   */
+  handleZombiePlantCollisions(delta) {
+    const deltaSeconds = delta / 1000;
+
+    for (const zombie of this.zombieManager.getActiveZombies()) {
+      // Get zombie's current cell (use floor of col + progress)
+      const zombieCol = zombie.col;
+      const effectiveCol = zombie.tileProgress > 0.5 ? zombieCol - 1 : zombieCol;
+      const checkCol = Math.max(1, effectiveCol); // Don't check house zone
+
+      // Check if there's a plant in the zombie's current cell
+      const plant = this.plantManager.getPlantAt(zombie.lane, checkCol);
+
+      if (plant && plant.isAlive()) {
+        // Zombie should attack this plant
+        if (zombie.state !== 'attacking') {
+          zombie.startAttacking();
+        }
+
+        // Deal damage to plant (zombie DPS * delta time)
+        const damage = zombie.getDps() * deltaSeconds;
+        const plantDied = this.plantManager.damagePlant(zombie.lane, checkCol, damage);
+
+        if (plantDied) {
+          // Plant destroyed, zombie resumes walking
+          zombie.stopAttacking();
+        }
+      } else if (zombie.state === 'attacking') {
+        // No plant here anymore, resume walking
+        zombie.stopAttacking();
       }
     }
   }
