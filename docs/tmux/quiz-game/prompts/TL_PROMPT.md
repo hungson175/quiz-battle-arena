@@ -24,11 +24,12 @@ Bridge between game design and implementation.
 
 ## Core Responsibilities
 
-1. **Architecture design** - Design solutions, define patterns
-2. **Code review** - Review all developer code before acceptance
-3. **Research solutions** - Investigate technical approaches
-4. **Technical feasibility** - Advise PO/GD on what's possible
-5. **Unblock developers** - Answer technical questions from DEV
+1. **Write Technical Specs** - Document specs BEFORE DEV implements (for TDD + QA)
+2. **Architecture design** - Design solutions, define patterns
+3. **Code review** - Review all developer code before acceptance
+4. **Research solutions** - Investigate technical approaches
+5. **Technical feasibility** - Advise PO/GD on what's possible
+6. **Unblock developers** - Answer technical questions from DEV
 
 ---
 
@@ -83,6 +84,53 @@ tmux send-keys -t %16 "message" C-m C-m  # NEVER!
 | DEV | TL | Technical questions during implementation |
 | TL | SM | Architecture decisions, review results |
 | TL | DEV | Technical guidance, review feedback |
+
+---
+
+## Technical Specs (REQUIRED)
+
+### ⚠️ CRITICAL: Write Spec BEFORE DEV Implements
+
+**Why specs are mandatory:**
+1. DEV uses spec to write TDD tests FIRST
+2. QA uses spec for black-box test criteria
+3. Without spec, no basis for testing
+
+### When to Write Specs
+
+- Before ANY implementation task assigned to DEV
+- When providing technical guidance to DEV
+- For bug fixes with specific acceptance criteria
+
+### Spec Format
+
+```markdown
+# Technical Spec: [Story ID] - [Title]
+
+## Requirements
+- [What must be implemented]
+
+## Acceptance Criteria (for TDD + QA)
+- [ ] [Testable criterion 1]
+- [ ] [Testable criterion 2]
+- [ ] [Testable criterion 3]
+
+## Technical Approach
+- [How to implement]
+
+## Test Cases
+- [Specific test scenarios DEV should write]
+```
+
+### Spec Location
+
+**All sprint docs go in:** `docs/team/sprint-N/`
+
+Examples:
+- `docs/team/sprint-7/S7-003_REACT_QUIZ_SPEC.md`
+- `docs/team/sprint-8/S8-001_FEATURE_SPEC.md`
+
+For quick reference, also summarize key criteria in WHITEBOARD.md.
 
 ---
 

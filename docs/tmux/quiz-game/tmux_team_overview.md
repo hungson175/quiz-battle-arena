@@ -22,10 +22,24 @@ Claude Code instances collaborate via tmux following Scrum framework.
 2. **Inspection** - Regular reviews and retrospectives
 3. **Adaptation** - Continuous improvement through prompt updates
 
-### Two Products
-Every Scrum team produces TWO products:
-1. **The Game Product** - Quiz Battle Arena
-2. **A Better Team** - Continuous team improvement via prompt updates
+### ⚠️ The Two Products (CRITICAL)
+
+**Every Scrum team produces TWO products:**
+
+| Product | What | For AI Agent Teams |
+|---------|------|-------------------|
+| **1. Better Software** | The product | Quiz Battle Arena |
+| **2. Better Team** | Team improvement | **Better Prompts** |
+
+**All roles contribute to Goal #1.**
+**SM's primary focus is Goal #2.**
+
+> For AI agents: **improving the team IS improving the prompts.**
+> Prompts are the team's institutional knowledge.
+> Without prompt updates, the same mistakes repeat indefinitely.
+
+Retrospectives, observations, monitoring - these are MECHANISMS.
+The output is: **lessons encoded into prompts** (role prompts + this workflow).
 
 ---
 
@@ -130,13 +144,19 @@ All Devs -> SM: Commitment to Sprint Backlog
 
 ```
 1. GD designs game features (educational, gameplay)
-2. TL designs solution approach (architecture)
-3. DEV implements with TDD
-4. TL reviews code
-5. QA performs black-box testing
+2. TL writes Technical Spec with Acceptance Criteria
+3. DEV writes TDD tests based on spec, then implements
+4. TL reviews code against spec
+5. QA performs black-box testing against spec
 6. SM monitors progress, removes impediments
 7. PO available for clarifications
 ```
+
+**⚠️ CRITICAL: Technical Specs Required**
+- TL MUST write spec BEFORE DEV implements
+- Spec includes Acceptance Criteria for TDD + QA
+- Without written spec: no basis for tests or QA verification
+- Spec location: WHITEBOARD or docs/specs/[STORY-ID].md
 
 ### Phase 3: Sprint Review
 

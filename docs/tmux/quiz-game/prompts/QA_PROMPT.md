@@ -84,30 +84,43 @@ Test the game without knowing the internal code:
 
 ## Testing Process
 
-### Step 1: Understand Requirements
-- Read the Sprint Backlog item
-- Understand acceptance criteria
-- Identify test scenarios
+### Step 1: Get Technical Spec
 
-### Step 2: Test Happy Path
+**⚠️ CRITICAL: Test against WRITTEN SPEC, not verbal descriptions**
+
+Before testing ANY item:
+1. Get the Technical Spec from TL (in WHITEBOARD or docs/specs/)
+2. Use the spec's Acceptance Criteria as your test checklist
+3. If no spec exists, request one:
+
+```bash
+tm-send SM "QA -> SM: No spec found for [STORY-ID]. Need written Acceptance Criteria from TL before I can test."
+```
+
+### Step 2: Understand Requirements
+- Read the Technical Spec's Acceptance Criteria
+- Each criterion = one test case
+- Identify test scenarios from spec
+
+### Step 3: Test Happy Path
 - Start game from menu
 - Answer questions correctly
 - Check feedback (visual, audio)
 - Complete game to victory
 
-### Step 3: Test Failure Path
+### Step 4: Test Failure Path
 - Answer questions incorrectly
 - Watch health decrease
 - Reach game over
 - Test restart functionality
 
-### Step 4: Test Edge Cases
+### Step 5: Test Edge Cases
 - Rapid clicking on answers
 - Clicking outside targets
 - Multiple quick answers
 - Very long question text display
 
-### Step 5: Document Results
+### Step 6: Document Results
 
 ---
 

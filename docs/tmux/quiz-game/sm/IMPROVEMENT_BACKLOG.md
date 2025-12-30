@@ -10,7 +10,13 @@
 
 | ID | Description | Started Sprint | Evidence |
 |----|-------------|----------------|----------|
-| (none) | IMP-001 completed Sprint 3 - no new improvement needed | - | Team functioning well |
+| IMP-002 | TL must write Technical Spec BEFORE DEV implements | Sprint 7 | Prompts updated - monitoring compliance |
+
+**IMP-002 Details:**
+- TL writes spec with Acceptance Criteria
+- DEV uses spec for TDD tests
+- QA uses spec for black-box testing
+- No spec = no implementation allowed
 
 ---
 
@@ -78,6 +84,39 @@
 | OBS-056 | ✅ POSITIVE: Sprint 4 kickoff smooth - all roles acknowledged and ready | 4 | SM | Med - Good coordination |
 | OBS-057 | ✅ POSITIVE: GD delivered comprehensive S6-002/S6-003 analysis in ~5 min | 6 | SM | High - Fast turnaround |
 | OBS-058 | ✅ POSITIVE: QA acknowledged sprint start, confirmed understanding of items | 6 | SM | Med - Good communication |
+| OBS-059 | ✅ POSITIVE: DEV fixed S6-001 quickly with clear root cause explanation | 6 | SM | High - Fast bug fix |
+| OBS-060 | ✅ POSITIVE: PO decided quickly on GD recommendations (~2 min) | 6 | SM | High - Fast decisions |
+| OBS-061 | ✅ POSITIVE: TL fast review of S6-001 with clear approval | 6 | SM | High - Fast turnaround |
+| OBS-062 | ✅ POSITIVE: QA caught test failures, correctly identified as S6-002/S6-003 values | 6 | SM | High - Good analysis |
+| OBS-063 | ✅ POSITIVE: DEV fixed tests quickly after QA feedback (~1 min) | 6 | SM | High - Fast response |
+| OBS-064 | ✅ POSITIVE: TL approved S6-002/S6-003 with verification against GD specs | 6 | SM | High - Thorough review |
+| OBS-065 | ✅ POSITIVE: QA comprehensive re-test with all 3 items verified | 6 | SM | High - Good coverage |
+| OBS-066 | ✅ POSITIVE: Sprint 6 completed in ~17 min (fast turnaround) | 6 | SM | High - Efficient sprint |
+| OBS-067 | ✅ POSITIVE: PO accepted all items quickly after QA pass | 6 | SM | High - Good pipeline |
+| OBS-068 | ⚠️ ISSUE: Boss found Level 2 STILL unbeatable despite S6-003 balance fix | 6 | Boss | Critical - Bug persists |
+| OBS-069 | ⚠️ ISSUE: Wall-nut dies instantly - S6-001 may have DPS bug | 6 | Boss | Critical - Feature broken |
+| OBS-070 | 💡 DESIGN: Boss wants quiz separated from game (React, not Phaser overlay) | 6 | Boss | Major - Architecture change |
+| OBS-071 | ✅ POSITIVE: GD excellent root cause - Level 2 is UX problem (zombies move during quiz), not numbers | 7 | SM | Critical - Shifts focus to UX fix |
+| OBS-072 | ✅ POSITIVE: GD identified Wall-nut HP 20→40 fix with clear math | 7 | SM | High - Clear solution |
+| OBS-073 | ✅ POSITIVE: TL found 2 code bugs in Wall-nut (effectiveCol + simultaneous damage) | 7 | SM | High - Root cause found |
+| OBS-074 | ✅ POSITIVE: TL + GD analysis aligned - UX is root cause, not balance | 7 | SM | High - Clear direction |
+| OBS-075 | ✅ POSITIVE: QA acknowledged Sprint 7 items promptly | 7 | SM | Med - Good communication |
+| OBS-076 | ✅ POSITIVE: TL proactively sent S7-003 architecture guidance to DEV | 7 | SM | High - Good collaboration |
+| OBS-077 | ⚠️ PROCESS GAP: TL gives verbal guidance to DEV but NO WRITTEN SPEC | 7 | Boss | CRITICAL - No spec = no TDD basis, no QA test criteria |
+| OBS-078 | 💡 IMP-002: TL must write Technical Spec BEFORE DEV implements - serves as TDD + QA basis | 7 | Boss | CRITICAL - Process update needed |
+| OBS-079 | ✅ POSITIVE: IMP-002 first use - TL wrote S7-003 spec with 8 Acceptance Criteria | 7 | SM | High - New process working |
+| OBS-080 | 💡 PROCESS: Sprint docs should be in docs/team/sprint-N/ folders (not scattered) | 7 | Boss | Med - Organization improvement |
+| OBS-081 | 📋 RETRO TASK: After Sprint 7 retro, move ALL scattered docs to corresponding sprint folders (Sprint 1-7) | 7 | Boss | Med - Cleanup before Sprint 8 |
+| OBS-082 | ✅ POSITIVE: IMP-002 full cycle success - S7-003 spec → DEV TDD → TL review against spec → QA test against spec | 7 | SM | High - Process validated |
+| OBS-083 | ✅ POSITIVE: QA verified all 8 Acceptance Criteria from spec - spec served as test checklist | 7 | SM | High - IMP-002 working |
+| OBS-084 | ⚠️ CRITICAL BUG: S7-003 passed QA but game not rendering in Boss review - Phaser empty | 7 | Boss | CRITICAL - QA missed visual rendering |
+| OBS-085 | ✅ FIX: React StrictMode caused double Phaser mount - removed StrictMode + added guard (313b76d) | 7 | DEV | High - Fast hotfix |
+| OBS-086 | ⚠️ DECISION: Sprint 7 SKIPPED - Boss directive due to persistent bugs. Moving to Sprint 8 (restructure) | 7 | Boss | Critical - Major pivot |
+| OBS-087 | 💡 PIVOT: Sprint 8 goal = learn from reference project (sample_codes/tower-defence/) + plan restructure | 8 | Boss | Major - Fresh start approach |
+| OBS-088 | ✅ POSITIVE: TL quick initial findings - 5 key patterns (config-driven, 10 managers, parallel scenes, inheritance, cleanup) | 8 | SM | High - Fast analysis |
+| OBS-089 | ✅ POSITIVE: GD study complete with 5 findings + joint restructure plan (7 improvements) in ~3 min | 8 | SM | High - Excellent collaboration |
+| OBS-090 | ✅ POSITIVE: TL+GD aligned on restructure plan before formal spec - good coordination | 8 | SM | High - IMP-002 working |
+| OBS-091 | ✅ POSITIVE: Sprint 8 complete in ~5 min - TL+GD delivered comprehensive RESTRUCTURE_SPEC with 4-phase plan | 8 | SM | High - Fast delivery |
 
 ---
 

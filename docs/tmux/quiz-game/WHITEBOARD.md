@@ -1,8 +1,11 @@
 # Team Whiteboard
 
-**Sprint:** 6
-**Goal:** Wall-nut Collision + Question Flow + Balance
-**Status:** **IN PROGRESS**
+**Sprint:** 8
+**Goal:** Learn from Reference Project + Plan Restructure
+**Status:** **IN PROGRESS** - TL+GD studying sample_codes/tower-defence/
+
+**Sprint 7 SKIPPED** - Boss directive: buggy, move on
+**Sprint 6 COMPLETE** - PO Accepted ✅, Boss found issues
 
 **Sprint 5 COMPLETE** - Boss Accepted ✅ (via PO), Retro Done
 **Sprint 4 COMPLETE** - Boss Accepted ✅, Retro Done
@@ -12,39 +15,121 @@
 
 ---
 
-## Sprint 6 Items
+## Sprint 8 Items
 
 | ID | Item | Owner | Status |
 |----|------|-------|--------|
-| S6-001 | Wall-nut must BLOCK zombies | DEV | DEV investigating |
-| S6-002 | Faster question intervals | DEV+GD | GD analysis DONE |
-| S6-003 | Level balance - make beatable | DEV+GD | GD analysis DONE |
+| S8-001 | Study reference project - Phaser patterns, architecture | TL | **COMPLETE** ✓ |
+| S8-002 | Study reference project - Game design, balance, progression | GD | **COMPLETE** ✓ |
+| S8-003 | Joint summary of learnings | TL+GD | **COMPLETE** ✓ |
+| S8-004 | Formal restructure spec | TL+GD | **COMPLETE** ✓ |
+
+**Reference Project:** `sample_codes/tower-defence/`
+
+**TL Findings:**
+1. Config-driven architecture (all balance in JSON)
+2. 10 manager classes for separation of concerns
+3. Separate GameScene + UIScene (parallel scenes)
+4. Entity inheritance (base → specialized subclasses)
+5. Robust cleanup patterns
+
+**GD Findings:**
+1. Config-driven balance (JSON files)
+2. 5 difficulty levels with multipliers
+3. 9 enemy types, 6 tower types
+4. 10+ waves with gradual progression
+5. Lives system (20 lives, not instant loss)
+
+**JOINT RESTRUCTURE PLAN:**
+1. Config-driven design (JSON for all balance)
+2. Separate GameScene + UIScene + React Quiz
+3. Manager-per-entity pattern
+4. Entity inheritance for variety
+5. Lives system (3-5 lives)
+6. Difficulty selector
+7. Gradual wave progression
+
+**📄 FORMAL SPEC:** `docs/team/sprint-8/RESTRUCTURE_SPEC.md`
+- ✅ GD APPROVED (19:52)
+- Awaiting PO approval
+- 4-phase implementation plan included
+- Acceptance criteria defined
 
 ---
 
-## GD Recommendations (Sprint 6)
+## Sprint 7 Items (SKIPPED)
 
-**S6-002: Question Timing**
-- Current: [15000, 12000, 10000, 10000, 8000] ms
-- NEW: [12000, 10000, 8000, 8000, 6000] ms (~20% reduction)
-
-**S6-003: Level Balance (Full Curve Rebalance)**
-- waves: [2, 3, 4, 6, 8] (was [3, 3, 7, 9, 12])
-- spawnIntervals: [5000, 4500, 4000, 3500, 3000] ms
-- speedMultipliers: [1.0, 1.0, 1.0, 1.1, 1.2]
-- Total: 23 zombies (was 34)
-
-**Awaiting PO decision.**
+| ID | Item | Owner | Status |
+|----|------|-------|--------|
+| S7-001 | Wall-nut collision bugs (effectiveCol + simultaneous damage) | DEV | **PO ACCEPTED** ✓ (85f3760) |
+| S7-002 | Debug UI overlay (zombies per lane + HP) | DEV | **PO ACCEPTED** ✓ (9cf0552) |
+| S7-003 | React quiz side-panel (70/30 layout) | DEV+TL | **PO ACCEPTED** ✓ (6c59bba) |
 
 ---
 
-## Boss Feedback for Sprint 6
+## Sprint 6 Items (COMPLETE)
+
+| ID | Item | Owner | Status |
+|----|------|-------|--------|
+| S6-001 | Wall-nut must BLOCK zombies | DEV | **PO ACCEPTED** ✓ (869a25d) |
+| S6-002 | Faster question intervals | DEV+GD | **PO ACCEPTED** ✓ (39a8bdc) |
+| S6-003 | Level balance - make beatable | DEV+GD | **PO ACCEPTED** ✓ (39a8bdc) |
+
+---
+
+## GD Analysis (Sprint 7) - ROOT CAUSE FOUND
+
+**Level 2 Unbeatable: UX PROBLEM, NOT NUMBERS**
+- Quiz appears → Player can't see game
+- Zombies KEEP MOVING during quiz
+- Player returns → Zombies too close → DEATH
+- Wave config [2,3,4,6,8] is FINE if quiz doesn't interrupt
+
+**Wall-nut Dies Instantly: HP TOO LOW**
+- Current: HP 20, Zombie DPS 2
+- 3 zombies pile up → 20/6 = 3.3s death
+- FIX: HP 20 → 40 (gives 6.6s with 3 zombies)
+
+**Quiz UX Options:**
+| Option | Description | Complexity |
+|--------|-------------|------------|
+| A | Pause game during quiz | Simple |
+| B | Quiz between waves only | Medium |
+| C | Side-panel React quiz (Boss pref) | Complex |
+
+**GD RECOMMENDATION:** Option A immediate, Option C long-term
+
+---
+
+## TL Technical Analysis (Sprint 7)
+
+**Wall-nut Instant Death - 2 CODE BUGS:**
+1. effectiveCol calculation triggers early
+2. ALL zombies damage Wall-nut simultaneously (3x damage)
+
+**Debug Overlay:** ~30 min effort
+
+**React Quiz Architecture:**
+- Side-by-side: Game 70% left, Quiz 30% right
+- Phaser emits events → React listens
+- Effort: ~1 day
+
+**TL + GD ALIGNED:** UX is the root cause, not balance numbers
+
+---
+
+## Boss Feedback for Sprint 7 (CRITICAL)
 
 | Priority | Issue | Description |
 |----------|-------|-------------|
-| **BUG** | Wall-nut collision | Wall-nut doesn't block zombies - they walk through! |
-| **FEATURE** | Faster questions | Questions should appear faster after answering |
-| **BUG** | Level still unbeatable | S5-002 fix insufficient - need more balance work |
+| **BUG** | Level 2 STILL unbeatable | S6-003 fix insufficient - seems like a bug |
+| **BUG** | Wall-nut dies instantly | Useless - dies on touch |
+| **DEBUG** | Add debug UI overlay | Show zombies per lane/column + HP for each zombie |
+| **DESIGN** | Questions obscure gameplay | Zombies move while question shows |
+| **DESIGN** | Quiz should NOT overlap game | Use REACT for questions (separate from Phaser) |
+| **DESIGN** | Quiz in separate place | Don't mix with gameplay |
+
+**REQUIRED:** TL + GD full review before implementation. Design too sloppy.
 
 ---
 
@@ -71,12 +156,12 @@ All 3 items Boss Accepted ✅
 
 | Role | Status | Current Task | Last Update |
 |------|--------|--------------|-------------|
-| PO   | Pending | Awaiting GD recommendations | 15:32 |
-| SM   | Active | Sprint 6 coordination | 15:32 |
-| GD   | Done | S6-002/S6-003 analysis delivered | 15:32 |
-| TL   | Standby | Ready for code review | 15:27 |
-| DEV  | Active | Investigating S6-001 | 15:27 |
-| QA   | Standby | Ready for testing | 15:27 |
+| PO   | Reviewing | RESTRUCTURE_SPEC approval | 19:52 |
+| SM   | Active | Sprint 8 coordination | 19:52 |
+| GD   | Done | Joint restructure spec | 19:50 |
+| TL   | Done | RESTRUCTURE_SPEC complete | 19:52 |
+| DEV  | Standby | Awaiting Phase 1 tasks | 19:52 |
+| QA   | Standby | Awaiting implementation | 19:52 |
 
 ---
 

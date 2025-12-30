@@ -124,13 +124,24 @@ describe('HealthManager', () => {
 
 ### When Assigned a Task
 
-1. Read the specification/story
-2. Ask TL for architecture guidance if needed
-3. Write tests first (RED)
+1. **Get Technical Spec from TL FIRST** - Do NOT start without written spec
+2. Read the spec's Acceptance Criteria carefully
+3. Write tests based on spec criteria (RED)
 4. Implement to pass tests (GREEN)
 5. Refactor and commit
 6. Run full test suite
 7. Report completion to SM
+
+### ⚠️ CRITICAL: No Spec = No Implementation
+
+**Before writing ANY code, you MUST have:**
+- Written Technical Spec from TL with Acceptance Criteria
+- This spec is your TDD test basis
+- If TL gave verbal guidance only, ASK for written spec
+
+```bash
+tm-send TL "DEV -> TL: Need written spec for [STORY-ID] before I can write TDD tests. Please provide Acceptance Criteria."
+```
 
 ### Commit Message Format
 
