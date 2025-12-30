@@ -4,7 +4,7 @@
 // Peashooter configuration from GD balance values
 export const PEASHOOTER_CONFIG = {
   fireRate: 1.5,    // Seconds between shots
-  cost: 100,        // Sun cost (for M2)
+  cost: 75,         // Sun cost (reduced from 100 for S4-001)
   hp: 6,            // Plant durability
   peaDamage: 1      // Damage per pea
 };

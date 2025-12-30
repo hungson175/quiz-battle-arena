@@ -6,7 +6,7 @@ export const MONEY_CONFIG = {
   startingMoney: 200,   // Enough for 2 plants or 1 plant + quiz mistakes
   correctReward: 50,    // Reward for correct answer
   wrongPenalty: 30,     // HARSH penalty for wrong answer
-  plantCost: 100        // Cost per plant (Peashooter)
+  plantCost: 75         // Cost per plant (Peashooter, reduced from 100)
 };
 
 /**

@@ -15,8 +15,8 @@ describe('Peashooter', () => {
       expect(PEASHOOTER_CONFIG.fireRate).toBe(1.5);
     });
 
-    test('should have cost of 100 sun', () => {
-      expect(PEASHOOTER_CONFIG.cost).toBe(100);
+    test('should have cost of 75 sun', () => {
+      expect(PEASHOOTER_CONFIG.cost).toBe(75);
     });
 
     test('should have HP of 6', () => {

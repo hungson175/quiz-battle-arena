@@ -23,8 +23,8 @@ describe('MoneyManager', () => {
       expect(MONEY_CONFIG.wrongPenalty).toBe(30);
     });
 
-    test('should have plant cost of 100', () => {
-      expect(MONEY_CONFIG.plantCost).toBe(100);
+    test('should have plant cost of 75', () => {
+      expect(MONEY_CONFIG.plantCost).toBe(75);
     });
   });
 
@@ -90,14 +90,14 @@ describe('MoneyManager', () => {
   describe('Plant Purchase', () => {
     test('should check if can buy plant', () => {
       expect(manager.canBuyPlant()).toBe(true);
-      manager.spend(150); // 200 - 150 = 50, can't afford 100
+      manager.spend(150); // 200 - 150 = 50, can't afford 75
       expect(manager.canBuyPlant()).toBe(false);
     });
 
     test('should buy plant and deduct cost', () => {
       const result = manager.buyPlant();
       expect(result).toBe(true);
-      expect(manager.getMoney()).toBe(100); // 200 - 100 = 100
+      expect(manager.getMoney()).toBe(125); // 200 - 75 = 125
     });
 
     test('should not buy plant if cannot afford', () => {
