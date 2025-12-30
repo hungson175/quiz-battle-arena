@@ -1,0 +1,30 @@
+{
+  "BASIC": {
+    "name": "Basic Zombie",
+    "hp": 8,
+    "speed": 5,
+    "attackDps": 2,
+    "reward": 10,
+    "damage": 1,
+    "description": "Standard zombie"
+  },
+  "FAST": {
+    "name": "Fast Zombie",
+    "hp": 4,
+    "speed": 3,
+    "attackDps": 1,
+    "reward": 8,
+    "damage": 1,
+    "description": "Quick but fragile"
+  },
+  "ARMORED": {
+    "name": "Armored Zombie",
+    "hp": 20,
+    "speed": 7,
+    "attackDps": 3,
+    "reward": 20,
+    "damage": 1,
+    "armor": 0.3,
+    "description": "Tough and slow"
+  }
+}

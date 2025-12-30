@@ -1,0 +1,26 @@
+{
+  "EASY": {
+    "name": "Easy",
+    "zombieHealthMultiplier": 1.0,
+    "zombieSpeedMultiplier": 1.0,
+    "zombieCountMultiplier": 1.0,
+    "moneyMultiplier": 1.2,
+    "startingLives": 5
+  },
+  "NORMAL": {
+    "name": "Normal",
+    "zombieHealthMultiplier": 1.2,
+    "zombieSpeedMultiplier": 1.1,
+    "zombieCountMultiplier": 1.2,
+    "moneyMultiplier": 1.0,
+    "startingLives": 3
+  },
+  "HARD": {
+    "name": "Hard",
+    "zombieHealthMultiplier": 1.5,
+    "zombieSpeedMultiplier": 1.2,
+    "zombieCountMultiplier": 1.4,
+    "moneyMultiplier": 0.8,
+    "startingLives": 2
+  }
+}

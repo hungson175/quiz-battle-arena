@@ -117,6 +117,8 @@
 | OBS-089 | ✅ POSITIVE: GD study complete with 5 findings + joint restructure plan (7 improvements) in ~3 min | 8 | SM | High - Excellent collaboration |
 | OBS-090 | ✅ POSITIVE: TL+GD aligned on restructure plan before formal spec - good coordination | 8 | SM | High - IMP-002 working |
 | OBS-091 | ✅ POSITIVE: Sprint 8 complete in ~5 min - TL+GD delivered comprehensive RESTRUCTURE_SPEC with 4-phase plan | 8 | SM | High - Fast delivery |
+| OBS-092 | ✅ POSITIVE: Boss APPROVED restructure plan - proceeding to implementation sprints | 8 | Boss | High - Green light |
+| OBS-093 | 💡 PROCESS: Boss directive - always reference sample_codes/ before starting sprints | 8 | Boss | High - Added to workflow |
 
 ---
 

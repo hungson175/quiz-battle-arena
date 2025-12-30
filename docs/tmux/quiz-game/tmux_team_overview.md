@@ -140,6 +140,9 @@ All Devs -> SM: Commitment to Sprint Backlog
 
 **Note:** Boss does NOT set sprint goals. Boss only Reviews (accept/reject + feedback). PO owns sprint planning decisions.
 
+**⚠️ CRITICAL: Reference Sample Project**
+Before starting ANY sprint, TL and GD must reference `sample_codes/` for patterns and best practices. This ensures consistency with proven implementations.
+
 ### Phase 2: Sprint Execution
 
 ```

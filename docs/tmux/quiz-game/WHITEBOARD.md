@@ -1,8 +1,10 @@
 # Team Whiteboard
 
-**Sprint:** 8
-**Goal:** Learn from Reference Project + Plan Restructure
-**Status:** **IN PROGRESS** - TL+GD studying sample_codes/tower-defence/
+**Sprint:** 9
+**Goal:** Phase 1: Foundation - Config-driven architecture + Base classes
+**Status:** **IN PROGRESS** - Sprint 9 execution started
+
+**Sprint 8 COMPLETE** - Boss Approved ✅ (59bcef0)
 
 **Sprint 7 SKIPPED** - Boss directive: buggy, move on
 **Sprint 6 COMPLETE** - PO Accepted ✅, Boss found issues
@@ -15,7 +17,26 @@
 
 ---
 
-## Sprint 8 Items
+## Sprint 9 Items (Phase 1: Foundation)
+
+| ID | Item | Owner | Status |
+|----|------|-------|--------|
+| S9-001 | Create config JSON files (plants, zombies, waves, difficulty) | TL | **COMPLETE** ✓ |
+| S9-002 | Implement base Plant class (Phaser.Container) | DEV | **TL APPROVED** ✓ |
+| S9-003 | Implement base Zombie class (Phaser.Container) | DEV | **TL APPROVED** ✓ |
+| S9-004 | Refactor PlantManager for new pattern | DEV | **TL APPROVED** ✓ |
+| S9-005 | Refactor ZombieManager for new pattern | DEV | **TL APPROVED** ✓ |
+
+**Acceptance:** Peashooter, Wallnut, BasicZombie work with new architecture. All tests pass.
+
+**📄 TL SPECS READY:** `docs/team/sprint-9/PHASE1_IMPLEMENTATION_SPEC.md`
+- Config files: `public/assets/config/*.json`
+- Full implementation details for S9-002 through S9-005
+- DEV UNBLOCKED
+
+---
+
+## Sprint 8 Items (COMPLETE)
 
 | ID | Item | Owner | Status |
 |----|------|-------|--------|
@@ -51,9 +72,10 @@
 
 **📄 FORMAL SPEC:** `docs/team/sprint-8/RESTRUCTURE_SPEC.md`
 - ✅ GD APPROVED (19:52)
-- Awaiting PO approval
+- ✅ PO APPROVED (59bcef0)
 - 4-phase implementation plan included
 - Acceptance criteria defined
+- Awaiting Boss review
 
 ---
 

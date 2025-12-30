@@ -1,0 +1,17 @@
+{
+  "player": {
+    "startingMoney": 200,
+    "correctAnswerReward": 50,
+    "wrongAnswerPenalty": 30
+  },
+  "grid": {
+    "lanes": 3,
+    "columns": 9,
+    "tileWidth": 97.7,
+    "tileHeight": 80
+  },
+  "quiz": {
+    "questionInterval": 15000,
+    "countdownTime": 12000
+  }
+}

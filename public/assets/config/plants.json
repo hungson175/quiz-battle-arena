@@ -1,0 +1,29 @@
+{
+  "PEASHOOTER": {
+    "name": "Peashooter",
+    "cost": 75,
+    "hp": 10,
+    "damage": 1,
+    "fireRate": 1500,
+    "range": 400,
+    "projectileSpeed": 300,
+    "description": "Shoots peas at zombies"
+  },
+  "WALLNUT": {
+    "name": "Wall-nut",
+    "cost": 50,
+    "hp": 40,
+    "damage": 0,
+    "fireRate": 0,
+    "description": "Blocks zombies with high HP"
+  },
+  "SUNFLOWER": {
+    "name": "Sunflower",
+    "cost": 50,
+    "hp": 5,
+    "damage": 0,
+    "moneyGeneration": 25,
+    "generationInterval": 10000,
+    "description": "Generates money over time"
+  }
+}

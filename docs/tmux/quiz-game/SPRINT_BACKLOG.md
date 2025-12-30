@@ -1,6 +1,6 @@
-# Sprint 6 Backlog
+# Sprint 9 Backlog
 
-**Sprint Goal:** Wall-nut Collision + Question Flow + Balance
+**Sprint Goal:** Phase 1 - Config-Driven Architecture + Base Classes
 **Sprint Start:** 2025-12-30
 **Sprint End:** TBD
 
@@ -8,105 +8,130 @@
 
 ## Sprint Scope
 
-Fix critical issues from Boss review:
-- Wall-nut must actually BLOCK zombies (not let them walk through)
-- Questions appear faster after answering (earn gold + learn more)
-- Level must be beatable with good strategy
+Implement Phase 1 of the restructure:
+- Config-driven architecture with JSON files
+- Base entity classes using Phaser.Container
+- Refactored managers for new pattern
 
-**Design Intent:** Make Wall-nut useful, increase learning opportunities, game winnable!
-
----
-
-## PO Decisions
-
-| Decision | Choice | Rationale |
-|----------|--------|-----------|
-| Wall-nut collision | Must stop zombie movement | Core feature - useless otherwise |
-| Question interval | Faster after answering | More gold + more learning for kids |
-| Balance target | All levels beatable | Game must be winnable |
+**Reference:** sample_codes/tower-defence/
 
 ---
 
 ## Sprint Items
 
-### [S6-001]: Fix Wall-nut Zombie Collision
+### [S9-001]: Create Config JSON Files
 **Owner:** DEV
 **Status:** TODO
-**Priority:** HIGH - Core feature broken
-
-**Problem:** Zombies walk through Wall-nut instead of stopping and attacking it.
+**Priority:** HIGH - Foundation for everything
 
 **Tasks:**
-- [ ] Debug zombie-wallnut collision detection
-- [ ] Make zombie stop when hitting Wall-nut
-- [ ] Zombie should attack Wall-nut (reduce HP)
-- [ ] Wall-nut destroyed when HP = 0
-- [ ] Test collision works correctly
+- [ ] Create public/assets/config/plants.json
+- [ ] Create public/assets/config/zombies.json
+- [ ] Create public/assets/config/waves.json
+- [ ] Create public/assets/config/difficulty.json
+- [ ] Create public/assets/config/game.json
+- [ ] Implement ConfigLoader utility
 
 **Acceptance Criteria:**
-- [ ] Zombie stops when reaching Wall-nut
-- [ ] Zombie attacks Wall-nut (visible damage)
-- [ ] Wall-nut HP decreases
-- [ ] Zombie resumes moving after Wall-nut destroyed
-- [ ] Tests pass
+- [ ] All config files created per RESTRUCTURE_SPEC
+- [ ] Configs loadable at runtime
+- [ ] Fallback to defaults if load fails
 
 ---
 
-### [S6-002]: Faster Question Intervals
+### [S9-002]: Implement Base Plant Class
 **Owner:** DEV
 **Status:** TODO
-**Priority:** HIGH - Gameplay + Learning
-
-**Problem:** Questions don't appear fast enough after answering. Player can't earn gold quickly enough, and kids don't get enough learning opportunities.
+**Priority:** HIGH
 
 **Tasks:**
-- [ ] Reduce interval between questions
-- [ ] New question appears shortly after previous answered
-- [ ] Balance: not too fast (overwhelming) but faster than now
-- [ ] GD input on ideal interval timing
+- [ ] Create Plant base class extending Phaser.GameObjects.Container
+- [ ] Implement hp, maxHp, lane, col properties
+- [ ] Implement takeDamage(), destroy() methods
+- [ ] Implement canFire(), fire() for shooting plants
+- [ ] Add health bar display
+- [ ] Migrate Peashooter to new pattern
+- [ ] Migrate Wallnut to new pattern
 
 **Acceptance Criteria:**
-- [ ] New question appears within 3-5 seconds of answering
-- [ ] Player can earn gold at reasonable pace
-- [ ] Feels engaging, not overwhelming
-- [ ] Supports learning (more questions = more practice)
+- [ ] Plant extends Phaser.GameObjects.Container
+- [ ] Peashooter works with new base class
+- [ ] Wallnut works with new base class
+- [ ] Config-driven stats
 
 ---
 
-### [S6-003]: Level Balance - Make Beatable
-**Owner:** DEV + GD
+### [S9-003]: Implement Base Zombie Class
+**Owner:** DEV
 **Status:** TODO
-**Priority:** HIGH - Game unwinnable
-
-**Problem:** Level is still unbeatable even after S5-002 fix.
+**Priority:** HIGH
 
 **Tasks:**
-- [ ] GD: Analyze current wave config
-- [ ] Identify why still too hard
-- [ ] Adjust zombie count / spawn interval / speed
-- [ ] Test each wave is beatable with good play
-- [ ] Document final balance values
+- [ ] Create Zombie base class extending Phaser.GameObjects.Container
+- [ ] Implement hp, speed, lane, state properties
+- [ ] Implement states: walking, attacking, dead
+- [ ] Implement takeDamage(), startAttacking(), stopAttacking()
+- [ ] Add health bar display
+- [ ] Migrate BasicZombie to new pattern
 
 **Acceptance Criteria:**
-- [ ] Wave 1 is easy (intro)
-- [ ] Wave 2-4 are challenging but beatable
-- [ ] Wave 5 is hard but possible
-- [ ] Player can win with good answers + strategy
-- [ ] Game feels HARD but FAIR
+- [ ] Zombie extends Phaser.GameObjects.Container
+- [ ] BasicZombie works with new base class
+- [ ] States properly tracked (walking/attacking/dead)
+- [ ] Config-driven stats
+
+---
+
+### [S9-004]: Refactor PlantManager
+**Owner:** DEV
+**Status:** TODO
+**Priority:** HIGH
+
+**Tasks:**
+- [ ] Update PlantManager for new Plant pattern
+- [ ] Implement add(), remove(), getAll(), getAt()
+- [ ] Update plant creation to use configs
+- [ ] Ensure collision detection still works
+- [ ] Update tests
+
+**Acceptance Criteria:**
+- [ ] PlantManager works with new Plant classes
+- [ ] Config-driven plant creation
+- [ ] All plant tests pass
+
+---
+
+### [S9-005]: Refactor ZombieManager
+**Owner:** DEV
+**Status:** TODO
+**Priority:** HIGH
+
+**Tasks:**
+- [ ] Update ZombieManager for new Zombie pattern
+- [ ] Implement add(), remove(), getAll()
+- [ ] Update zombie creation to use configs
+- [ ] Update spawning logic for config-driven waves
+- [ ] Update tests
+
+**Acceptance Criteria:**
+- [ ] ZombieManager works with new Zombie classes
+- [ ] Config-driven zombie creation
+- [ ] All zombie tests pass
 
 ---
 
 ## Definition of Done (Sprint Level)
 
-- [ ] All items completed
-- [ ] TL code review passed
+- [ ] All config files created
+- [ ] Base Plant class implemented
+- [ ] Base Zombie class implemented
+- [ ] Peashooter works with new pattern
+- [ ] Wallnut works with new pattern
+- [ ] BasicZombie works with new pattern
+- [ ] All existing tests pass
+- [ ] TL code review approved
 - [ ] QA black-box testing passed
-- [ ] Game runs without errors (`npm run dev`)
-- [ ] Tests pass (`npm test`)
-- [ ] PO accepts demo
-- [ ] Wall-nut blocks zombies
-- [ ] Questions flow faster
-- [ ] Game is beatable
+- [ ] Game is playable
 - [ ] Pushed to remote before Boss review
 - [ ] Run with `npm run dev -- --host` for Boss review
 
@@ -116,16 +141,17 @@ Fix critical issues from Boss review:
 
 | Item | Status | Owner | Notes |
 |------|--------|-------|-------|
-| S6-001 | TODO | DEV | Wall-nut collision |
-| S6-002 | TODO | DEV | Question intervals |
-| S6-003 | TODO | DEV+GD | Balance fix |
+| S9-001 | TODO | DEV | Config JSON files |
+| S9-002 | TODO | DEV | Base Plant class |
+| S9-003 | TODO | DEV | Base Zombie class |
+| S9-004 | TODO | DEV | PlantManager refactor |
+| S9-005 | TODO | DEV | ZombieManager refactor |
 
 ---
 
 ## Notes
 
-- All 3 items are CRITICAL - game not fun without them
-- Wall-nut is useless if it doesn't block zombies
-- More questions = more learning for kids (educational goal)
-- Boss will return to review - keep server running with --host
-- Port 3336 required
+- Reference sample_codes/tower-defence/ for patterns
+- Incremental migration - keep tests passing
+- Config fallbacks for safety
+- This is Phase 1 of 4 in the restructure

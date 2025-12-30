@@ -1,0 +1,10 @@
+{
+  "waves": [
+    { "enemies": ["BASIC"], "count": 2, "interval": 5000 },
+    { "enemies": ["BASIC"], "count": 3, "interval": 4500 },
+    { "enemies": ["BASIC", "FAST"], "count": 4, "interval": 4000 },
+    { "enemies": ["BASIC", "FAST"], "count": 6, "interval": 3500 },
+    { "enemies": ["BASIC", "FAST", "ARMORED"], "count": 8, "interval": 3000 }
+  ],
+  "pauseBetweenWaves": 5000
+}
