@@ -15,8 +15,8 @@
 | ID | Item | Owner | Status |
 |----|------|-------|--------|
 | S4-001 | Peashooter cost 100→75 | DEV | **PO ACCEPTED** ✅ |
-| S4-002 | Wall-nut plant (cost 50, HP 20) + Selection UI | DEV | **IN PROGRESS** |
-| S4-003 | Remove QuizTimer | DEV | Pending S4-002 |
+| S4-002 | Wall-nut plant (cost 50, HP 20) + Selection UI | DEV | **QA PASSED** ✅ (28507ae) |
+| S4-003 | Remove QuizTimer | DEV | **IN PROGRESS** |
 
 **IMP-001 COMPLETED** - Team internalized report-back behavior
 
@@ -42,9 +42,9 @@
 | PO   | Monitoring | Sprint 4 in progress | 14:15 |
 | SM   | Active | Monitoring Sprint 4 execution | 14:21 |
 | GD   | Standby | Available for design questions | 14:16 |
-| TL   | Done | S4-001 APPROVED | 14:22 |
-| DEV  | Working | S4-002 Wall-nut + PlantSelector | 14:20 |
-| QA   | Testing | S4-001 Peashooter cost | 14:22 |
+| TL   | Done | S4-002 APPROVED | 14:37 |
+| DEV  | Working | S4-003 Remove QuizTimer | 14:35 |
+| QA   | Testing | S4-002 Wall-nut + UI | 14:37 |
 
 ---
 
