@@ -1,137 +1,133 @@
-# Sprint 9 Backlog
+# Sprint 10 Backlog
 
-**Sprint Goal:** Phase 1 - Config-Driven Architecture + Base Classes
-**Sprint Start:** 2025-12-30
-**Sprint End:** TBD
+**Sprint Goal:** Quiz Tower Defense - Foundation
+**Sprint Start:** 2025-12-31
+**Sprint End:** TBD (Est. 2.5 days)
 
 ---
 
 ## Sprint Scope
 
-Implement Phase 1 of the restructure:
-- Config-driven architecture with JSON files
-- Base entity classes using Phaser.Container
-- Refactored managers for new pattern
+Clone exact tower defense game from sample_codes/tower-defence/ and add React quiz panel.
 
-**Reference:** sample_codes/tower-defence/
+**CRITICAL Requirements:**
+- Game is EXACT clone - NO modifications to game logic
+- Quiz is separate React panel (30% right side)
+- Gold ONLY from quiz answers (not enemy kills)
+- NO React.StrictMode (breaks Phaser)
+
+**Reference:** `sample_codes/tower-defence/` and `docs/team/sprint-10/TECHNICAL_SPEC.md`
 
 ---
 
 ## Sprint Items
 
-### [S9-001]: Create Config JSON Files
+### [S10-001]: Remove Old Code
 **Owner:** DEV
 **Status:** TODO
-**Priority:** HIGH - Foundation for everything
+**Priority:** CRITICAL - Must be first
 
 **Tasks:**
-- [ ] Create public/assets/config/plants.json
-- [ ] Create public/assets/config/zombies.json
-- [ ] Create public/assets/config/waves.json
-- [ ] Create public/assets/config/difficulty.json
-- [ ] Create public/assets/config/game.json
-- [ ] Implement ConfigLoader utility
+- [ ] Remove all files in src/ directory
+- [ ] Keep public/assets/data/questions.json (quiz questions)
+- [ ] Clean package.json if needed
 
 **Acceptance Criteria:**
-- [ ] All config files created per RESTRUCTURE_SPEC
-- [ ] Configs loadable at runtime
-- [ ] Fallback to defaults if load fails
+- [ ] src/ directory empty except for new code
+- [ ] questions.json preserved
+- [ ] No old Quiz Battle Arena code remains
 
 ---
 
-### [S9-002]: Implement Base Plant Class
+### [S10-002]: Clone Sample Tower Defense
+**Owner:** DEV
+**Status:** TODO
+**Priority:** CRITICAL - Foundation
+
+**Tasks:**
+- [ ] Copy entire sample_codes/tower-defence/src/ to src/
+- [ ] Copy sample_codes/tower-defence/public/assets/ to public/assets/
+- [ ] Verify game runs exactly as sample (`npm run dev`)
+- [ ] Game must work on port 3336
+
+**Acceptance Criteria:**
+- [ ] Game loads and plays identically to sample
+- [ ] All towers, enemies, waves work
+- [ ] No modifications to game logic
+
+---
+
+### [S10-003]: Add React Quiz Panel (70/30 Layout)
 **Owner:** DEV
 **Status:** TODO
 **Priority:** HIGH
 
 **Tasks:**
-- [ ] Create Plant base class extending Phaser.GameObjects.Container
-- [ ] Implement hp, maxHp, lane, col properties
-- [ ] Implement takeDamage(), destroy() methods
-- [ ] Implement canFire(), fire() for shooting plants
-- [ ] Add health bar display
-- [ ] Migrate Peashooter to new pattern
-- [ ] Migrate Wallnut to new pattern
+- [ ] Create 70/30 flex layout (game left, quiz right)
+- [ ] Create QuizPanel React component
+- [ ] Display question + 4 answer buttons
+- [ ] Style quiz panel (readable, child-friendly)
+- [ ] NO React.StrictMode in main.jsx
 
 **Acceptance Criteria:**
-- [ ] Plant extends Phaser.GameObjects.Container
-- [ ] Peashooter works with new base class
-- [ ] Wallnut works with new base class
-- [ ] Config-driven stats
+- [ ] Game renders in 70% left panel
+- [ ] Quiz renders in 30% right panel
+- [ ] Quiz shows question and 4 clickable answers
+- [ ] No StrictMode causing double renders
 
 ---
 
-### [S9-003]: Implement Base Zombie Class
+### [S10-004]: Quiz-Only Gold Economy
 **Owner:** DEV
 **Status:** TODO
 **Priority:** HIGH
 
 **Tasks:**
-- [ ] Create Zombie base class extending Phaser.GameObjects.Container
-- [ ] Implement hp, speed, lane, state properties
-- [ ] Implement states: walking, attacking, dead
-- [ ] Implement takeDamage(), startAttacking(), stopAttacking()
-- [ ] Add health bar display
-- [ ] Migrate BasicZombie to new pattern
+- [ ] Create QuizBridge for Phaser↔React communication
+- [ ] Comment out gold from enemy kills in EconomyManager
+- [ ] Correct answer: +30 gold via QuizBridge
+- [ ] Wrong answer: -10 gold via QuizBridge
+- [ ] Display gold in game HUD (existing)
 
 **Acceptance Criteria:**
-- [ ] Zombie extends Phaser.GameObjects.Container
-- [ ] BasicZombie works with new base class
-- [ ] States properly tracked (walking/attacking/dead)
-- [ ] Config-driven stats
+- [ ] Enemy kills give 0 gold
+- [ ] Correct quiz answer: +30 gold
+- [ ] Wrong quiz answer: -10 gold
+- [ ] Gold displays correctly in game
 
 ---
 
-### [S9-004]: Refactor PlantManager
+### [S10-005]: Continuous Quiz Auto-Load
 **Owner:** DEV
 **Status:** TODO
 **Priority:** HIGH
 
 **Tasks:**
-- [ ] Update PlantManager for new Plant pattern
-- [ ] Implement add(), remove(), getAll(), getAt()
-- [ ] Update plant creation to use configs
-- [ ] Ensure collision detection still works
-- [ ] Update tests
+- [ ] Create QuestionManager to load/manage questions
+- [ ] Create QuizManager to handle quiz state
+- [ ] Auto-load next question after answer
+- [ ] Show brief feedback (correct/wrong) before next question
+- [ ] Loop questions when exhausted
 
 **Acceptance Criteria:**
-- [ ] PlantManager works with new Plant classes
-- [ ] Config-driven plant creation
-- [ ] All plant tests pass
-
----
-
-### [S9-005]: Refactor ZombieManager
-**Owner:** DEV
-**Status:** TODO
-**Priority:** HIGH
-
-**Tasks:**
-- [ ] Update ZombieManager for new Zombie pattern
-- [ ] Implement add(), remove(), getAll()
-- [ ] Update zombie creation to use configs
-- [ ] Update spawning logic for config-driven waves
-- [ ] Update tests
-
-**Acceptance Criteria:**
-- [ ] ZombieManager works with new Zombie classes
-- [ ] Config-driven zombie creation
-- [ ] All zombie tests pass
+- [ ] Questions load from questions.json
+- [ ] Next question appears automatically after answering
+- [ ] Visual feedback for correct/wrong (1-2 seconds)
+- [ ] Quiz never runs out of questions (loops)
 
 ---
 
 ## Definition of Done (Sprint Level)
 
-- [ ] All config files created
-- [ ] Base Plant class implemented
-- [ ] Base Zombie class implemented
-- [ ] Peashooter works with new pattern
-- [ ] Wallnut works with new pattern
-- [ ] BasicZombie works with new pattern
-- [ ] All existing tests pass
+- [ ] Old src/ code removed
+- [ ] Tower defense game cloned and working
+- [ ] React quiz panel displays (30% right)
+- [ ] Gold ONLY from quiz answers
+- [ ] Continuous quiz with auto-load
+- [ ] NO React.StrictMode
 - [ ] TL code review approved
-- [ ] QA black-box testing passed
-- [ ] Game is playable
+- [ ] QA visual verification passed
+- [ ] Game runs on port 3336
 - [ ] Pushed to remote before Boss review
 - [ ] Run with `npm run dev -- --host` for Boss review
 
@@ -141,17 +137,40 @@ Implement Phase 1 of the restructure:
 
 | Item | Status | Owner | Notes |
 |------|--------|-------|-------|
-| S9-001 | TODO | DEV | Config JSON files |
-| S9-002 | TODO | DEV | Base Plant class |
-| S9-003 | TODO | DEV | Base Zombie class |
-| S9-004 | TODO | DEV | PlantManager refactor |
-| S9-005 | TODO | DEV | ZombieManager refactor |
+| S10-001 | TODO | DEV | Remove old code |
+| S10-002 | TODO | DEV | Clone sample |
+| S10-003 | TODO | DEV | React quiz panel |
+| S10-004 | TODO | DEV | Quiz-only gold |
+| S10-005 | TODO | DEV | Continuous quiz |
+
+---
+
+## Technical Notes
+
+**Communication Pattern (Phaser↔React):**
+```javascript
+// React → Phaser (gold change)
+window.dispatchEvent(new CustomEvent('quiz-answer', {
+  detail: { correct: true, goldChange: 30 }
+}));
+
+// Phaser listens
+window.addEventListener('quiz-answer', (e) => {
+  this.economy.addGold(e.detail.goldChange);
+});
+```
+
+**No StrictMode:**
+```jsx
+// main.jsx - NO StrictMode wrapper
+createRoot(document.getElementById('root')).render(<App />);
+```
 
 ---
 
 ## Notes
 
-- Reference sample_codes/tower-defence/ for patterns
-- Incremental migration - keep tests passing
-- Config fallbacks for safety
-- This is Phase 1 of 4 in the restructure
+- Reference TECHNICAL_SPEC v3.0 for implementation details
+- Reference GAME_DESIGN_SPEC for quiz behavior
+- DON'T TOUCH THE GAME - quiz is separate layer
+- Test game works BEFORE adding quiz

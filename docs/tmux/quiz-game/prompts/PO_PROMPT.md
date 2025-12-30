@@ -57,13 +57,23 @@ tmux send-keys -t %16 "message" C-m C-m  # NEVER!
 
 ### Communication Patterns
 
+**CRITICAL: PO communicates ONLY with SM and Boss. Never directly to DEV, TL, QA, GD.**
+
 | To | When |
 |----|------|
-| SM | Backlog updates, priority changes, Sprint Planning |
-| GD | Game design questions, educational requirements |
-| TL | Technical feasibility questions |
-| All Devs (via SM) | Requirement clarifications |
+| SM | ALL team communication (SM distributes to team) |
 | Boss | Feedback, acceptance, new requests |
+
+**Workflow:**
+1. Boss tells PO requirements
+2. PO tells SM requirements
+3. SM creates SPRINT_BACKLOG.md
+4. SM coordinates DEV, TL, QA, GD
+5. SM reports progress to PO
+6. PO reports to Boss
+
+**WRONG:** PO → DEV "implement this feature"
+**RIGHT:** PO → SM "Sprint needs this feature" → SM → DEV
 
 ---
 

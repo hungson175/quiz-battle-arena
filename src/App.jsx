@@ -1,72 +1,44 @@
 // src/App.jsx
-// Main React app with 70% Phaser / 30% Quiz layout (S7-003)
+// React wrapper with 70/30 layout for Phaser game + Quiz panel
 
 import React, { useEffect, useRef } from 'react';
-import Phaser from 'phaser';
-import { GameScene } from './scenes/GameScene.js';
-import { QuizPanel } from './components/QuizPanel.jsx';
-import { useGameBridge } from './hooks/useGameBridge.js';
+import { initGame, destroyGame } from './game.js';
+import './App.css';
 
-// Game configuration
-const gameConfig = {
-  type: Phaser.AUTO,
-  width: 672,  // 70% of 960 original width
-  height: 540,
-  parent: 'phaser-container',
-  backgroundColor: '#87ceeb',
-  physics: {
-    default: 'arcade',
-    arcade: {
-      gravity: { y: 0 },
-      debug: false
-    }
-  },
-  scene: [GameScene]
-};
+function App() {
+  const gameInitialized = useRef(false);
 
-export function App() {
-  const gameRef = useRef(null);
-  const {
-    quizState,
-    moneyState,
-    waveState,
-    handleQuizAnswer,
-    handleContinue
-  } = useGameBridge(gameRef);
-
-  // Mount Phaser game on component mount
   useEffect(() => {
     // Guard against double initialization (React StrictMode or HMR)
-    if (gameRef.current) {
+    if (gameInitialized.current) {
       return;
     }
+    gameInitialized.current = true;
 
-    // Create game instance
-    gameRef.current = new Phaser.Game(gameConfig);
+    // Initialize Phaser game
+    console.log('[App] Initializing Phaser game...');
+    initGame('game-container');
 
     // Cleanup on unmount
     return () => {
-      if (gameRef.current) {
-        gameRef.current.destroy(true);
-        gameRef.current = null;
-      }
+      console.log('[App] Cleaning up Phaser game...');
+      destroyGame();
+      gameInitialized.current = false;
     };
   }, []);
 
   return (
     <div className="app-container">
       {/* Left: Phaser game (70%) */}
-      <div id="phaser-container" className="game-panel"></div>
+      <div id="game-container" className="game-panel"></div>
 
-      {/* Right: Quiz panel (30%) */}
+      {/* Right: Quiz panel (30%) - placeholder for now */}
       <div className="quiz-panel">
-        <QuizPanel
-          quizState={quizState}
-          moneyState={moneyState}
-          waveState={waveState}
-          onAnswer={handleQuizAnswer}
-          onContinue={handleContinue}
-        />
+        <div className="quiz-placeholder">
+          <h2>QUIZ</h2>
+          <p>Quiz panel coming soon...</p>
+          <p>Gold from quizzes only!</p>
+        </div>
       </div>
     </div>
   );

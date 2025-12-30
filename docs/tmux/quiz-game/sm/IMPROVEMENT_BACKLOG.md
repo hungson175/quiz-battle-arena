@@ -123,6 +123,8 @@
 | OBS-095 | ⚠️ QA GAP: Unit tests pass but game doesn't work. QA MUST verify visual rendering in browser | 9 | SM | CRITICAL - Process gap |
 | OBS-096 | ✅ FIX: Critical bug fixed (4d7cb3e) - GameScene now uses new managers with compatibility methods | 9 | DEV | High - Fast fix |
 | OBS-097 | 💡 PROCESS: QA_PROMPT.md updated with MANDATORY Step 2: Visual verification using webapp-testing skill | 9 | SM | CRITICAL - Prevents recurring issue |
+| OBS-098 | 🚨 MAJOR PIVOT: Quiz Battle Arena ABANDONED after Sprint 9. New project: Quiz Tower Defense | 10 | Boss | CRITICAL - Fresh start |
+| OBS-099 | ✅ POSITIVE: GD hybrid quiz integration approved - no combat interruptions, quiz at natural pauses | 10 | Boss | High - Good design |
 
 ---
 

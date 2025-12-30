@@ -1,19 +1,62 @@
 # Team Whiteboard
 
-**Sprint:** 9
-**Goal:** Phase 1: Foundation - Config-driven architecture + Base classes
-**Status:** **QA RE-PASSED** (4d7cb3e) - Visual verification complete, awaiting PO re-acceptance
+## 🚨 MAJOR PIVOT - NEW PROJECT
 
-**Sprint 8 COMPLETE** - Boss Approved ✅ (59bcef0)
+**Project:** Quiz Tower Defense (NEW)
+**Base:** Clone of `sample_codes/tower-defence/` **EXACTLY AS-IS**
+**Addition:** React quiz panel (30% side panel)
 
-**Sprint 7 SKIPPED** - Boss directive: buggy, move on
-**Sprint 6 COMPLETE** - PO Accepted ✅, Boss found issues
+**Old Project:** Quiz Battle Arena - ABANDONED (Sprint 1-9)
 
-**Sprint 5 COMPLETE** - Boss Accepted ✅ (via PO), Retro Done
-**Sprint 4 COMPLETE** - Boss Accepted ✅, Retro Done
-**Sprint 3 COMPLETE** - Boss Accepted ✅, Retro Done
-**Sprint 2 COMPLETE** - Boss Accepted
-**Sprint 1 COMPLETE** - Boss Accepted, Retro Done
+---
+
+**Sprint:** 10
+**Goal:** Quiz Tower Defense - Foundation
+**Status:** **🟢 SPRINT 10 IN PROGRESS** - Boss GO received, implementation started
+
+**Sprint 10 Scope (SIMPLIFIED):**
+1. Clone sample tower-defence EXACTLY (no game modifications)
+2. Remove gold from enemy kills (1 line comment)
+3. Add React quiz panel (70/30 layout)
+4. QuestionManager + QuizManager + QuizBridge
+
+**Estimated:** 2.5 days (reduced from 4 days)
+
+---
+
+## Quiz Integration Design (FINAL - v3.0)
+
+**CRITICAL:** Game is EXACT clone. NO modifications to:
+- Tower types, stats, behavior
+- Enemy types, stats, behavior
+- Wave progression, combat, maps
+
+**ONLY 2 changes:**
+1. Comment out kill reward in EconomyManager
+2. Add React quiz panel
+
+| Component | Technology |
+|-----------|------------|
+| Game (70%) | Phaser 3 - unchanged clone |
+| Quiz (30%) | React - separate panel |
+| Communication | window.dispatchEvent / addEventListener |
+
+| Action | Gold Change |
+|--------|-------------|
+| Correct answer | +30 |
+| Wrong answer | -10 |
+| Enemy kill | 0 (removed) |
+
+**Key Principle:** DON'T TOUCH THE GAME - quiz is separate React panel.
+
+---
+
+## Previous Project History (ABANDONED)
+
+**Sprint 9** - Phase 1 Foundation (abandoned mid-sprint)
+**Sprint 8** - Restructure spec (completed but abandoned)
+**Sprint 7** - SKIPPED
+**Sprint 1-6** - Quiz Battle Arena development (abandoned)
 
 ---
 
@@ -180,12 +223,14 @@ All 3 items Boss Accepted ✅
 
 | Role | Status | Current Task | Last Update |
 |------|--------|--------------|-------------|
-| PO   | Reviewing | RESTRUCTURE_SPEC approval | 19:52 |
-| SM   | Active | Sprint 8 coordination | 19:52 |
-| GD   | Done | Joint restructure spec | 19:50 |
-| TL   | Done | RESTRUCTURE_SPEC complete | 19:52 |
-| DEV  | Standby | Awaiting Phase 1 tasks | 19:52 |
-| QA   | Standby | Awaiting implementation | 19:52 |
+| PO   | Approved | Simplified design approved | 23:54 |
+| SM   | Active | Sprint 10 coordination | 23:54 |
+| GD   | Standby | Awaiting implementation | 23:54 |
+| TL   | Done | **TECHNICAL_SPEC v3.0 COMPLETE** | NOW |
+| DEV  | Standby | Awaiting Boss GO | 23:54 |
+| QA   | Standby | Awaiting implementation | 23:54 |
+
+**📄 SPEC READY:** `docs/team/sprint-10/TECHNICAL_SPEC.md` (v3.0 - React Architecture)
 
 ---
 

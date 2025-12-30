@@ -1,12 +1,13 @@
 // src/main.jsx
-// React entry point (S7-003)
+// Entry point - NO React.StrictMode (breaks Phaser WebGL)
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { App } from './App.jsx';
+import App from './App.jsx';
+import './App.css';
 
-// Create root and render app
-// Note: StrictMode removed - causes double mount which destroys Phaser game
+// WARNING: Do NOT wrap in <React.StrictMode>
+// StrictMode causes double-mounting which destroys Phaser's WebGL context
 ReactDOM.createRoot(document.getElementById('root')).render(
   <App />
 );

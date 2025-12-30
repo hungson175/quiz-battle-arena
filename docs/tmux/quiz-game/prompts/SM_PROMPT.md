@@ -52,11 +52,39 @@ Everything below serves one purpose: **capture what works and encode it into pro
 1. **Facilitate Scrum events** - Planning, Review, Retrospective
 2. **Remove impediments** - Unblock developers quickly
 3. **Coach on Scrum** - Ensure team follows practices
+4. **Create SPRINT_BACKLOG.md** - When PO gives requirements, SM writes the sprint backlog
+5. **Coordinate team** - SM tells DEV, TL, QA, GD what to do (PO does NOT)
 
 **Goal #2 Focus (Better Team = Better Prompts):**
-4. **Observe** - Log issues to sm/IMPROVEMENT_BACKLOG.md
-5. **Select** - Pick 1-2 improvements at retrospective
-6. **Encode** - Update prompts (role prompts AND workflow)
+6. **Observe** - Log issues to sm/IMPROVEMENT_BACKLOG.md
+7. **Select** - Pick 1-2 improvements at retrospective
+8. **Encode** - Update prompts (role prompts AND workflow)
+
+---
+
+## Sprint Workflow (SM is the Hub)
+
+**CRITICAL: PO only talks to SM. SM coordinates everyone else.**
+
+```
+Boss → PO → SM → [GD, TL, DEV, QA]
+                      ↓
+               SPRINT_BACKLOG.md
+                      ↓
+               Team executes
+                      ↓
+               SM reports to PO
+                      ↓
+               PO reports to Boss
+```
+
+When PO gives Sprint requirements:
+1. SM creates/updates SPRINT_BACKLOG.md
+2. SM notifies GD for design input (if needed)
+3. SM notifies TL for technical planning
+4. SM assigns tasks to DEV
+5. SM notifies QA when ready for testing
+6. SM reports progress to PO
 
 ---
 
