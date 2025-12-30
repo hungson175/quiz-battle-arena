@@ -4,6 +4,8 @@ import WaveManager from '../systems/WaveManager.js';
 import EconomyManager from '../systems/EconomyManager.js';
 import AudioManager from '../systems/AudioManager.js';
 import MapManager from '../systems/MapManager.js';
+import QuestionManager from '../systems/QuestionManager.js';
+import QuizManager from '../systems/QuizManager.js';
 import Tower from '../entities/Tower.js';
 import MultiShotTower from '../entities/MultiShotTower.js';
 import SupportTower from '../entities/SupportTower.js';
@@ -156,6 +158,26 @@ export default class GameScene extends Phaser.Scene {
 
     // Hook cleanup to the 'transitionout' event, which happens BEFORE shutdown
     this.events.on('transitionout', this.cleanup, this);
+
+    // Initialize quiz system (async)
+    this.initQuizSystem();
+  }
+
+  /**
+   * Initialize the quiz system (async to load questions)
+   */
+  async initQuizSystem() {
+    try {
+      this.questionManager = new QuestionManager();
+      await this.questionManager.loadFromFile('/assets/data/questions.json');
+
+      this.quizManager = new QuizManager(this.questionManager, this.economyManager);
+      this.quizManager.start();
+
+      console.log('[GameScene] Quiz system initialized');
+    } catch (error) {
+      console.error('[GameScene] Failed to initialize quiz system:', error);
+    }
   }
 
   update(time, delta) {

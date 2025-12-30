@@ -137,9 +137,9 @@ Clone exact tower defense game from sample_codes/tower-defence/ and add React qu
 
 | Item | Status | Owner | Notes |
 |------|--------|-------|-------|
-| S10-001 | TODO | DEV | Remove old code |
-| S10-002 | TODO | DEV | Clone sample |
-| S10-003 | TODO | DEV | React quiz panel |
+| S10-001 | **DONE** ✓ | DEV | Remove old code (49bf0e3) |
+| S10-002 | **DONE** ✓ | DEV | Clone sample + 70/30 layout (49bf0e3) |
+| S10-003 | IN PROGRESS | DEV | React quiz panel |
 | S10-004 | TODO | DEV | Quiz-only gold |
 | S10-005 | TODO | DEV | Continuous quiz |
 

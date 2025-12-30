@@ -35,7 +35,8 @@ export default class CollisionManager {
           if (enemy.isDead && enemy.isDead()) {
             if (this.scene.economyManager) {
               this.scene.economyManager.enemiesKilled++;
-              this.scene.economyManager.money += enemy.data.reward || 0;
+              // REMOVED: Gold only from quizzes now
+              // this.scene.economyManager.money += enemy.data.reward || 0;
               this.scene.economyManager.updateScore && this.scene.economyManager.updateScore();
               // Emit UI update event for money and score
               this.scene.events.emit('updateUI', {
