@@ -2,7 +2,7 @@
 
 **Sprint:** 9
 **Goal:** Phase 1: Foundation - Config-driven architecture + Base classes
-**Status:** **IN PROGRESS** - Sprint 9 execution started
+**Status:** **QA RE-PASSED** (4d7cb3e) - Visual verification complete, awaiting PO re-acceptance
 
 **Sprint 8 COMPLETE** - Boss Approved ✅ (59bcef0)
 
@@ -29,10 +29,12 @@
 
 **Acceptance:** Peashooter, Wallnut, BasicZombie work with new architecture. All tests pass.
 
+**🟢 BUG FIXED (4d7cb3e) - TL APPROVED:**
+- Root cause: GameScene imported OLD managers, not new ones
+- Fix: Updated imports + added compatibility methods + async config loading
+- Game now renders with new config-driven managers
+
 **📄 TL SPECS READY:** `docs/team/sprint-9/PHASE1_IMPLEMENTATION_SPEC.md`
-- Config files: `public/assets/config/*.json`
-- Full implementation details for S9-002 through S9-005
-- DEV UNBLOCKED
 
 ---
 

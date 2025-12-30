@@ -119,6 +119,10 @@
 | OBS-091 | ✅ POSITIVE: Sprint 8 complete in ~5 min - TL+GD delivered comprehensive RESTRUCTURE_SPEC with 4-phase plan | 8 | SM | High - Fast delivery |
 | OBS-092 | ✅ POSITIVE: Boss APPROVED restructure plan - proceeding to implementation sprints | 8 | Boss | High - Green light |
 | OBS-093 | 💡 PROCESS: Boss directive - always reference sample_codes/ before starting sprints | 8 | Boss | High - Added to workflow |
+| OBS-094 | ⚠️ CRITICAL: Sprint 9 BROKEN - green screen, no zombies. QA passed unit tests but MISSED visual rendering | 9 | Boss | CRITICAL - Same issue as S7-003 |
+| OBS-095 | ⚠️ QA GAP: Unit tests pass but game doesn't work. QA MUST verify visual rendering in browser | 9 | SM | CRITICAL - Process gap |
+| OBS-096 | ✅ FIX: Critical bug fixed (4d7cb3e) - GameScene now uses new managers with compatibility methods | 9 | DEV | High - Fast fix |
+| OBS-097 | 💡 PROCESS: QA_PROMPT.md updated with MANDATORY Step 2: Visual verification using webapp-testing skill | 9 | SM | CRITICAL - Prevents recurring issue |
 
 ---
 

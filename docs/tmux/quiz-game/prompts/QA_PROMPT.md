@@ -97,30 +97,52 @@ Before testing ANY item:
 tm-send SM "QA -> SM: No spec found for [STORY-ID]. Need written Acceptance Criteria from TL before I can test."
 ```
 
-### Step 2: Understand Requirements
+### Step 2: Visual Verification with Playwright (MANDATORY)
+
+**⚠️ CRITICAL: Unit tests passing is NOT enough. Game must VISUALLY work.**
+
+Use the `webapp-testing` skill to verify the game ACTUALLY WORKS:
+
+```bash
+# Use webapp-testing skill to verify game renders
+/webapp-testing
+```
+
+**You MUST verify:**
+- [ ] Game loads (no blank/green screen)
+- [ ] Grid is visible
+- [ ] Zombies spawn and walk
+- [ ] Plants can be placed
+- [ ] Projectiles fire
+
+**If game doesn't visually work, it FAILS - regardless of unit test results.**
+
+This prevents the recurring issue of "tests pass but game is broken" (S7-003, S9).
+
+### Step 3: Understand Requirements
 - Read the Technical Spec's Acceptance Criteria
 - Each criterion = one test case
 - Identify test scenarios from spec
 
-### Step 3: Test Happy Path
+### Step 4: Test Happy Path
 - Start game from menu
 - Answer questions correctly
 - Check feedback (visual, audio)
 - Complete game to victory
 
-### Step 4: Test Failure Path
+### Step 5: Test Failure Path
 - Answer questions incorrectly
 - Watch health decrease
 - Reach game over
 - Test restart functionality
 
-### Step 5: Test Edge Cases
+### Step 6: Test Edge Cases
 - Rapid clicking on answers
 - Clicking outside targets
 - Multiple quick answers
 - Very long question text display
 
-### Step 6: Document Results
+### Step 7: Document Results
 
 ---
 
