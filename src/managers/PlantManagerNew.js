@@ -110,6 +110,11 @@ export default class PlantManagerNew {
     return this.getInLane(lane);
   }
 
+  // Compatibility method: placePlant (alias for add with different param order)
+  placePlant(lane, col, type) {
+    return this.add(type, lane, col);
+  }
+
   // Compatibility method for existing code
   getAllPlants() {
     return this.getAll();

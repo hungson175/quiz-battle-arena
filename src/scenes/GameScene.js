@@ -3,8 +3,8 @@
 
 import Phaser from 'phaser';
 import { GridConfig } from '../utils/GridConfig.js';
-import { ZombieManager } from '../managers/ZombieManager.js';
-import { PlantManager } from '../managers/PlantManager.js';
+import ZombieManagerNew from '../managers/ZombieManagerNew.js';
+import PlantManagerNew from '../managers/PlantManagerNew.js';
 import { ProjectileManager } from '../managers/ProjectileManager.js';
 import { MoneyManager, MONEY_CONFIG } from '../utils/MoneyManager.js';
 import { QuestionManager } from '../utils/QuestionManager.js';
@@ -60,9 +60,9 @@ export class GameScene extends Phaser.Scene {
     // Draw house zone
     this.createHouseZone();
 
-    // Initialize managers
-    this.zombieManager = new ZombieManager(this, this.gridConfig);
-    this.plantManager = new PlantManager(this, this.gridConfig);
+    // Initialize managers (S9: using new config-driven managers)
+    this.zombieManager = new ZombieManagerNew(this, 'NORMAL');
+    this.plantManager = new PlantManagerNew(this);
     this.projectileManager = new ProjectileManager(this, this.gridConfig);
     this.moneyManager = new MoneyManager();
     this.questionManager = new QuestionManager();
@@ -74,6 +74,9 @@ export class GameScene extends Phaser.Scene {
       gameWidth: this.scale.width,
       gameHeight: this.scale.height
     });
+
+    // Load configs for new managers (S9)
+    this.loadManagerConfigs();
 
     // Load questions
     this.loadQuestions();
@@ -494,6 +497,21 @@ export class GameScene extends Phaser.Scene {
   }
 
   /**
+   * S9: Load configs for new managers (async)
+   */
+  async loadManagerConfigs() {
+    try {
+      await Promise.all([
+        this.plantManager.loadConfigs(),
+        this.zombieManager.loadConfigs()
+      ]);
+      console.log('[GameScene] Manager configs loaded successfully');
+    } catch (error) {
+      console.error('[GameScene] Failed to load manager configs:', error);
+    }
+  }
+
+  /**
    * Load questions from JSON file
    */
   async loadQuestions() {
@@ -586,8 +604,8 @@ export class GameScene extends Phaser.Scene {
   emitMoneyUpdate() {
     this.events.emit('money:update', {
       current: this.moneyManager.getMoney(),
-      earned: this.gameStats.getStats().moneyEarned,
-      lost: this.gameStats.getStats().moneyLost
+      earned: this.gameStats.moneyEarned,
+      lost: this.gameStats.moneyLost
     });
   }
 
@@ -708,11 +726,11 @@ export class GameScene extends Phaser.Scene {
 
     // S7-003 AC7: Game continues during quiz (removed quizActive pause)
 
-    // Update plant cooldowns
-    this.plantManager.update(delta);
+    // Update plant cooldowns (S9: new managers use time, delta)
+    this.plantManager.update(time, delta);
 
-    // Update zombies
-    const zombieEvents = this.zombieManager.update(delta);
+    // Update zombies (S9: new managers use time, delta)
+    const zombieEvents = this.zombieManager.update(time, delta);
 
     // Plants fire at zombies in their lane
     this.handlePlantFiring(delta);
@@ -837,12 +855,9 @@ export class GameScene extends Phaser.Scene {
     // Only frontmost zombie (lowest col) attacks each plant
     const plantsBeingAttacked = new Map(); // gridKey -> zombie
 
-    // Sort zombies by position (frontmost first = lowest col + progress)
-    const sortedZombies = [...this.zombieManager.getActiveZombies()].sort((a, b) => {
-      const posA = a.col - a.tileProgress;
-      const posB = b.col - b.tileProgress;
-      return posA - posB; // Frontmost (lowest position) first
-    });
+    // Sort zombies by position (frontmost first = lowest x position)
+    // S9: ZombieNew uses x position directly instead of col + tileProgress
+    const sortedZombies = [...this.zombieManager.getActiveZombies()].sort((a, b) => a.x - b.x);
 
     for (const zombie of sortedZombies) {
       // Bug fix #1: Use actual zombie column, not anticipated

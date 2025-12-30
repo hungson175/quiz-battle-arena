@@ -111,7 +111,7 @@ export default class ZombieNew extends Phaser.GameObjects.Container {
     }
   }
 
-  startAttacking(plant) {
+  startAttacking(plant = null) {
     this.state = 'attacking';
     this.targetPlant = plant;
     this.attackTimer = 0;

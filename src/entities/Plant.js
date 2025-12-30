@@ -93,12 +93,17 @@ export default class Plant extends Phaser.GameObjects.Container {
   }
 
   canFire(time) {
+    // If no time provided, use scene time (compatibility)
+    const currentTime = time ?? this.scene.time.now;
     if (!this.config.fireRate || this.config.fireRate <= 0) return false;
-    return time > this.lastFireTime + this.config.fireRate;
+    return currentTime > this.lastFireTime + this.config.fireRate;
   }
 
   fire(time, target) {
-    this.lastFireTime = time;
+    // If no time provided, use scene time (compatibility)
+    const currentTime = time ?? this.scene.time.now;
+    this.lastFireTime = currentTime;
+
     // Emit event for ProjectileManager to handle
     this.scene.events.emit('plant:fire', {
       plant: this,
@@ -106,6 +111,9 @@ export default class Plant extends Phaser.GameObjects.Container {
       damage: this.config.damage,
       speed: this.config.projectileSpeed
     });
+
+    // Compatibility: return damage for old API
+    return this.config.damage || 0;
   }
 
   die() {

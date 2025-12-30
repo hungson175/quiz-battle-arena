@@ -122,6 +122,54 @@ export default class ZombieManagerNew {
     return inLane.find(z => z.x > x) || null;
   }
 
+  // Compatibility method: alias for getInLane
+  getZombiesInLane(lane) {
+    return this.getInLane(lane);
+  }
+
+  // Compatibility method: get active zombie count
+  getActiveZombieCount() {
+    return this.getAll().length;
+  }
+
+  // Compatibility method: spawn random zombie type with speed multiplier
+  spawnRandomZombie(speedMultiplier = 1) {
+    // Random lane (0-2 for 3 lanes)
+    const lane = Math.floor(Math.random() * 3);
+
+    // Random zombie type (weighted: 70% basic, 20% fast, 10% armored)
+    const roll = Math.random();
+    let type = 'BASIC';
+    if (roll > 0.9) {
+      type = 'ARMORED';
+    } else if (roll > 0.7) {
+      type = 'FAST';
+    }
+
+    const zombie = this.spawn(type, lane);
+
+    // Apply speed multiplier (lower = faster)
+    if (zombie && speedMultiplier !== 1) {
+      zombie.speed = zombie.speed / speedMultiplier;
+    }
+
+    return zombie;
+  }
+
+  // Compatibility method: get zombie screen position
+  getZombieScreenPosition(zombie) {
+    return { x: zombie.x, y: zombie.y };
+  }
+
+  // Compatibility method: damage zombie by id
+  damageZombie(zombieId, damage) {
+    const zombie = this.zombies.find(z => z.id === zombieId);
+    if (!zombie || !zombie.isActive) return false;
+
+    zombie.takeDamage(damage);
+    return !zombie.isActive; // Return true if zombie died
+  }
+
   update(time, delta) {
     const events = {
       reachedHouse: []
