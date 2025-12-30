@@ -5,6 +5,7 @@ import Phaser from 'phaser';
 import { GridConfig } from '../utils/GridConfig.js';
 import { ZombieManager } from '../managers/ZombieManager.js';
 import { PlantManager } from '../managers/PlantManager.js';
+import { ProjectileManager } from '../managers/ProjectileManager.js';
 
 export class GameScene extends Phaser.Scene {
   constructor() {
@@ -13,6 +14,7 @@ export class GameScene extends Phaser.Scene {
     this.gridCells = [];  // 2D array of cell graphics
     this.zombieManager = null;
     this.plantManager = null;
+    this.projectileManager = null;
     this.gameOver = false;
   }
 
@@ -35,6 +37,7 @@ export class GameScene extends Phaser.Scene {
     // Initialize managers
     this.zombieManager = new ZombieManager(this, this.gridConfig);
     this.plantManager = new PlantManager(this, this.gridConfig);
+    this.projectileManager = new ProjectileManager(this, this.gridConfig);
 
     // Setup input handling
     this.setupInputHandling();
@@ -46,12 +49,24 @@ export class GameScene extends Phaser.Scene {
   update(time, delta) {
     if (this.gameOver) return;
 
+    // Update plant cooldowns
+    this.plantManager.update(delta);
+
     // Update zombies
-    const events = this.zombieManager.update(delta);
+    const zombieEvents = this.zombieManager.update(delta);
+
+    // Plants fire at zombies in their lane
+    this.handlePlantFiring(delta);
+
+    // Update projectiles
+    this.projectileManager.update(delta);
+
+    // Check collisions
+    this.handleCollisions();
 
     // Check for game over
-    if (events.reachedHouse.length > 0) {
-      this.handleGameOver(events.reachedHouse[0]);
+    if (zombieEvents.reachedHouse.length > 0) {
+      this.handleGameOver(zombieEvents.reachedHouse[0]);
     }
   }
 
@@ -136,12 +151,70 @@ export class GameScene extends Phaser.Scene {
     // Clear all managers
     this.zombieManager.clearAll();
     this.plantManager.clearAll();
+    this.projectileManager.clearAll();
 
     // Reset game state
     this.gameOver = false;
 
     // Restart scene
     this.scene.restart();
+  }
+
+  handlePlantFiring(delta) {
+    // For each lane, check if there are zombies
+    // If so, make plants in that lane fire
+    for (let lane = 0; lane < this.gridConfig.lanes; lane++) {
+      const zombiesInLane = this.zombieManager.getZombiesInLane(lane);
+
+      if (zombiesInLane.length > 0) {
+        // Get plants in this lane
+        const plantsInLane = this.plantManager.getPlantsInLane(lane);
+
+        for (const plant of plantsInLane) {
+          if (plant.canFire()) {
+            const damage = plant.fire();
+            if (damage > 0) {
+              // Create pea projectile
+              this.projectileManager.firePea(lane, plant.col, damage);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  handleCollisions() {
+    // For each lane, check pea-zombie collisions
+    for (let lane = 0; lane < this.gridConfig.lanes; lane++) {
+      const peasInLane = this.projectileManager.getPeasInLane(lane);
+      const zombiesInLane = this.zombieManager.getZombiesInLane(lane);
+
+      if (peasInLane.length === 0 || zombiesInLane.length === 0) {
+        continue;
+      }
+
+      // Sort zombies by x position (leftmost first - closest to house)
+      zombiesInLane.sort((a, b) => a.col - b.col);
+
+      for (const pea of peasInLane) {
+        // Find first zombie that pea can hit
+        for (const zombie of zombiesInLane) {
+          const zombiePos = this.zombieManager.getZombieScreenPosition(zombie);
+
+          if (this.projectileManager.checkCollision(pea, zombiePos.x, 40)) {
+            // Pea hits zombie
+            this.projectileManager.hitTarget(pea.id);
+            const died = this.zombieManager.damageZombie(zombie.id, pea.damage);
+
+            if (died) {
+              console.log(`Zombie ${zombie.id} killed by pea!`);
+            }
+
+            break; // Pea can only hit one zombie
+          }
+        }
+      }
+    }
   }
 
   createLawnBackground() {
