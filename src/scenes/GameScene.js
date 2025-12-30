@@ -695,28 +695,49 @@ export class GameScene extends Phaser.Scene {
   handleZombiePlantCollisions(delta) {
     const deltaSeconds = delta / 1000;
 
-    for (const zombie of this.zombieManager.getActiveZombies()) {
-      // Get zombie's current cell (use floor of col + progress)
-      const zombieCol = zombie.col;
-      const effectiveCol = zombie.tileProgress > 0.5 ? zombieCol - 1 : zombieCol;
-      const checkCol = Math.max(1, effectiveCol); // Don't check house zone
+    // Track which plants are being attacked this frame (by grid key)
+    // Only frontmost zombie (lowest col) attacks each plant
+    const plantsBeingAttacked = new Map(); // gridKey -> zombie
+
+    // Sort zombies by position (frontmost first = lowest col + progress)
+    const sortedZombies = [...this.zombieManager.getActiveZombies()].sort((a, b) => {
+      const posA = a.col - a.tileProgress;
+      const posB = b.col - b.tileProgress;
+      return posA - posB; // Frontmost (lowest position) first
+    });
+
+    for (const zombie of sortedZombies) {
+      // Bug fix #1: Use actual zombie column, not anticipated
+      const checkCol = Math.max(1, zombie.col); // Don't check house zone
 
       // Check if there's a plant in the zombie's current cell
       const plant = this.plantManager.getPlantAt(zombie.lane, checkCol);
+      const gridKey = `${zombie.lane},${checkCol}`;
 
       if (plant && plant.isAlive()) {
-        // Zombie should attack this plant
-        if (zombie.state !== 'attacking') {
-          zombie.startAttacking();
-        }
+        // Bug fix #2: Only frontmost zombie attacks each plant
+        if (!plantsBeingAttacked.has(gridKey)) {
+          // This zombie is the frontmost - it attacks
+          plantsBeingAttacked.set(gridKey, zombie);
 
-        // Deal damage to plant (zombie DPS * delta time)
-        const damage = zombie.getDps() * deltaSeconds;
-        const plantDied = this.plantManager.damagePlant(zombie.lane, checkCol, damage);
+          if (zombie.state !== 'attacking') {
+            zombie.startAttacking();
+          }
 
-        if (plantDied) {
-          // Plant destroyed, zombie resumes walking
-          zombie.stopAttacking();
+          // Deal damage to plant (zombie DPS * delta time)
+          const damage = zombie.getDps() * deltaSeconds;
+          const plantDied = this.plantManager.damagePlant(zombie.lane, checkCol, damage);
+
+          if (plantDied) {
+            // Plant destroyed, zombie resumes walking
+            zombie.stopAttacking();
+          }
+        } else {
+          // Another zombie is already attacking this plant - wait (blocked)
+          // Keep zombie in walking state but it won't move (blocked by plant)
+          if (zombie.state === 'attacking') {
+            zombie.stopAttacking();
+          }
         }
       } else if (zombie.state === 'attacking') {
         // No plant here anymore, resume walking
