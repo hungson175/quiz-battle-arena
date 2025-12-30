@@ -1,6 +1,6 @@
-# Sprint 4 Backlog
+# Sprint 5 Backlog
 
-**Sprint Goal:** Game Balance + Plant Variety
+**Sprint Goal:** Critical Bug Fixes - Wall-nut & Balance
 **Sprint Start:** 2025-12-30
 **Sprint End:** TBD
 
@@ -8,12 +8,11 @@
 
 ## Sprint Scope
 
-Make the game HARD but WINNABLE, add defensive plant option:
-- Rebalance waves so game is challenging but beatable
-- Add Wall-nut defensive plant (cheap at 50 gold)
-- Remove question timer (zombies moving = natural pressure)
+Fix critical bugs found in Boss review:
+- Wall-nut placement crashes/hangs the game
+- Level 2 unbeatable due to enemy spawning issues (overlap)
 
-**Design Intent:** Players should fail 2-3 times but feel they CAN win with better strategy!
+**Design Intent:** Make the game stable and winnable!
 
 ---
 
@@ -21,84 +20,56 @@ Make the game HARD but WINNABLE, add defensive plant option:
 
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
-| Wall-nut cost | 50 gold | Cheap defensive option |
-| Peashooter cost | 100 gold | Offensive plants more expensive |
-| Question timer | REMOVE | Zombies moving = natural pressure |
-| Balance target | Wave 2 beatable | Currently impossible |
+| Priority | Bugs first | Game must be playable |
+| Wall-nut fix | HIGH | Core feature broken |
+| Balance fix | HIGH | Game unwinnable |
 
 ---
 
 ## Sprint Items
 
-### [S4-001]: Game Balance Fix
-**Owner:** GD (design) → DEV (implement)
+### [S5-001]: Fix Wall-nut Placement Hang
+**Owner:** DEV
 **Status:** TODO
-**Priority:** HIGH - Critical for playability
+**Priority:** HIGH - Critical bug
 
-**Problem:** Wave 2 is currently impossible to win.
+**Problem:** Game hangs/freezes when placing Wall-nut on grid.
 
 **Tasks:**
-- [ ] GD: Analyze current balance values
-- [ ] GD: Recommend new values (spawn rate, zombie count, etc.)
-- [ ] DEV: Implement balance changes
-- [ ] Test: Verify game is hard but winnable
+- [ ] Reproduce the bug
+- [ ] Debug Wall-nut entity creation
+- [ ] Check PlantManager integration
+- [ ] Fix the hang issue
+- [ ] Add test to prevent regression
 
 **Acceptance Criteria:**
-- [ ] Wave 2 is beatable with good strategy
-- [ ] All 5 waves are beatable (hard but possible)
-- [ ] Players fail 2-3 times before winning (learning curve)
-- [ ] Game still feels challenging
+- [ ] Wall-nut can be placed without game hanging
+- [ ] Wall-nut functions correctly (blocks zombies)
+- [ ] No console errors on placement
+- [ ] Tests pass
 
 ---
 
-### [S4-002]: Wall-nut Defensive Plant
-**Owner:** DEV
+### [S5-002]: Fix Level 2 Balance - Enemy Overlap
+**Owner:** DEV (with GD input)
 **Status:** TODO
-**Priority:** HIGH - Adds strategic depth
+**Priority:** HIGH - Game unwinnable
 
-**Description:**
-Add Wall-nut plant that blocks zombies. Cheap alternative to Peashooter.
+**Problem:** Level 2 has too many enemies and they overlap, making it unbeatable.
 
 **Tasks:**
-- [ ] Create Wall-nut entity (high HP, no attack)
-- [ ] Add Wall-nut to plant selection UI
-- [ ] Set cost to 50 gold
-- [ ] Wall-nut blocks zombies (zombies attack it)
-- [ ] Visual feedback when Wall-nut takes damage
-- [ ] Wall-nut dies when HP depleted
+- [ ] Investigate zombie spawning logic
+- [ ] Check for overlapping spawn positions
+- [ ] GD: Review wave 2 zombie count and spawn rate
+- [ ] Fix spawn overlap issue
+- [ ] Rebalance wave 2 if needed
+- [ ] Test that level 2 is beatable
 
 **Acceptance Criteria:**
-- [ ] Wall-nut placeable on grid
-- [ ] Costs 50 gold
-- [ ] Blocks zombies (they stop and attack it)
-- [ ] Has HP and can be destroyed
-- [ ] Player can place multiple Wall-nuts
-
-**Balance Suggestion (GD to confirm):**
-- Wall-nut HP: 20-30 (survives 3-4 zombie hits)
-- Zombie damage per hit: 5-8
-
----
-
-### [S4-003]: Remove Question Timer
-**Owner:** DEV
-**Status:** TODO
-**Priority:** LOW - Simple change
-
-**Description:**
-Remove the 12-second countdown timer from questions. Zombies moving during questions provides natural pressure.
-
-**Tasks:**
-- [ ] Remove countdown timer from QuizUI
-- [ ] Remove timeout logic (no auto-wrong on timeout)
-- [ ] Keep question appearing during gameplay
-- [ ] Update tests
-
-**Acceptance Criteria:**
-- [ ] No timer shown on questions
-- [ ] Player can take time to answer
-- [ ] Zombies still move during questions (natural pressure)
-- [ ] No timeout penalty
+- [ ] Zombies don't overlap on spawn
+- [ ] Wave 2 is challenging but beatable
+- [ ] Spawn timing is correct
+- [ ] Game feels fair
 
 ---
 
@@ -110,7 +81,9 @@ Remove the 12-second countdown timer from questions. Zombies moving during quest
 - [ ] Game runs without errors (`npm run dev`)
 - [ ] Tests pass (`npm test`)
 - [ ] PO accepts demo
-- [ ] Game is winnable (all 5 waves)
+- [ ] Game is stable and winnable
+- [ ] Pushed to remote before Boss review
+- [ ] Run with `--host` for Boss review
 
 ---
 
@@ -118,25 +91,14 @@ Remove the 12-second countdown timer from questions. Zombies moving during quest
 
 | Item | Status | Owner | Notes |
 |------|--------|-------|-------|
-| S4-001 | TODO | GD→DEV | Balance fix |
-| S4-002 | TODO | DEV | Wall-nut plant |
-| S4-003 | TODO | DEV | Remove timer |
-
----
-
-## Dependencies
-
-```
-S4-001 (Balance) ──> Must be done first to test winnability
-S4-002 (Wall-nut) ──> Can be parallel with S4-001
-S4-003 (Timer) ──> Independent, can be done anytime
-```
+| S5-001 | TODO | DEV | Wall-nut hang bug |
+| S5-002 | TODO | DEV/GD | Level 2 balance/overlap |
 
 ---
 
 ## Notes
 
-- Focus on balance FIRST - game must be winnable
-- Wall-nut adds strategic depth without complexity
-- Timer removal simplifies gameplay
-- After Sprint 4: Consider sound effects, more plants (M4 polish)
+- These are CRITICAL bugs - fix before adding new features
+- After Sprint 5: Game should be stable and playable
+- Boss reviews on different machine - use `npm run dev -- --host`
+- Port 3336 required

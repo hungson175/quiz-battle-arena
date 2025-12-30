@@ -114,6 +114,38 @@
 
 ---
 
+## Sprint 4 Retrospective
+
+**Date:** 2025-12-30
+**Duration:** 5 min (Quick)
+**Facilitator:** SM
+
+### Active Improvement Check
+- **Previous:** None (IMP-001 completed Sprint 3)
+- **Status:** Team functioning well
+- **Evidence:** Smooth sprint execution, all roles reported back consistently
+
+### What Went Well
+- Fast sprint: ~35 min from start to Boss acceptance
+- Pipeline flowed smoothly: DEV → TL → QA → PO for each item
+- DEV worked ahead (started next item while previous in review)
+- Test count increased: 214 → 252 (+38 tests)
+- New process rule (push at sprint end) followed correctly
+- All team members reported back consistently (IMP-001 behavior internalized)
+
+### What Problems Occurred
+- Boss found bugs post-acceptance (Wall-nut hang, Level 2 balance)
+- These are functional bugs, not process issues
+
+### Decision
+- No new improvement needed - team process is solid
+- Focus Sprint 5 on fixing bugs
+
+### Prompt Updates
+- None needed
+
+---
+
 ## Template
 
 ```markdown

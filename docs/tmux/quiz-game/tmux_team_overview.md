@@ -116,13 +116,15 @@ AI teams don't need scheduled check-ins.
 ### Phase 1: Sprint Planning
 
 ```
-Boss -> PO: Sprint Goal
+PO: Sets Sprint Goal (based on backlog priorities + Boss feedback)
 PO -> SM: Backlog items for Sprint
 SM -> All: Sprint Planning facilitation
 GD -> SM: Game design requirements
 TL -> SM: Technical feasibility input
 All Devs -> SM: Commitment to Sprint Backlog
 ```
+
+**Note:** Boss does NOT set sprint goals. Boss only Reviews (accept/reject + feedback). PO owns sprint planning decisions.
 
 ### Phase 2: Sprint Execution
 
@@ -143,6 +145,12 @@ Developers -> PO: Demo completed work
 PO -> Boss: Present for acceptance
 Boss -> PO: Feedback
 PO -> SM: Update backlog
+```
+
+**IMPORTANT: Before Boss Review**
+Boss tests on a DIFFERENT machine (same network). Before Boss review:
+```bash
+npm run dev -- --host    # Exposes on network, port 3336
 ```
 
 ### Phase 4: Sprint Retrospective

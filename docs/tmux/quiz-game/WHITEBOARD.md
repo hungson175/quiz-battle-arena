@@ -1,24 +1,30 @@
 # Team Whiteboard
 
-**Sprint:** 4
-**Goal:** Game Balance + Plant Variety
-**Status:** IN PROGRESS - DEV implementing
+**Sprint:** 5
+**Goal:** Critical Bug Fixes - Wall-nut & Balance
+**Status:** IN PROGRESS - DEV investigating bugs
 
+**Sprint 4 COMPLETE** - Boss Accepted ✅, Retro Done
 **Sprint 3 COMPLETE** - Boss Accepted ✅, Retro Done
 **Sprint 2 COMPLETE** - Boss Accepted
 **Sprint 1 COMPLETE** - Boss Accepted, Retro Done
 
 ---
 
-## Sprint 4 Items
+## Sprint 5 Items
 
 | ID | Item | Owner | Status |
 |----|------|-------|--------|
-| S4-001 | Peashooter cost 100→75 | DEV | **PO ACCEPTED** ✅ |
-| S4-002 | Wall-nut plant (cost 50, HP 20) + Selection UI | DEV | **QA PASSED** ✅ (28507ae) |
-| S4-003 | Remove QuizTimer | DEV | **IN PROGRESS** |
+| S5-001 | Fix Wall-nut placement hang | DEV | **IN PROGRESS** |
+| S5-002 | Fix Level 2 balance - enemy overlap | DEV+GD | PO decided: Wave 2 fix (3 zombies, 4500ms) |
 
 **IMP-001 COMPLETED** - Team internalized report-back behavior
+
+---
+
+## Sprint 4 Summary (COMPLETE)
+
+All 3 items Boss Accepted ✅
 
 ---
 
@@ -39,12 +45,12 @@
 
 | Role | Status | Current Task | Last Update |
 |------|--------|--------------|-------------|
-| PO   | Monitoring | Sprint 4 in progress | 14:15 |
-| SM   | Active | Monitoring Sprint 4 execution | 14:21 |
-| GD   | Standby | Available for design questions | 14:16 |
-| TL   | Done | S4-002 APPROVED | 14:37 |
-| DEV  | Working | S4-003 Remove QuizTimer | 14:35 |
-| QA   | Testing | S4-002 Wall-nut + UI | 14:37 |
+| PO   | Monitoring | Sprint 5 in progress | 15:01 |
+| SM   | Active | Monitoring Sprint 5 | 15:01 |
+| GD   | Done | S5-002 analysis delivered | 15:04 |
+| TL   | Standby | Awaiting DEV commits | 15:01 |
+| DEV  | Working | S5-001 Wall-nut hang | 15:01 |
+| QA   | Standby | Awaiting TL reviews | 15:01 |
 
 ---
 

@@ -66,6 +66,15 @@ export class Wallnut {
   }
 
   /**
+   * Update cooldown (no-op for wallnut - has no firing)
+   * Required for PlantManager.update() compatibility
+   * @param {number} deltaSeconds - Time elapsed in seconds
+   */
+  updateCooldown(deltaSeconds) {
+    // Wallnut has no cooldown - intentional no-op
+  }
+
+  /**
    * Get grid key for cell tracking
    * @returns {string} "lane,col" format
    */
