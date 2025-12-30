@@ -8,7 +8,8 @@ import { PlantManager } from '../managers/PlantManager.js';
 import { ProjectileManager } from '../managers/ProjectileManager.js';
 import { MoneyManager, MONEY_CONFIG } from '../utils/MoneyManager.js';
 import { QuestionManager } from '../utils/QuestionManager.js';
-import { QuizUIManager } from '../ui/QuizUIManager.js';
+// S7-003 AC8: QuizUIManager replaced by React panel
+// import { QuizUIManager } from '../ui/QuizUIManager.js';
 import { WaveManager, WAVE_CONFIG } from '../utils/WaveManager.js';
 import { GameStats } from '../utils/GameStats.js';
 import { PlantSelector, PLANT_SELECTOR_CONFIG } from '../ui/PlantSelector.js';
@@ -28,7 +29,8 @@ export class GameScene extends Phaser.Scene {
     this.projectileManager = null;
     this.moneyManager = null;
     this.questionManager = null;
-    this.quizUIManager = null;
+    // S7-003 AC8: QuizUIManager removed (React panel replaces it)
+    // this.quizUIManager = null;
     this.waveManager = null;
     this.gameStats = null;
     this.plantSelector = null;
@@ -39,6 +41,7 @@ export class GameScene extends Phaser.Scene {
     this.gameOver = false;
     this.quizActive = false;
     this.spawnTimer = null;
+    this.currentQuestion = null;  // S7-003: Current quiz question
   }
 
   create() {
@@ -63,7 +66,7 @@ export class GameScene extends Phaser.Scene {
     this.projectileManager = new ProjectileManager(this, this.gridConfig);
     this.moneyManager = new MoneyManager();
     this.questionManager = new QuestionManager();
-    this.quizUIManager = new QuizUIManager(this, this.gridConfig);
+    // S7-003 AC8: QuizUIManager removed - React panel handles quiz UI
     this.waveManager = new WaveManager();
     this.gameStats = new GameStats();
     this.gameStats.setTotalWaves(this.waveManager.getTotalWaves());
@@ -89,6 +92,13 @@ export class GameScene extends Phaser.Scene {
 
     // Start quiz timer
     this.startQuizTimer();
+
+    // S7-003: Setup React event bridge
+    this.setupReactBridge();
+
+    // S7-003: Initial state emit to React
+    this.emitMoneyUpdate();
+    this.emitWaveUpdate();
   }
 
   /**
@@ -122,6 +132,9 @@ export class GameScene extends Phaser.Scene {
       const stats = this.waveManager.getStats();
       this.waveText.setText(`Wave: ${stats.currentWave}/${stats.totalWaves}`);
     }
+
+    // S7-003: Emit to React
+    this.emitWaveUpdate();
   }
 
   /**
@@ -530,8 +543,63 @@ export class GameScene extends Phaser.Scene {
     }
 
     this.quizActive = true;
-    this.quizUIManager.showQuestion(question, (result) => {
-      this.handleQuizResult(result);
+    this.currentQuestion = question;
+
+    // S7-003: Emit event to React instead of using old QuizUIManager
+    this.events.emit('quiz:show', question);
+  }
+
+  /**
+   * S7-003: Setup React event bridge listeners
+   */
+  setupReactBridge() {
+    // Listen for quiz answers from React
+    this.events.on('quiz:answer', (answerIndex) => {
+      if (!this.quizActive || !this.currentQuestion) return;
+
+      const isCorrect = answerIndex === this.currentQuestion.correctIndex;
+
+      // Emit result back to React
+      this.events.emit('quiz:result', {
+        correct: isCorrect,
+        correctIndex: this.currentQuestion.correctIndex
+      });
+
+      // Handle the result internally
+      this.handleQuizResult({
+        isCorrect,
+        isTimeout: false
+      });
+    });
+
+    // AC5: Listen for continue button press
+    this.events.on('quiz:continue', () => {
+      this.quizActive = false;
+      this.currentQuestion = null;
+      this.events.emit('quiz:hide');
+    });
+  }
+
+  /**
+   * S7-003: Emit money update to React
+   */
+  emitMoneyUpdate() {
+    this.events.emit('money:update', {
+      current: this.moneyManager.getMoney(),
+      earned: this.gameStats.getStats().moneyEarned,
+      lost: this.gameStats.getStats().moneyLost
+    });
+  }
+
+  /**
+   * S7-003: Emit wave update to React
+   */
+  emitWaveUpdate() {
+    const stats = this.waveManager.getStats();
+    this.events.emit('wave:update', {
+      current: stats.currentWave,
+      total: stats.totalWaves,
+      state: stats.state
     });
   }
 
@@ -630,13 +698,15 @@ export class GameScene extends Phaser.Scene {
 
     // Update plant selector affordability
     this.updatePlantSelectorUI();
+
+    // S7-003: Emit to React
+    this.emitMoneyUpdate();
   }
 
   update(time, delta) {
     if (this.gameOver) return;
 
-    // Pause game updates while quiz is active
-    if (this.quizActive) return;
+    // S7-003 AC7: Game continues during quiz (removed quizActive pause)
 
     // Update plant cooldowns
     this.plantManager.update(delta);
