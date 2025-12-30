@@ -52,6 +52,66 @@
 
 ---
 
+## Sprint 2 Retrospective
+
+**Date:** 2025-12-30
+**Duration:** 5 min (Quick - part of Sprint 3)
+**Facilitator:** SM
+
+### Active Improvement Check
+- **Previous:** IMP-001 - ALWAYS REPORT BACK after completing any task
+- **Status:** Effective - Team following consistently
+- **Evidence:** OBS-001 through OBS-015 all positive
+
+### What Went Well
+- All agents reported back without prompting
+- QA found critical bug (404) and team fixed in 2 min
+- Clear communication throughout sprint
+
+### What Problems Occurred
+- OBS-016: DEV killed server during investigation
+
+### Selected for Sprint 3
+- Continue monitoring IMP-001
+
+### Prompt Updates
+- None (continuing to monitor)
+
+---
+
+## Sprint 3 Retrospective
+
+**Date:** 2025-12-30
+**Duration:** 5 min (Quick)
+**Facilitator:** SM
+
+### Active Improvement Check
+- **Previous:** IMP-001 - ALWAYS REPORT BACK after completing any task
+- **Status:** **EFFECTIVE** - Ready to mark as completed
+- **Evidence:** 54 observations, 45+ positive. One violation (OBS-041) addressed immediately.
+
+### What Went Well
+- IMP-001 working: DEV, TL, QA, PO all reporting back consistently
+- QA smoke test learned from Sprint 2 incident (OBS-021, OBS-030)
+- Fast turnaround: S3-005 from commit to Boss acceptance in ~20 min
+- Team collaboration on balance issue (GD+TL+QA analysis)
+- Boss feedback incorporated quickly
+
+### What Problems Occurred
+- OBS-041: DEV committed without reporting (one-time, addressed)
+- OBS-032: Balance issue mistaken for bug initially (resolved via collaboration)
+
+### Decision
+- **IMP-001 COMPLETED** - Team has internalized "report back" behavior
+- Prompts already updated in Sprint 1 - no further changes needed
+
+### Selected for Sprint 4
+- No new improvement needed - team is functioning well
+- Continue current practices
+
+### Prompt Updates
+- None needed
+
 ---
 
 ## Template

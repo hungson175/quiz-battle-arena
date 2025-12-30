@@ -1,23 +1,37 @@
 # Team Whiteboard
 
-**Sprint:** 3
-**Goal:** Full Game Loop - Waves, Victory, Question Timing
-**Status:** IN PROGRESS
+**Sprint:** 4
+**Goal:** Game Balance + Plant Variety
+**Status:** IN PROGRESS - DEV implementing
 
+**Sprint 3 COMPLETE** - Boss Accepted ✅, Retro Done
 **Sprint 2 COMPLETE** - Boss Accepted
 **Sprint 1 COMPLETE** - Boss Accepted, Retro Done
-**Active Improvement (IMP-001):** ALWAYS REPORT BACK after completing any task
 
 ---
 
-## PO Decisions Made - Sprint 2
+## Sprint 4 Items
+
+| ID | Item | Owner | Status |
+|----|------|-------|--------|
+| S4-001 | Peashooter cost 100→75 | DEV | **PO ACCEPTED** ✅ |
+| S4-002 | Wall-nut plant (cost 50, HP 20) + Selection UI | DEV | **IN PROGRESS** |
+| S4-003 | Remove QuizTimer | DEV | Pending S4-002 |
+
+**IMP-001 COMPLETED** - Team internalized report-back behavior
+
+---
+
+## PO Decisions Made - Sprint 2/3
 
 | Decision | Choice |
 |----------|--------|
 | Correct answer | +50 money |
 | Wrong answer | -30 money (HARSH) |
-| Starting money | 100 |
+| Starting money | 200 (updated S3-004 v2) |
 | Quiz UI | Phaser native |
+| Zombie HP | 8 (updated S3-004) |
+| Plant cost | 100 (allows 2 plants at start) |
 
 ---
 
@@ -25,12 +39,12 @@
 
 | Role | Status | Current Task | Last Update |
 |------|--------|--------------|-------------|
-| PO   | Ready  | Available for clarifications | 11:29 |
-| SM   | Active | Monitoring Sprint 3, IMP-001 | 11:29 |
-| GD   | DONE   | Delivered SPRINT3_DESIGN_SPECS.md ✅ | 11:28 |
-| TL   | Ready  | Awaiting S3-001 review | 11:28 |
-| DEV  | Active | Starting S3-001 Wave System | 11:28 |
-| QA   | Ready  | Standing by (smoke test first!) | 11:28 |
+| PO   | Monitoring | Sprint 4 in progress | 14:15 |
+| SM   | Active | Monitoring Sprint 4 execution | 14:21 |
+| GD   | Standby | Available for design questions | 14:16 |
+| TL   | Done | S4-001 APPROVED | 14:22 |
+| DEV  | Working | S4-002 Wall-nut + PlantSelector | 14:20 |
+| QA   | Testing | S4-001 Peashooter cost | 14:22 |
 
 ---
 
@@ -75,12 +89,13 @@
 
 ## Sprint 3 Items
 
-| Item | Owner | Status | Blocker? |
-|------|-------|--------|----------|
-| S3-001: Wave System | DEV | TODO | - |
-| S3-002: Victory Condition | DEV | TODO (needs S3-001) | - |
-| S3-003: Question Timing | DEV | TODO (needs S3-001) | - |
-| S3-004: Balance Tuning | GD | TODO (needs S3-001, S3-002) | - |
+| Item | Owner | Status | Notes |
+|------|-------|--------|-------|
+| S3-001: Wave System | DEV | **PO ACCEPTED** ✅ | 5 waves, progressive difficulty |
+| S3-002: Victory Condition | DEV | **PO ACCEPTED** ✅ | Stats display with 7 metrics |
+| S3-003: Question Timing | DEV | **PO ACCEPTED** ✅ | 12s countdown |
+| S3-004: Balance Tuning | GD | **PO ACCEPTED** ✅ | HP 8, Money 200, Plant 100 |
+| S3-005: Money 200 | DEV | **PO ACCEPTED** ✅ | Allows 2 plants at start |
 
 **See:** `SPRINT_BACKLOG.md` for full details
 
@@ -98,9 +113,15 @@ All 5 items PO ACCEPTED ✅
 |------|---------|--------|
 | ~~DEV~~ | ~~Need assets from TL~~ | **RESOLVED** - see docs/adr/ASSET_SOURCES.md |
 | ~~ALL~~ | ~~Need GD input on game values~~ | **RESOLVED** - see gd/SPRINT1_BALANCE_VALUES.md |
-| ~~QA~~ | ~~questions.json 404~~ | **FIXED** - fc81c6b, QA verifying |
+| ~~QA~~ | ~~questions.json 404~~ | **FIXED** - fc81c6b |
+| ~~QA~~ | ~~Zombie HP/death logic broken~~ | **NOT A BUG** - Balance issue |
+| ~~S3-004~~ | ~~Balance tuning: HP 10→8, Money 100→150~~ | **COMMITTED** bdb2b49 |
+| ~~S3-004 v2~~ | ~~Money 150→200 (2 plants at start)~~ | **COMMITTED** 4d2c632, TL REVIEWING |
 
-**Blocker fixed - QA re-testing**
+**BALANCE STATUS:**
+- ✅ HP 10→8 (bdb2b49) - QA PASSED
+- ✅ Money 150→200 (4d2c632) - QA PASSED
+- ✅ All balance values verified by QA
 
 ---
 
@@ -114,6 +135,11 @@ All 5 items PO ACCEPTED ✅
 | S2-002 | c4b404f | 10:35 | **APPROVED** - Ready for QA |
 | S2-003 | c4b404f | 10:50 | **APPROVED** - Ready for QA |
 | S2-004 | c4b404f | 10:50 | **APPROVED** - Ready for QA |
+| S3-001 | 0888673 | 11:38 | **PO ACCEPTED** ✅ |
+| S3-002 | 92d0acf | 11:47 | **PO ACCEPTED** ✅ |
+| S3-003 | 8b18b30 | 12:08 | **PO ACCEPTED** ✅ |
+| S3-004 | bdb2b49 | 13:05 | **PO ACCEPTED** ✅ |
+| S3-005 | 4d2c632 | 13:35 | **PO ACCEPTED** ✅ |
 
 ---
 

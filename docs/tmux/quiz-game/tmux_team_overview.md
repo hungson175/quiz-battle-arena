@@ -171,6 +171,9 @@ A Story is "Done" when:
 - [ ] Build passes (`npm run build`)
 - [ ] PO accepts
 
+**Sprint End Requirement:**
+- [ ] All commits pushed to remote repo BEFORE starting next sprint (prevents code loss)
+
 ---
 
 ## Artifacts

@@ -11,6 +11,7 @@ import { QuestionManager } from '../utils/QuestionManager.js';
 import { QuizUIManager } from '../ui/QuizUIManager.js';
 import { WaveManager, WAVE_CONFIG } from '../utils/WaveManager.js';
 import { GameStats } from '../utils/GameStats.js';
+import { PlantSelector, PLANT_SELECTOR_CONFIG } from '../ui/PlantSelector.js';
 
 // Quiz timing configuration (per GD specs)
 const QUIZ_CONFIG = {
@@ -30,6 +31,8 @@ export class GameScene extends Phaser.Scene {
     this.quizUIManager = null;
     this.waveManager = null;
     this.gameStats = null;
+    this.plantSelector = null;
+    this.plantButtons = [];  // UI button sprites
     this.moneyText = null;
     this.waveText = null;
     this.gameOver = false;
@@ -63,6 +66,10 @@ export class GameScene extends Phaser.Scene {
     this.waveManager = new WaveManager();
     this.gameStats = new GameStats();
     this.gameStats.setTotalWaves(this.waveManager.getTotalWaves());
+    this.plantSelector = new PlantSelector({
+      gameWidth: this.scale.width,
+      gameHeight: this.scale.height
+    });
 
     // Load questions
     this.loadQuestions();
@@ -70,6 +77,7 @@ export class GameScene extends Phaser.Scene {
     // Create UI
     this.createMoneyDisplay();
     this.createWaveDisplay();
+    this.createPlantSelectorUI();
 
     // Setup input handling
     this.setupInputHandling();
@@ -112,6 +120,94 @@ export class GameScene extends Phaser.Scene {
       const stats = this.waveManager.getStats();
       this.waveText.setText(`Wave: ${stats.currentWave}/${stats.totalWaves}`);
     }
+  }
+
+  /**
+   * Create plant selector UI (top-left buttons)
+   */
+  createPlantSelectorUI() {
+    const positions = this.plantSelector.getButtonPositions();
+    const { buttonSize } = PLANT_SELECTOR_CONFIG;
+
+    positions.forEach((pos, index) => {
+      // Button background
+      const button = this.add.rectangle(
+        pos.x, pos.y,
+        buttonSize, buttonSize,
+        0x333333
+      ).setStrokeStyle(2, 0x666666);
+      button.setInteractive({ useHandCursor: true });
+      button.setData('plantType', pos.type);
+
+      // Plant icon (emoji text)
+      const icon = this.add.text(
+        pos.x, pos.y - 8,
+        pos.icon,
+        { fontSize: '28px' }
+      ).setOrigin(0.5);
+
+      // Cost label
+      const costLabel = this.add.text(
+        pos.x, pos.y + 20,
+        `$${pos.cost}`,
+        { fontSize: '12px', fill: '#FFD700', fontStyle: 'bold' }
+      ).setOrigin(0.5);
+
+      // Store button data
+      this.plantButtons.push({ button, icon, costLabel, type: pos.type, cost: pos.cost });
+
+      // Click handler
+      button.on('pointerdown', () => {
+        this.handlePlantButtonClick(pos.type);
+      });
+
+      // Hover effects
+      button.on('pointerover', () => {
+        if (this.plantSelector.getSelectedPlant() !== pos.type) {
+          button.setStrokeStyle(2, 0xFFFF00);
+        }
+      });
+
+      button.on('pointerout', () => {
+        if (this.plantSelector.getSelectedPlant() !== pos.type) {
+          button.setStrokeStyle(2, 0x666666);
+        }
+      });
+    });
+  }
+
+  /**
+   * Handle plant selector button click
+   * @param {string} plantType
+   */
+  handlePlantButtonClick(plantType) {
+    this.plantSelector.selectPlant(plantType);
+    this.updatePlantSelectorUI();
+  }
+
+  /**
+   * Update plant selector UI visual state
+   */
+  updatePlantSelectorUI() {
+    const selectedPlant = this.plantSelector.getSelectedPlant();
+    const currentMoney = this.moneyManager.getMoney();
+
+    this.plantButtons.forEach(({ button, costLabel, type, cost }) => {
+      const isSelected = selectedPlant === type;
+      const canAfford = currentMoney >= cost;
+
+      // Update button appearance
+      if (isSelected) {
+        button.setFillStyle(0x4CAF50);  // Green when selected
+        button.setStrokeStyle(3, 0xFFFF00);  // Yellow border
+      } else {
+        button.setFillStyle(canAfford ? 0x333333 : 0x1a1a1a);  // Darker if can't afford
+        button.setStrokeStyle(2, 0x666666);
+      }
+
+      // Update cost label color
+      costLabel.setColor(canAfford ? '#FFD700' : '#FF6666');
+    });
   }
 
   /**
@@ -456,15 +552,19 @@ export class GameScene extends Phaser.Scene {
       const money = this.moneyManager.getMoney();
       this.moneyText.setText(`$${money}`);
 
-      // Color based on money amount
+      // Color based on money amount (use cheapest plant cost = 50)
+      const cheapestPlantCost = 50;  // Wallnut cost
       if (money < 0) {
         this.moneyText.setColor('#FF0000');
-      } else if (money < MONEY_CONFIG.plantCost) {
-        this.moneyText.setColor('#FFA500'); // Orange - can't afford plant
+      } else if (money < cheapestPlantCost) {
+        this.moneyText.setColor('#FFA500'); // Orange - can't afford any plant
       } else {
         this.moneyText.setColor('#FFD700'); // Gold - normal
       }
     }
+
+    // Update plant selector affordability
+    this.updatePlantSelectorUI();
   }
 
   update(time, delta) {
@@ -735,28 +835,60 @@ export class GameScene extends Phaser.Scene {
   }
 
   handleCellClick(lane, col) {
-    // Check if player can afford a plant
-    if (!this.moneyManager.canBuyPlant()) {
+    // Check if a plant is selected
+    const selectedPlant = this.plantSelector.getSelectedPlant();
+    if (!selectedPlant) {
+      this.showSelectPlantFeedback();
+      return;
+    }
+
+    // Check if player can afford the selected plant
+    const plantCost = this.plantSelector.getPlantCost(selectedPlant);
+    if (!this.moneyManager.canAfford(plantCost)) {
       this.showCannotAffordFeedback();
       return;
     }
 
-    // Use PlantManager to place plant
-    const plant = this.plantManager.placePlant(lane, col);
+    // Use PlantManager to place plant with type
+    const plant = this.plantManager.placePlant(lane, col, selectedPlant);
 
     if (plant) {
-      // Deduct money
-      this.moneyManager.buyPlant();
+      // Deduct money for specific plant
+      this.moneyManager.spend(plantCost);
       this.updateMoneyDisplay();
 
       // Track stat
       this.gameStats.recordPlantPlaced();
+
+      // Clear selection after placing (click-to-select-then-place flow)
+      this.plantSelector.clearSelection();
+      this.updatePlantSelectorUI();
 
       // Remove hover effect from this cell
       const cell = this.gridCells[lane][col];
       cell.setStrokeStyle(0);
       cell.disableInteractive();
     }
+  }
+
+  /**
+   * Show feedback when no plant is selected
+   */
+  showSelectPlantFeedback() {
+    const warningText = this.add.text(
+      this.scale.width / 2,
+      100,
+      'Select a plant first!',
+      { fontSize: '24px', fill: '#FFA500', fontStyle: 'bold' }
+    ).setOrigin(0.5);
+
+    this.tweens.add({
+      targets: warningText,
+      alpha: 0,
+      y: 80,
+      duration: 1000,
+      onComplete: () => warningText.destroy()
+    });
   }
 
   showCannotAffordFeedback() {

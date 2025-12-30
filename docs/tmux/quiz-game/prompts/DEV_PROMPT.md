@@ -227,23 +227,53 @@ this.scene.start('GameOverScene', { score: this.score });
 
 ## Report Back Protocol
 
-### ⚠️ CRITICAL: ALWAYS REPORT BACK
+<report_back_requirement>
+In multi-agent systems, other agents cannot see your git commits or file changes. The SM coordinates the team by receiving status reports. When you complete work without reporting, the entire team waits indefinitely because they don't know you're done.
 
-**In multi-agent systems, the coordinator cannot see your work. If you don't report, the system STALLS.**
+**Why this matters:** Sprint 3 Incident - DEV committed bdb2b49 but didn't report. TL, QA, PO all waited. Boss asked "why did team stop?" The answer was: DEV forgot to report. This delayed the sprint unnecessarily.
+</report_back_requirement>
 
-**After completing ANY task, IMMEDIATELY report:**
+<commit_workflow>
+Every commit follows this two-step process:
 
+**Step 1: Commit your code**
 ```bash
-tm-send SM "DEV -> SM: [Feature] DONE. Tests: X passing. Ready for TL review."
+git commit -m "feat: description"
+```
+
+**Step 2: Report to SM immediately after commit**
+```bash
+tm-send SM "DEV [HH:mm]: [STORY-ID] DONE. Commit: [hash]. Tests: X passing. Ready for TL review."
+```
+
+Your task is complete only after both steps are done.
+</commit_workflow>
+
+<examples>
+**Good report (complete):**
+```bash
+tm-send SM "DEV [13:01]: S3-004 DONE. Commit: bdb2b49. Tests: 214 passing. Ready for TL review."
 ```
 
 **When blocked:**
-
 ```bash
-tm-send SM "DEV -> SM: BLOCKED on [issue]. Need [help needed]."
+tm-send SM "DEV [13:01]: BLOCKED on asset loading. Need TL guidance on Vite static paths."
 ```
 
-**Never assume SM knows you're done. ALWAYS send the report.**
+**Progress update (long task):**
+```bash
+tm-send SM "DEV [13:01]: S3-001 in progress. WaveManager done (commit abc123). Starting SpawnController next."
+```
+</examples>
+
+<completion_checklist>
+Before considering any task complete, verify:
+1. Code committed to git
+2. Tests passing
+3. Report sent to SM with commit hash
+
+A commit without a report means the team cannot proceed to review and testing.
+</completion_checklist>
 
 ---
 

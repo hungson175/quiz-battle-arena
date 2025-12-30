@@ -2,6 +2,7 @@
 // Manages plant placement, rendering, and updates in the game scene
 
 import { Peashooter } from '../entities/Peashooter.js';
+import { Wallnut } from '../entities/Wallnut.js';
 
 /**
  * PlantManager handles all plant-related game logic
@@ -27,9 +28,10 @@ export class PlantManager {
    * Place a plant at specified grid cell
    * @param {number} lane - Lane index (0-2)
    * @param {number} col - Column index (1-8)
-   * @returns {Peashooter|null} The placed plant or null if invalid
+   * @param {string} plantType - Type of plant ('peashooter' or 'wallnut')
+   * @returns {Peashooter|Wallnut|null} The placed plant or null if invalid
    */
-  placePlant(lane, col) {
+  placePlant(lane, col, plantType = 'peashooter') {
     // Validate placement
     if (!this.gridConfig.isPlantable(lane, col)) {
       console.log(`Cannot place plant at (${lane}, ${col}) - not plantable`);
@@ -41,15 +43,31 @@ export class PlantManager {
       return null;
     }
 
-    // Create plant
-    const plant = new Peashooter({ lane, col });
+    // Create plant based on type
+    let plant;
+    let spriteColor;
+    let strokeColor;
+
+    switch (plantType) {
+      case 'wallnut':
+        plant = new Wallnut({ lane, col });
+        spriteColor = 0x8B4513;  // Brown for wallnut
+        strokeColor = 0x5D2906;
+        break;
+      case 'peashooter':
+      default:
+        plant = new Peashooter({ lane, col });
+        spriteColor = 0x00ff00;  // Green for peashooter
+        strokeColor = 0x006600;
+        break;
+    }
 
     // Get screen position
     const pos = this.gridConfig.getCellCenter(lane, col);
 
-    // Create placeholder sprite (green circle)
-    const sprite = this.scene.add.circle(pos.x, pos.y, 25, 0x00ff00);
-    sprite.setStrokeStyle(2, 0x006600);
+    // Create placeholder sprite (colored circle)
+    const sprite = this.scene.add.circle(pos.x, pos.y, 25, spriteColor);
+    sprite.setStrokeStyle(2, strokeColor);
 
     // Add to sprite group
     this.spriteGroup.add(sprite);
@@ -152,11 +170,12 @@ export class PlantManager {
     const { plant, sprite } = data;
     plant.takeDamage(damage);
 
-    // Visual feedback - flash red
+    // Visual feedback - flash red, then restore original color
+    const originalColor = plant.type === 'wallnut' ? 0x8B4513 : 0x00ff00;
     sprite.setFillStyle(0xff0000);
     this.scene.time.delayedCall(100, () => {
       if (plant.isAlive()) {
-        sprite.setFillStyle(0x00ff00);
+        sprite.setFillStyle(originalColor);
       }
     });
 
