@@ -15,8 +15,8 @@
 
 | ID | Item | Owner | Status |
 |----|------|-------|--------|
-| S5-001 | Fix Wall-nut placement hang | DEV | **IN PROGRESS** |
-| S5-002 | Fix Level 2 balance - enemy overlap | DEV+GD | PO decided: Wave 2 fix (3 zombies, 4500ms) |
+| S5-001 | Fix Wall-nut placement hang | DEV | **QA TESTING** (bbe6b52) |
+| S5-002 | Fix Level 2 balance - enemy overlap | DEV+GD | **IN PROGRESS** |
 
 **IMP-001 COMPLETED** - Team internalized report-back behavior
 
@@ -48,9 +48,9 @@ All 3 items Boss Accepted ✅
 | PO   | Monitoring | Sprint 5 in progress | 15:01 |
 | SM   | Active | Monitoring Sprint 5 | 15:01 |
 | GD   | Done | S5-002 analysis delivered | 15:04 |
-| TL   | Standby | Awaiting DEV commits | 15:01 |
-| DEV  | Working | S5-001 Wall-nut hang | 15:01 |
-| QA   | Standby | Awaiting TL reviews | 15:01 |
+| TL   | Done | S5-001 APPROVED | 15:10 |
+| DEV  | Working | S5-002 Wave 2 balance | 15:08 |
+| QA   | Testing | S5-001 Wall-nut fix | 15:10 |
 
 ---
 

@@ -15,8 +15,8 @@ describe('WaveManager', () => {
       expect(WAVE_CONFIG.waves.length).toBe(5);
     });
 
-    test('should have wave zombie counts: 3, 5, 7, 9, 12', () => {
-      expect(WAVE_CONFIG.waves).toEqual([3, 5, 7, 9, 12]);
+    test('should have wave zombie counts: 3, 3, 7, 9, 12', () => {
+      expect(WAVE_CONFIG.waves).toEqual([3, 3, 7, 9, 12]);
     });
 
     test('should have 5 second pause between waves', () => {
@@ -24,7 +24,7 @@ describe('WaveManager', () => {
     });
 
     test('should have spawn intervals per wave', () => {
-      expect(WAVE_CONFIG.spawnIntervals).toEqual([4000, 3500, 3000, 2500, 2000]);
+      expect(WAVE_CONFIG.spawnIntervals).toEqual([4000, 4500, 3000, 2500, 2000]);
     });
 
     test('should have speed multipliers per wave', () => {
@@ -115,7 +115,7 @@ describe('WaveManager', () => {
 
       manager.advanceWave();
       expect(manager.getCurrentWave()).toBe(2);
-      expect(manager.getZombiesForCurrentWave()).toBe(5); // Wave 2: 5 zombies
+      expect(manager.getZombiesForCurrentWave()).toBe(3); // Wave 2: 3 zombies (S5-002 balance)
     });
 
     test('should reset spawn count on wave advance', () => {
