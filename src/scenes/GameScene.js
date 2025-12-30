@@ -3,6 +3,7 @@
 
 import Phaser from 'phaser';
 import { GridConfig } from '../utils/GridConfig.js';
+import { ZombieManager } from '../managers/ZombieManager.js';
 
 export class GameScene extends Phaser.Scene {
   constructor() {
@@ -10,6 +11,8 @@ export class GameScene extends Phaser.Scene {
     this.gridConfig = null;
     this.gridCells = [];  // 2D array of cell graphics
     this.occupiedCells = new Set();  // Track occupied cells "lane,col"
+    this.zombieManager = null;
+    this.gameOver = false;
   }
 
   create() {
@@ -28,8 +31,71 @@ export class GameScene extends Phaser.Scene {
     // Draw house zone
     this.createHouseZone();
 
+    // Initialize zombie manager
+    this.zombieManager = new ZombieManager(this, this.gridConfig);
+
     // Setup input handling
     this.setupInputHandling();
+
+    // Start spawning zombies (for testing)
+    this.startZombieSpawning();
+  }
+
+  update(time, delta) {
+    if (this.gameOver) return;
+
+    // Update zombies
+    const events = this.zombieManager.update(delta);
+
+    // Check for game over
+    if (events.reachedHouse.length > 0) {
+      this.handleGameOver(events.reachedHouse[0]);
+    }
+  }
+
+  startZombieSpawning() {
+    // Spawn a zombie every 3 seconds for testing
+    this.time.addEvent({
+      delay: 3000,
+      callback: () => {
+        if (!this.gameOver) {
+          this.zombieManager.spawnRandomZombie();
+        }
+      },
+      loop: true
+    });
+
+    // Spawn first zombie immediately
+    this.zombieManager.spawnRandomZombie();
+  }
+
+  handleGameOver(zombie) {
+    this.gameOver = true;
+    console.log(`Game Over! Zombie ${zombie.id} reached the house in lane ${zombie.lane}`);
+
+    // Display game over text
+    this.add.rectangle(
+      this.scale.width / 2,
+      this.scale.height / 2,
+      400,
+      150,
+      0x000000,
+      0.8
+    );
+
+    this.add.text(
+      this.scale.width / 2,
+      this.scale.height / 2 - 20,
+      'GAME OVER',
+      { fontSize: '48px', fill: '#ff0000', fontStyle: 'bold' }
+    ).setOrigin(0.5);
+
+    this.add.text(
+      this.scale.width / 2,
+      this.scale.height / 2 + 30,
+      'Zombie reached your house!',
+      { fontSize: '20px', fill: '#ffffff' }
+    ).setOrigin(0.5);
   }
 
   createLawnBackground() {
