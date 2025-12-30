@@ -10,6 +10,7 @@ import { MoneyManager, MONEY_CONFIG } from '../utils/MoneyManager.js';
 import { QuestionManager } from '../utils/QuestionManager.js';
 import { QuizUIManager } from '../ui/QuizUIManager.js';
 import { WaveManager, WAVE_CONFIG } from '../utils/WaveManager.js';
+import { GameStats } from '../utils/GameStats.js';
 
 // Quiz timing configuration
 const QUIZ_CONFIG = {
@@ -29,6 +30,7 @@ export class GameScene extends Phaser.Scene {
     this.questionManager = null;
     this.quizUIManager = null;
     this.waveManager = null;
+    this.gameStats = null;
     this.moneyText = null;
     this.waveText = null;
     this.gameOver = false;
@@ -60,6 +62,8 @@ export class GameScene extends Phaser.Scene {
     this.questionManager = new QuestionManager();
     this.quizUIManager = new QuizUIManager(this, this.gridConfig);
     this.waveManager = new WaveManager();
+    this.gameStats = new GameStats();
+    this.gameStats.setTotalWaves(this.waveManager.getTotalWaves());
 
     // Load questions
     this.loadQuestions();
@@ -198,6 +202,7 @@ export class GameScene extends Phaser.Scene {
    */
   startWavePause() {
     this.waveManager.startPause();
+    this.gameStats.recordWaveComplete();
     const nextWave = this.waveManager.getCurrentWave() + 1;
 
     this.showWaveMessage(`Wave ${this.waveManager.getCurrentWave()} Complete!`);
@@ -217,52 +222,101 @@ export class GameScene extends Phaser.Scene {
    */
   handleVictory() {
     this.gameOver = true;
+    this.gameStats.recordWaveComplete(); // Final wave
+    this.gameStats.recordVictory();
+    this.gameStats.setFinalMoney(this.moneyManager.getMoney());
+
     console.log('Victory! All waves survived!');
 
-    // Display victory overlay
+    this.showEndScreen(true);
+  }
+
+  /**
+   * Show end game screen with stats
+   * @param {boolean} isVictory
+   */
+  showEndScreen(isVictory) {
+    const stats = this.gameStats.getSummary();
+    const centerX = this.scale.width / 2;
+    const centerY = this.scale.height / 2;
+    const panelWidth = 400;
+    const panelHeight = 380;
+
+    // Overlay
     this.add.rectangle(
-      this.scale.width / 2,
-      this.scale.height / 2,
-      400,
-      200,
-      0x000000,
-      0.8
+      centerX, centerY,
+      this.scale.width, this.scale.height,
+      0x000000, 0.8
     ).setDepth(1000);
 
-    this.add.text(
-      this.scale.width / 2,
-      this.scale.height / 2 - 50,
-      'VICTORY!',
-      { fontSize: '48px', fill: '#4CAF50', fontStyle: 'bold' }
-    ).setOrigin(0.5).setDepth(1001);
+    // Panel background
+    this.add.rectangle(
+      centerX, centerY,
+      panelWidth, panelHeight,
+      0x1a1a2e
+    ).setDepth(1001).setStrokeStyle(3, isVictory ? 0x4CAF50 : 0xF44336);
 
+    // Title
+    const title = isVictory ? 'VICTORY!' : 'GAME OVER';
+    const titleColor = isVictory ? '#4CAF50' : '#F44336';
     this.add.text(
-      this.scale.width / 2,
-      this.scale.height / 2,
-      'You survived all waves!',
-      { fontSize: '20px', fill: '#ffffff' }
-    ).setOrigin(0.5).setDepth(1001);
+      centerX, centerY - 160,
+      title,
+      { fontSize: '36px', fill: titleColor, fontStyle: 'bold' }
+    ).setOrigin(0.5).setDepth(1002);
+
+    // Stats display
+    const statsY = centerY - 100;
+    const lineHeight = 28;
+    const statsLines = [
+      `Waves Survived: ${stats.wavesCompleted}/${stats.totalWaves}`,
+      `Questions Answered: ${stats.questionsAnswered}`,
+      `Correct Answers: ${stats.questionsCorrect}`,
+      `Accuracy: ${stats.accuracy}%`,
+      `Final Money: $${stats.finalMoney}`,
+      `Plants Placed: ${stats.plantsPlaced}`,
+      `Zombies Defeated: ${stats.zombiesKilled}`
+    ];
+
+    statsLines.forEach((line, i) => {
+      this.add.text(
+        centerX, statsY + i * lineHeight,
+        line,
+        { fontSize: '18px', fill: '#ffffff' }
+      ).setOrigin(0.5).setDepth(1002);
+    });
+
+    // Defeat tip
+    if (!isVictory) {
+      const tip = this.gameStats.getRandomDefeatTip();
+      this.add.text(
+        centerX, centerY + 100,
+        tip,
+        { fontSize: '14px', fill: '#FFA500', fontStyle: 'italic', wordWrap: { width: panelWidth - 40 }, align: 'center' }
+      ).setOrigin(0.5).setDepth(1002);
+    }
 
     // Restart button
+    const buttonY = centerY + 150;
+    const buttonText = isVictory ? 'PLAY AGAIN' : 'TRY AGAIN';
+    const buttonColor = isVictory ? 0x2196F3 : 0x4CAF50;
+
     const restartButton = this.add.rectangle(
-      this.scale.width / 2,
-      this.scale.height / 2 + 60,
-      200,
-      50,
-      0x2196F3
-    ).setDepth(1001);
-    restartButton.setStrokeStyle(2, 0x1976D2);
+      centerX, buttonY,
+      200, 50,
+      buttonColor
+    ).setDepth(1002);
+    restartButton.setStrokeStyle(2, isVictory ? 0x1976D2 : 0x2E7D32);
     restartButton.setInteractive({ useHandCursor: true });
 
     this.add.text(
-      this.scale.width / 2,
-      this.scale.height / 2 + 60,
-      'PLAY AGAIN',
-      { fontSize: '24px', fill: '#ffffff', fontStyle: 'bold' }
-    ).setOrigin(0.5).setDepth(1002);
+      centerX, buttonY,
+      buttonText,
+      { fontSize: '22px', fill: '#ffffff', fontStyle: 'bold' }
+    ).setOrigin(0.5).setDepth(1003);
 
-    restartButton.on('pointerover', () => restartButton.setFillStyle(0x42A5F5));
-    restartButton.on('pointerout', () => restartButton.setFillStyle(0x2196F3));
+    restartButton.on('pointerover', () => restartButton.setFillStyle(isVictory ? 0x42A5F5 : 0x66BB6A));
+    restartButton.on('pointerout', () => restartButton.setFillStyle(buttonColor));
     restartButton.on('pointerdown', () => this.restartGame());
   }
 
@@ -322,9 +376,13 @@ export class GameScene extends Phaser.Scene {
   handleQuizResult(result) {
     if (result.isCorrect) {
       this.moneyManager.correctAnswer();
+      this.gameStats.recordCorrectAnswer();
+      this.gameStats.recordMoneyEarned(MONEY_CONFIG.correctReward);
       this.showQuizFeedback(true);
     } else {
       this.moneyManager.wrongAnswer();
+      this.gameStats.recordWrongAnswer();
+      this.gameStats.recordMoneyLost(MONEY_CONFIG.wrongPenalty);
       this.showQuizFeedback(false);
     }
 
@@ -430,63 +488,12 @@ export class GameScene extends Phaser.Scene {
 
   handleGameOver(zombie) {
     this.gameOver = true;
+    this.gameStats.recordDefeat();
+    this.gameStats.setFinalMoney(this.moneyManager.getMoney());
+
     console.log(`Game Over! Zombie ${zombie.id} reached the house in lane ${zombie.lane}`);
 
-    // Display game over overlay
-    this.add.rectangle(
-      this.scale.width / 2,
-      this.scale.height / 2,
-      400,
-      200,
-      0x000000,
-      0.8
-    );
-
-    this.add.text(
-      this.scale.width / 2,
-      this.scale.height / 2 - 50,
-      'GAME OVER',
-      { fontSize: '48px', fill: '#ff0000', fontStyle: 'bold' }
-    ).setOrigin(0.5);
-
-    this.add.text(
-      this.scale.width / 2,
-      this.scale.height / 2,
-      'Zombie reached your house!',
-      { fontSize: '20px', fill: '#ffffff' }
-    ).setOrigin(0.5);
-
-    // Restart button
-    const restartButton = this.add.rectangle(
-      this.scale.width / 2,
-      this.scale.height / 2 + 60,
-      200,
-      50,
-      0x4CAF50
-    );
-    restartButton.setStrokeStyle(2, 0x2E7D32);
-    restartButton.setInteractive({ useHandCursor: true });
-
-    const restartText = this.add.text(
-      this.scale.width / 2,
-      this.scale.height / 2 + 60,
-      'RESTART',
-      { fontSize: '24px', fill: '#ffffff', fontStyle: 'bold' }
-    ).setOrigin(0.5);
-
-    // Hover effects
-    restartButton.on('pointerover', () => {
-      restartButton.setFillStyle(0x66BB6A);
-    });
-
-    restartButton.on('pointerout', () => {
-      restartButton.setFillStyle(0x4CAF50);
-    });
-
-    // Restart game on click
-    restartButton.on('pointerdown', () => {
-      this.restartGame();
-    });
+    this.showEndScreen(false);
   }
 
   restartGame() {
@@ -497,6 +504,7 @@ export class GameScene extends Phaser.Scene {
     this.moneyManager.reset();
     this.questionManager.reset();
     this.waveManager.reset();
+    this.gameStats.reset();
 
     // Cancel spawn timer
     if (this.spawnTimer) {
@@ -559,6 +567,7 @@ export class GameScene extends Phaser.Scene {
 
             if (died) {
               console.log(`Zombie ${zombie.id} killed by pea!`);
+              this.gameStats.recordZombieKilled();
             }
 
             break; // Pea can only hit one zombie
@@ -731,6 +740,9 @@ export class GameScene extends Phaser.Scene {
       // Deduct money
       this.moneyManager.buyPlant();
       this.updateMoneyDisplay();
+
+      // Track stat
+      this.gameStats.recordPlantPlaced();
 
       // Remove hover effect from this cell
       const cell = this.gridCells[lane][col];
