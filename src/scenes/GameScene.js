@@ -4,14 +4,15 @@
 import Phaser from 'phaser';
 import { GridConfig } from '../utils/GridConfig.js';
 import { ZombieManager } from '../managers/ZombieManager.js';
+import { PlantManager } from '../managers/PlantManager.js';
 
 export class GameScene extends Phaser.Scene {
   constructor() {
     super({ key: 'GameScene' });
     this.gridConfig = null;
     this.gridCells = [];  // 2D array of cell graphics
-    this.occupiedCells = new Set();  // Track occupied cells "lane,col"
     this.zombieManager = null;
+    this.plantManager = null;
     this.gameOver = false;
   }
 
@@ -31,8 +32,9 @@ export class GameScene extends Phaser.Scene {
     // Draw house zone
     this.createHouseZone();
 
-    // Initialize zombie manager
+    // Initialize managers
     this.zombieManager = new ZombieManager(this, this.gridConfig);
+    this.plantManager = new PlantManager(this, this.gridConfig);
 
     // Setup input handling
     this.setupInputHandling();
@@ -248,45 +250,25 @@ export class GameScene extends Phaser.Scene {
   }
 
   handleCellClick(lane, col) {
-    if (this.isCellOccupied(lane, col)) {
-      console.log(`Cell (${lane}, ${col}) is already occupied`);
-      return;
+    // Use PlantManager to place plant
+    const plant = this.plantManager.placePlant(lane, col);
+
+    if (plant) {
+      // Remove hover effect from this cell
+      const cell = this.gridCells[lane][col];
+      cell.setStrokeStyle(0);
+      cell.disableInteractive();
     }
-
-    if (!this.gridConfig.isPlantable(lane, col)) {
-      console.log(`Cell (${lane}, ${col}) is not plantable`);
-      return;
-    }
-
-    console.log(`Clicked plantable cell: lane=${lane}, col=${col}`);
-
-    // Visual feedback - mark cell as "selected" (placeholder for plant placement)
-    const center = this.gridConfig.getCellCenter(lane, col);
-
-    // Placeholder plant (green circle)
-    const placeholder = this.add.circle(center.x, center.y, 25, 0x00ff00);
-    placeholder.setStrokeStyle(2, 0x006600);
-
-    // Mark cell as occupied
-    this.setCellOccupied(lane, col, true);
-
-    // Remove hover effect from this cell
-    const cell = this.gridCells[lane][col];
-    cell.setStrokeStyle(0);
-    cell.disableInteractive();
   }
 
+  /**
+   * Check if a cell is occupied by a plant
+   * @param {number} lane
+   * @param {number} col
+   * @returns {boolean}
+   */
   isCellOccupied(lane, col) {
-    return this.occupiedCells.has(`${lane},${col}`);
-  }
-
-  setCellOccupied(lane, col, occupied) {
-    const key = `${lane},${col}`;
-    if (occupied) {
-      this.occupiedCells.add(key);
-    } else {
-      this.occupiedCells.delete(key);
-    }
+    return this.plantManager.hasPlantAt(lane, col);
   }
 
   /**
