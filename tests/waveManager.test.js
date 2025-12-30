@@ -15,8 +15,8 @@ describe('WaveManager', () => {
       expect(WAVE_CONFIG.waves.length).toBe(5);
     });
 
-    test('should have wave zombie counts: 3, 3, 7, 9, 12', () => {
-      expect(WAVE_CONFIG.waves).toEqual([3, 3, 7, 9, 12]);
+    test('should have wave zombie counts: 2, 3, 4, 6, 8', () => {
+      expect(WAVE_CONFIG.waves).toEqual([2, 3, 4, 6, 8]);
     });
 
     test('should have 5 second pause between waves', () => {
@@ -24,15 +24,15 @@ describe('WaveManager', () => {
     });
 
     test('should have spawn intervals per wave', () => {
-      expect(WAVE_CONFIG.spawnIntervals).toEqual([4000, 4500, 3000, 2500, 2000]);
+      expect(WAVE_CONFIG.spawnIntervals).toEqual([5000, 4500, 4000, 3500, 3000]);
     });
 
     test('should have speed multipliers per wave', () => {
-      expect(WAVE_CONFIG.speedMultipliers).toEqual([1.0, 1.0, 1.1, 1.2, 1.3]);
+      expect(WAVE_CONFIG.speedMultipliers).toEqual([1.0, 1.0, 1.0, 1.1, 1.2]);
     });
 
-    test('should have quiz intervals per wave (15s, 12s, 10s, 10s, 8s)', () => {
-      expect(WAVE_CONFIG.quizIntervals).toEqual([15000, 12000, 10000, 10000, 8000]);
+    test('should have quiz intervals per wave (12s, 10s, 8s, 8s, 6s)', () => {
+      expect(WAVE_CONFIG.quizIntervals).toEqual([12000, 10000, 8000, 8000, 6000]);
     });
   });
 
@@ -63,7 +63,7 @@ describe('WaveManager', () => {
 
     test('should get zombie count for current wave', () => {
       manager.startWaves();
-      expect(manager.getZombiesForCurrentWave()).toBe(3); // Wave 1: 3 zombies
+      expect(manager.getZombiesForCurrentWave()).toBe(2); // Wave 1: 2 zombies (S6-003)
     });
 
     test('should track zombies spawned in current wave', () => {
@@ -73,7 +73,7 @@ describe('WaveManager', () => {
 
     test('should track zombies remaining to spawn', () => {
       manager.startWaves();
-      expect(manager.getZombiesRemaining()).toBe(3);
+      expect(manager.getZombiesRemaining()).toBe(2); // Wave 1: 2 zombies (S6-003)
     });
   });
 
@@ -85,7 +85,7 @@ describe('WaveManager', () => {
     test('should record zombie spawn', () => {
       manager.recordSpawn();
       expect(manager.getZombiesSpawned()).toBe(1);
-      expect(manager.getZombiesRemaining()).toBe(2);
+      expect(manager.getZombiesRemaining()).toBe(1); // Wave 1: 2 zombies - 1 spawned = 1 remaining (S6-003)
     });
 
     test('should know when wave spawning is complete', () => {
@@ -110,17 +110,17 @@ describe('WaveManager', () => {
     });
 
     test('should advance to next wave', () => {
-      // Complete wave 1 spawning
-      for (let i = 0; i < 3; i++) manager.recordSpawn();
+      // Complete wave 1 spawning (2 zombies per S6-003)
+      for (let i = 0; i < 2; i++) manager.recordSpawn();
 
       manager.advanceWave();
       expect(manager.getCurrentWave()).toBe(2);
-      expect(manager.getZombiesForCurrentWave()).toBe(3); // Wave 2: 3 zombies (S5-002 balance)
+      expect(manager.getZombiesForCurrentWave()).toBe(3); // Wave 2: 3 zombies (S6-003)
     });
 
     test('should reset spawn count on wave advance', () => {
-      // Complete wave 1 spawning first
-      for (let i = 0; i < 3; i++) manager.recordSpawn();
+      // Complete wave 1 spawning first (2 zombies)
+      for (let i = 0; i < 2; i++) manager.recordSpawn();
       manager.advanceWave();
       expect(manager.getZombiesSpawned()).toBe(0);
     });
@@ -161,13 +161,13 @@ describe('WaveManager', () => {
 
     test('should be in "clearing" state after spawning complete', () => {
       manager.startWaves();
-      for (let i = 0; i < 3; i++) manager.recordSpawn();
+      for (let i = 0; i < 2; i++) manager.recordSpawn(); // Wave 1: 2 zombies
       expect(manager.getState()).toBe('clearing');
     });
 
     test('should be in "paused" state between waves', () => {
       manager.startWaves();
-      for (let i = 0; i < 3; i++) manager.recordSpawn();
+      for (let i = 0; i < 2; i++) manager.recordSpawn(); // Wave 1: 2 zombies
       manager.startPause();
       expect(manager.getState()).toBe('paused');
     });
@@ -189,7 +189,7 @@ describe('WaveManager', () => {
   describe('Pause Between Waves', () => {
     beforeEach(() => {
       manager.startWaves();
-      for (let i = 0; i < 3; i++) manager.recordSpawn();
+      for (let i = 0; i < 2; i++) manager.recordSpawn(); // Wave 1: 2 zombies
     });
 
     test('should start pause timer', () => {
@@ -213,7 +213,7 @@ describe('WaveManager', () => {
       expect(stats.currentWave).toBe(1);
       expect(stats.totalWaves).toBe(5);
       expect(stats.zombiesSpawned).toBe(0);
-      expect(stats.zombiesInWave).toBe(3);
+      expect(stats.zombiesInWave).toBe(2); // Wave 1: 2 zombies (S6-003)
       expect(stats.state).toBe('spawning');
     });
   });
@@ -235,23 +235,23 @@ describe('WaveManager', () => {
   describe('Quiz Intervals', () => {
     test('should return quiz interval for wave 1', () => {
       manager.startWaves();
-      expect(manager.getQuizInterval()).toBe(15000);
+      expect(manager.getQuizInterval()).toBe(12000); // S6-002: 12s
     });
 
     test('should return quiz interval for wave 2', () => {
       manager.startWaves();
-      for (let i = 0; i < 3; i++) manager.recordSpawn();
+      for (let i = 0; i < 2; i++) manager.recordSpawn(); // Wave 1: 2 zombies
       manager.advanceWave();
-      expect(manager.getQuizInterval()).toBe(12000);
+      expect(manager.getQuizInterval()).toBe(10000); // S6-002: 10s
     });
 
     test('should return quiz interval for wave 3', () => {
       manager.startWaves();
-      for (let i = 0; i < 3; i++) manager.recordSpawn();
+      for (let i = 0; i < 2; i++) manager.recordSpawn(); // Wave 1: 2 zombies
       manager.advanceWave();
-      for (let i = 0; i < 5; i++) manager.recordSpawn();
+      for (let i = 0; i < 3; i++) manager.recordSpawn(); // Wave 2: 3 zombies
       manager.advanceWave();
-      expect(manager.getQuizInterval()).toBe(10000);
+      expect(manager.getQuizInterval()).toBe(8000); // S6-002: 8s
     });
 
     test('should return quiz interval for wave 5', () => {
@@ -262,11 +262,11 @@ describe('WaveManager', () => {
         for (let i = 0; i < zombieCount; i++) manager.recordSpawn();
         manager.advanceWave();
       }
-      expect(manager.getQuizInterval()).toBe(8000);
+      expect(manager.getQuizInterval()).toBe(6000); // S6-002: 6s
     });
 
     test('should return default interval before waves start', () => {
-      expect(manager.getQuizInterval()).toBe(15000);
+      expect(manager.getQuizInterval()).toBe(12000); // S6-002: uses wave 1 interval
     });
   });
 });

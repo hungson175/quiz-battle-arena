@@ -6,10 +6,10 @@
  * 5 waves with increasing zombie counts and difficulty
  */
 export const WAVE_CONFIG = {
-  waves: [3, 3, 7, 9, 12],  // Zombie count per wave (Wave 2: 5→3 for S5-002)
-  spawnIntervals: [4000, 4500, 3000, 2500, 2000],  // Spawn interval per wave (ms) (Wave 2: 3500→4500)
-  speedMultipliers: [1.0, 1.0, 1.1, 1.2, 1.3],  // Speed modifier per wave
-  quizIntervals: [15000, 12000, 10000, 10000, 8000],  // Quiz interval per wave (ms)
+  waves: [2, 3, 4, 6, 8],  // Zombie count per wave (S6-003 balance)
+  spawnIntervals: [5000, 4500, 4000, 3500, 3000],  // Spawn interval per wave (ms) (S6-003)
+  speedMultipliers: [1.0, 1.0, 1.0, 1.1, 1.2],  // Speed modifier per wave (S6-003)
+  quizIntervals: [12000, 10000, 8000, 8000, 6000],  // Quiz interval per wave (ms) (S6-002)
   pauseBetweenWavesMs: 5000,  // 5 seconds between waves (per GD spec)
 };
 
