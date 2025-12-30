@@ -6,6 +6,15 @@ import { GridConfig } from '../utils/GridConfig.js';
 import { ZombieManager } from '../managers/ZombieManager.js';
 import { PlantManager } from '../managers/PlantManager.js';
 import { ProjectileManager } from '../managers/ProjectileManager.js';
+import { MoneyManager, MONEY_CONFIG } from '../utils/MoneyManager.js';
+import { QuestionManager } from '../utils/QuestionManager.js';
+import { QuizUIManager } from '../ui/QuizUIManager.js';
+
+// Quiz timing configuration
+const QUIZ_CONFIG = {
+  intervalMs: 8000,  // Trigger quiz every 8 seconds
+  firstQuizDelayMs: 3000  // First quiz after 3 seconds
+};
 
 export class GameScene extends Phaser.Scene {
   constructor() {
@@ -15,7 +24,12 @@ export class GameScene extends Phaser.Scene {
     this.zombieManager = null;
     this.plantManager = null;
     this.projectileManager = null;
+    this.moneyManager = null;
+    this.questionManager = null;
+    this.quizUIManager = null;
+    this.moneyText = null;
     this.gameOver = false;
+    this.quizActive = false;
   }
 
   create() {
@@ -38,16 +52,163 @@ export class GameScene extends Phaser.Scene {
     this.zombieManager = new ZombieManager(this, this.gridConfig);
     this.plantManager = new PlantManager(this, this.gridConfig);
     this.projectileManager = new ProjectileManager(this, this.gridConfig);
+    this.moneyManager = new MoneyManager();
+    this.questionManager = new QuestionManager();
+    this.quizUIManager = new QuizUIManager(this, this.gridConfig);
+
+    // Load questions
+    this.loadQuestions();
+
+    // Create UI
+    this.createMoneyDisplay();
 
     // Setup input handling
     this.setupInputHandling();
 
     // Start spawning zombies (for testing)
     this.startZombieSpawning();
+
+    // Start quiz timer
+    this.startQuizTimer();
+  }
+
+  /**
+   * Load questions from JSON file
+   */
+  async loadQuestions() {
+    await this.questionManager.loadFromFile('assets/data/questions.json');
+    this.questionManager.shuffle();
+    console.log(`Loaded ${this.questionManager.getTotalCount()} questions`);
+  }
+
+  /**
+   * Start the periodic quiz timer
+   */
+  startQuizTimer() {
+    // First quiz after delay
+    this.time.delayedCall(QUIZ_CONFIG.firstQuizDelayMs, () => {
+      this.triggerQuiz();
+    });
+
+    // Periodic quizzes
+    this.time.addEvent({
+      delay: QUIZ_CONFIG.intervalMs,
+      callback: () => {
+        if (!this.gameOver && !this.quizActive) {
+          this.triggerQuiz();
+        }
+      },
+      loop: true
+    });
+  }
+
+  /**
+   * Trigger a quiz question
+   */
+  triggerQuiz() {
+    if (this.quizActive || this.gameOver) return;
+
+    const question = this.questionManager.getNextQuestion();
+    if (!question) {
+      // No more questions - reset and shuffle
+      this.questionManager.reset();
+      return;
+    }
+
+    this.quizActive = true;
+    this.quizUIManager.showQuestion(question, (result) => {
+      this.handleQuizResult(result);
+    });
+  }
+
+  /**
+   * Handle quiz answer result
+   * @param {Object} result - Quiz result from QuizUI
+   */
+  handleQuizResult(result) {
+    if (result.isCorrect) {
+      this.moneyManager.correctAnswer();
+      this.showQuizFeedback(true);
+    } else {
+      this.moneyManager.wrongAnswer();
+      this.showQuizFeedback(false);
+    }
+
+    this.updateMoneyDisplay();
+    this.quizActive = false;
+  }
+
+  /**
+   * Show visual feedback for quiz result
+   * @param {boolean} correct
+   */
+  showQuizFeedback(correct) {
+    const color = correct ? '#4CAF50' : '#F44336';
+    const text = correct
+      ? `+$${MONEY_CONFIG.correctReward}`
+      : `-$${MONEY_CONFIG.wrongPenalty}`;
+
+    const feedbackText = this.add.text(
+      this.scale.width - 100,
+      60,
+      text,
+      { fontSize: '20px', fill: color, fontStyle: 'bold' }
+    ).setOrigin(0.5);
+
+    // Animate and destroy
+    this.tweens.add({
+      targets: feedbackText,
+      y: 40,
+      alpha: 0,
+      duration: 1500,
+      onComplete: () => feedbackText.destroy()
+    });
+  }
+
+  createMoneyDisplay() {
+    // Money display background
+    this.add.rectangle(
+      this.scale.width - 100,
+      30,
+      180,
+      40,
+      0x000000,
+      0.7
+    );
+
+    // Money icon (yellow circle as placeholder)
+    this.add.circle(this.scale.width - 170, 30, 12, 0xFFD700);
+
+    // Money text
+    this.moneyText = this.add.text(
+      this.scale.width - 150,
+      30,
+      `$${this.moneyManager.getMoney()}`,
+      { fontSize: '24px', fill: '#FFD700', fontStyle: 'bold' }
+    ).setOrigin(0, 0.5);
+  }
+
+  updateMoneyDisplay() {
+    if (this.moneyText) {
+      const money = this.moneyManager.getMoney();
+      this.moneyText.setText(`$${money}`);
+
+      // Color based on money amount
+      if (money < 0) {
+        this.moneyText.setColor('#FF0000');
+      } else if (money < MONEY_CONFIG.plantCost) {
+        this.moneyText.setColor('#FFA500'); // Orange - can't afford plant
+      } else {
+        this.moneyText.setColor('#FFD700'); // Gold - normal
+      }
+    }
   }
 
   update(time, delta) {
     if (this.gameOver) return;
+
+    // Pause game updates while quiz is active
+    if (this.quizActive) return;
 
     // Update plant cooldowns
     this.plantManager.update(delta);
@@ -152,9 +313,12 @@ export class GameScene extends Phaser.Scene {
     this.zombieManager.clearAll();
     this.plantManager.clearAll();
     this.projectileManager.clearAll();
+    this.moneyManager.reset();
+    this.questionManager.reset();
 
     // Reset game state
     this.gameOver = false;
+    this.quizActive = false;
 
     // Restart scene
     this.scene.restart();
@@ -367,15 +531,51 @@ export class GameScene extends Phaser.Scene {
   }
 
   handleCellClick(lane, col) {
+    // Check if player can afford a plant
+    if (!this.moneyManager.canBuyPlant()) {
+      this.showCannotAffordFeedback();
+      return;
+    }
+
     // Use PlantManager to place plant
     const plant = this.plantManager.placePlant(lane, col);
 
     if (plant) {
+      // Deduct money
+      this.moneyManager.buyPlant();
+      this.updateMoneyDisplay();
+
       // Remove hover effect from this cell
       const cell = this.gridCells[lane][col];
       cell.setStrokeStyle(0);
       cell.disableInteractive();
     }
+  }
+
+  showCannotAffordFeedback() {
+    // Flash the money display red
+    const originalColor = this.moneyText.style.color;
+    this.moneyText.setColor('#FF0000');
+
+    // Show "Not enough money!" text briefly
+    const warningText = this.add.text(
+      this.scale.width / 2,
+      100,
+      'Not enough money!',
+      { fontSize: '24px', fill: '#FF0000', fontStyle: 'bold' }
+    ).setOrigin(0.5);
+
+    // Fade out and destroy
+    this.tweens.add({
+      targets: warningText,
+      alpha: 0,
+      y: 80,
+      duration: 1000,
+      onComplete: () => {
+        warningText.destroy();
+        this.moneyText.setColor(originalColor);
+      }
+    });
   }
 
   /**

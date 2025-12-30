@@ -1,202 +1,471 @@
 {
-  "subject": "Bộ câu hỏi hỗn hợp - Lịch sử, Toán học, Văn học",
-  "version": "1.0.0",
-  "totalQuestions": 15,
+  "metadata": {
+    "subject": "Lịch sử",
+    "grade": "6",
+    "source": "DC_lichsu.md",
+    "totalQuestions": 35,
+    "topics": [
+      "Ai Cập cổ đại",
+      "Lưỡng Hà cổ đại",
+      "Nhà nước Văn Lang - Âu Lạc",
+      "Thời kì Bắc thuộc"
+    ]
+  },
   "questions": [
     {
       "id": 1,
-      "category": "history",
-      "question": "Con sông nào đóng vai trò quan trọng với nền văn minh Ai Cập cổ đại?",
+      "topic": "Ai Cập cổ đại",
+      "question": "Ai Cập cổ đại nằm ở đâu?",
       "answers": [
-        "Sông Nin",
-        "Sông Tigris",
-        "Sông Euphrates",
-        "Sông Hồng"
+        "Phía Đông Bắc châu Phi",
+        "Phía Tây châu Phi",
+        "Phía Nam châu Á",
+        "Phía Bắc châu Âu"
       ],
-      "correct": 0,
-      "explanation": "Sông Nin cung cấp nước và phù sa màu mỡ giúp phát triển nông nghiệp. Nhờ lũ sông Nin hằng năm tạo nên những đồng bằng tươi tốt nuôi sống cư dân Ai Cập."
+      "correctIndex": 0,
+      "explanation": "Ai Cập cổ đại nằm ở phía Đông Bắc châu Phi, là vùng đất dọc theo sông Nin."
     },
     {
       "id": 2,
-      "category": "history",
-      "question": "Kim tự tháp Ai Cập cổ đại chứng minh người Ai Cập đã có trình độ cao về môn học nào?",
+      "topic": "Ai Cập cổ đại",
+      "question": "Con sông nào quan trọng nhất với nền văn minh Ai Cập cổ đại?",
       "answers": [
-        "Văn học",
-        "Toán học và Hình học",
-        "Âm nhạc",
-        "Hội họa"
+        "Sông Amazon",
+        "Sông Nin",
+        "Sông Hằng",
+        "Sông Mê Kông"
       ],
-      "correct": 1,
-      "explanation": "Người Ai Cập đã đạt tới trình độ toán học và hình học cao để xây kim tự tháp. Ngày nay chúng ta kế thừa về đường thẳng, góc và ứng dụng trong xây dựng công trình."
+      "correctIndex": 1,
+      "explanation": "Sông Nin cung cấp nước và phù sa màu mỡ, giúp Ai Cập phát triển nông nghiệp giữa vùng sa mạc."
     },
     {
       "id": 3,
-      "category": "history",
-      "question": "Hệ thống đếm cơ số 60 của nền văn minh Lưỡng Hà được dùng để làm gì ngày nay?",
+      "topic": "Ai Cập cổ đại",
+      "question": "Sông Nin giúp ích gì cho nông nghiệp Ai Cập?",
       "answers": [
-        "Đếm tiền",
-        "Tính thời gian và đo góc",
-        "Đo chiều dài",
-        "Đo khối lượng"
+        "Cung cấp cá để ăn",
+        "Cung cấp nước và phù sa màu mỡ",
+        "Làm đường giao thông",
+        "Ngăn kẻ thù xâm lược"
       ],
-      "correct": 1,
-      "explanation": "Hệ thống đếm cơ số 60 được dùng để tính thời gian (60 giây = 1 phút; 60 phút = 1 giờ) và đo góc trong toán học (360 độ)."
+      "correctIndex": 1,
+      "explanation": "Nhờ lũ sông Nin hằng năm tạo nên những đồng bằng tươi tốt nuôi sống cư dân Ai Cập."
     },
     {
       "id": 4,
-      "category": "history",
-      "question": "An Dương Vương đã đổi tên nước thành gì sau khi đánh bại quân Tần?",
+      "topic": "Ai Cập cổ đại",
+      "question": "Công trình kiến trúc nổi tiếng nào thể hiện trình độ toán học của người Ai Cập?",
       "answers": [
-        "Văn Lang",
-        "Đại Việt",
-        "Âu Lạc",
-        "Giao Chỉ"
+        "Vạn Lý Trường Thành",
+        "Đấu trường La Mã",
+        "Kim tự tháp",
+        "Vườn treo Babylon"
       ],
-      "correct": 2,
-      "explanation": "Sau kháng chiến chống Tần, Thục Phán tự xưng là An Dương Vương và đổi tên nước thành Âu Lạc, dời đô về Phong Khê (thành Cổ Loa)."
+      "correctIndex": 2,
+      "explanation": "Người Ai Cập đã đạt tới trình độ xây kim tự tháp, thể hiện kiến thức về đường thẳng, góc."
     },
     {
       "id": 5,
-      "category": "history",
-      "question": "Mục đích của chính sách đồng hóa của nhà Hán đối với người Việt là gì?",
+      "topic": "Ai Cập cổ đại",
+      "question": "Người Ai Cập cổ đại có kiến thức y học nhờ kỹ thuật gì?",
       "answers": [
-        "Giúp người Việt phát triển kinh tế",
-        "Biến người Việt thành người Hán hóa để dễ cai trị",
-        "Dạy người Việt khoa học kỹ thuật",
-        "Xây dựng trường học cho người Việt"
+        "Châm cứu",
+        "Ướp xác",
+        "Bào chế thuốc",
+        "Phẫu thuật tim"
       ],
-      "correct": 1,
-      "explanation": "Nhà Hán bắt nhân dân ta học chữ Hán, nói tiếng Hán, thay đổi phong tục tập quán nhằm đồng hóa về tôn giáo, lễ nghi, văn hóa để dễ cai trị và biến người Việt thành người Hán hóa."
+      "correctIndex": 1,
+      "explanation": "Việc ướp xác giúp người Ai Cập hiểu rõ về cơ thể người, nội tạng, đóng góp vào y học giải phẫu."
     },
     {
       "id": 6,
-      "category": "math",
-      "question": "Tính 23 + 45 = ?",
+      "topic": "Ai Cập cổ đại",
+      "question": "Nhà nước Ai Cập cổ đại ra đời gắn liền với quá trình nào?",
       "answers": [
-        "68",
-        "67",
-        "69",
-        "66"
+        "Chiến tranh xâm lược",
+        "Tổ chức trị thủy và sản xuất",
+        "Buôn bán với nước ngoài",
+        "Khai thác vàng"
       ],
-      "correct": 0,
-      "explanation": "23 + 45 = 68. Bạn có thể tính bằng cách cộng 23 + 40 = 63, rồi cộng thêm 5 để được 68."
+      "correctIndex": 1,
+      "explanation": "Nhà nước ra đời gắn liền với quá trình tổ chức trị thủy và sản xuất nông nghiệp."
     },
     {
       "id": 7,
-      "category": "math",
-      "question": "Tính 9 × 8 = ?",
+      "topic": "Lưỡng Hà cổ đại",
+      "question": "Lưỡng Hà nằm trên vùng đất lưu vực của hai con sông nào?",
       "answers": [
-        "63",
-        "72",
-        "81",
-        "64"
+        "Sông Nin và sông Hồng",
+        "Sông Tigris và sông Euphrates",
+        "Sông Hằng và sông Ấn",
+        "Sông Hoàng Hà và Trường Giang"
       ],
-      "correct": 1,
-      "explanation": "9 × 8 = 72. Bạn có thể nghĩ đây là 9 nhóm, mỗi nhóm có 8 đơn vị, hoặc 8 nhóm, mỗi nhóm có 9 đơn vị."
+      "correctIndex": 1,
+      "explanation": "Lưỡng Hà nằm trên vùng đất lưu vực hai con sông Tigris và Euphrates."
     },
     {
       "id": 8,
-      "category": "math",
-      "question": "Nếu bạn có 50 viên kẹo và chia đều cho 5 bạn, mỗi bạn được bao nhiêu viên?",
+      "topic": "Lưỡng Hà cổ đại",
+      "question": "Hệ thống đếm cơ số 60 của người Lưỡng Hà được dùng để làm gì ngày nay?",
       "answers": [
-        "8 viên",
-        "10 viên",
-        "12 viên",
-        "15 viên"
+        "Đo chiều dài",
+        "Cân nặng",
+        "Tính thời gian và đo góc",
+        "Đếm tiền"
       ],
-      "correct": 1,
-      "explanation": "50 ÷ 5 = 10 viên. Khi chia 50 viên kẹo đều cho 5 bạn, mỗi bạn sẽ nhận được 10 viên kẹo."
+      "correctIndex": 2,
+      "explanation": "Hệ thống cơ số 60 dùng để tính thời gian (60 giây = 1 phút) và đo góc (360 độ)."
     },
     {
       "id": 9,
-      "category": "math",
-      "question": "Một tam giác có tất cả bao nhiêu cạnh?",
+      "topic": "Lưỡng Hà cổ đại",
+      "question": "Địa hình Lưỡng Hà có đặc điểm gì thuận lợi cho giao thương?",
       "answers": [
-        "2 cạnh",
-        "3 cạnh",
-        "4 cạnh",
-        "5 cạnh"
+        "Nhiều núi cao",
+        "Ít hiểm trở, bằng phẳng",
+        "Nhiều sa mạc",
+        "Giáp biển lớn"
       ],
-      "correct": 1,
-      "explanation": "Tam giác có 3 cạnh. Từ 'tam' trong tiếng Việt có nghĩa là số 3."
+      "correctIndex": 1,
+      "explanation": "Địa hình tự nhiên không có biên giới hiểm trở, dễ dàng trao đổi với vùng xung quanh."
     },
     {
       "id": 10,
-      "category": "math",
-      "question": "Tính 100 - 37 = ?",
+      "topic": "Lưỡng Hà cổ đại",
+      "question": "60 giây bằng bao nhiêu phút?",
       "answers": [
-        "73",
-        "63",
-        "67",
-        "62"
+        "2 phút",
+        "1 phút",
+        "10 phút",
+        "100 giây"
       ],
-      "correct": 1,
-      "explanation": "100 - 37 = 63. Bạn có thể trừ 30 trước (còn 70), rồi trừ tiếp 7 để được 63."
+      "correctIndex": 1,
+      "explanation": "Theo hệ thống cơ số 60 của người Lưỡng Hà: 60 giây = 1 phút, 60 phút = 1 giờ."
     },
     {
       "id": 11,
-      "category": "literature",
-      "question": "Trong truyện cổ tích Tấm Cám, ai là người chị độc ác với Tấm?",
+      "topic": "Nhà nước Văn Lang - Âu Lạc",
+      "question": "Ai là người lãnh đạo nhân dân đánh bại quân Tần xâm lược?",
       "answers": [
-        "Cám",
-        "Mẹ ghê",
-        "Bà tiên",
-        "Hoàng hậu"
+        "Hùng Vương",
+        "Thục Phán",
+        "Triệu Đà",
+        "Lý Bí"
       ],
-      "correct": 0,
-      "explanation": "Cám là người em gái cùng cha khác mẹ với Tấm, luôn ganh tị và hãm hại Tấm với sự giúp sức của mẹ ghẻ."
+      "correctIndex": 1,
+      "explanation": "Thục Phán lãnh đạo nhân dân Âu Việt và Lạc Việt đánh bại quân xâm lược Tần."
     },
     {
       "id": 12,
-      "category": "literature",
-      "question": "Trong truyện Thạch Sanh, con vật nào đã giúp Thạch Sanh đánh bại yêu tinh?",
+      "topic": "Nhà nước Văn Lang - Âu Lạc",
+      "question": "Sau khi đánh thắng quân Tần, Thục Phán tự xưng là gì?",
       "answers": [
-        "Chim ưng",
-        "Con rồng",
-        "Chó thần",
-        "Ngựa bạch"
+        "Hùng Vương",
+        "An Dương Vương",
+        "Lạc Long Quân",
+        "Triệu Vũ Đế"
       ],
-      "correct": 0,
-      "explanation": "Chim ưng là người bạn trung thành của Thạch Sanh, đã giúp anh đánh bại yêu tinh và cứu công chúa."
+      "correctIndex": 1,
+      "explanation": "Sau kháng chiến chống Tần, Thục Phán tự xưng là An Dương Vương."
     },
     {
       "id": 13,
-      "category": "literature",
-      "question": "Sọ Dừa trong truyện cổ tích có đặc điểm gì khi mới sinh ra?",
+      "topic": "Nhà nước Văn Lang - Âu Lạc",
+      "question": "An Dương Vương đổi tên nước thành gì?",
       "answers": [
-        "Đầu to như quả dừa",
-        "Có thể bay",
-        "Biết nói từ nhỏ",
-        "Có sức mạnh thần kỳ"
+        "Văn Lang",
+        "Âu Lạc",
+        "Đại Việt",
+        "Nam Việt"
       ],
-      "correct": 0,
-      "explanation": "Sọ Dừa là một cậu bé có đầu to như quả dừa khi mới sinh, nhưng sau này trở thành một chàng trai đẹp trai và dũng cảm."
+      "correctIndex": 1,
+      "explanation": "An Dương Vương đổi tên nước thành Âu Lạc, dời đô về Phong Khê."
     },
     {
       "id": 14,
-      "category": "literature",
-      "question": "Trong truyện Cây tre trăm đốt, ai là người đã giải cứu công chúa?",
+      "topic": "Nhà nước Văn Lang - Âu Lạc",
+      "question": "An Dương Vương dời đô về đâu?",
       "answers": [
-        "Hoàng tử",
-        "Lão nông",
-        "Quan võ",
-        "Sư thầy"
+        "Thăng Long",
+        "Phong Khê",
+        "Hoa Lư",
+        "Cổ Loa"
       ],
-      "correct": 1,
-      "explanation": "Lão nông nghèo khổ nhưng có tấm lòng nhân hậu đã vượt qua thử thách cây tre trăm đốt để giải cứu công chúa."
+      "correctIndex": 1,
+      "explanation": "An Dương Vương dời đô về Phong Khê (sau này xây thành Cổ Loa)."
     },
     {
       "id": 15,
-      "category": "literature",
-      "question": "Chú Cuội trong truyện truyền thuyết Việt Nam đã ở đâu?",
+      "topic": "Nhà nước Văn Lang - Âu Lạc",
+      "question": "Thành Cổ Loa được xây bằng vật liệu gì?",
       "answers": [
-        "Trên mặt trăng",
-        "Dưới biển sâu",
-        "Trong rừng già",
-        "Trên đỉnh núi"
+        "Gạch nung",
+        "Đất và đá",
+        "Gỗ quý",
+        "Xi măng"
       ],
-      "correct": 0,
-      "explanation": "Chú Cuội đã bay lên mặt trăng cùng gốc cây đa thần và theo truyền thuyết, chú vẫn ở đó cho đến ngày nay."
+      "correctIndex": 1,
+      "explanation": "Thành được xây bằng đất và đá, tường thành cao, khó bị tấn công."
+    },
+    {
+      "id": 16,
+      "topic": "Nhà nước Văn Lang - Âu Lạc",
+      "question": "Cuộc kháng chiến chống quân Tần diễn ra trong khoảng thời gian nào?",
+      "answers": [
+        "Từ năm 300 TCN đến 290 TCN",
+        "Từ năm 214 TCN đến 208 TCN",
+        "Từ năm 111 TCN đến 100 TCN",
+        "Từ năm 40 đến 43"
+      ],
+      "correctIndex": 1,
+      "explanation": "Từ năm 214 TCN đến 208 TCN, nhân dân ta đã đánh bại quân xâm lược Tần."
+    },
+    {
+      "id": 17,
+      "topic": "Nhà nước Văn Lang - Âu Lạc",
+      "question": "Thành Cổ Loa có đặc điểm gì về vị trí?",
+      "answers": [
+        "Nằm giữa sa mạc",
+        "Nằm trên gò đồi, gần sông",
+        "Nằm trên đảo",
+        "Nằm trong hang động"
+      ],
+      "correctIndex": 1,
+      "explanation": "Vị trí xây dựng thuận lợi, nằm trên gò đồi và gần sông, giúp quan sát và kiểm soát."
+    },
+    {
+      "id": 18,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Nhà Hán chia nước Âu Lạc thành mấy quận?",
+      "answers": [
+        "2 quận",
+        "3 quận",
+        "5 quận",
+        "9 quận"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nước Âu Lạc bị chia làm 3 quận, nằm trong bộ Giao Chỉ."
+    },
+    {
+      "id": 19,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Đứng đầu bộ Giao Chỉ là chức quan gì?",
+      "answers": [
+        "Thái thú",
+        "Thứ sử",
+        "Huyện lệnh",
+        "Lạc tướng"
+      ],
+      "correctIndex": 1,
+      "explanation": "Đứng đầu Giao Chỉ có một viên Thứ sử người Hán."
+    },
+    {
+      "id": 20,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Đứng đầu mỗi quận thời Hán là chức quan gì?",
+      "answers": [
+        "Thứ sử",
+        "Thái thú",
+        "Bồ chính",
+        "Lạc hầu"
+      ],
+      "correctIndex": 1,
+      "explanation": "Đứng đầu quận có một viên Thái thú, đều là người Hán."
+    },
+    {
+      "id": 21,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Mục đích của việc nhà Hán chia lại khu vực hành chính là gì?",
+      "answers": [
+        "Giúp nhân dân ta phát triển",
+        "Dễ dàng cai trị và kiểm soát",
+        "Tạo điều kiện buôn bán",
+        "Bảo vệ nhân dân"
+      ],
+      "correctIndex": 1,
+      "explanation": "Mục đích là xóa bỏ quốc gia độc lập, thiết lập quyền kiểm soát trực tiếp."
+    },
+    {
+      "id": 22,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Chính quyền đô hộ nắm độc quyền sản xuất và mua bán những gì?",
+      "answers": [
+        "Vàng và bạc",
+        "Muối và sắt",
+        "Gạo và lúa",
+        "Vải và lụa"
+      ],
+      "correctIndex": 1,
+      "explanation": "Chính quyền đô hộ nắm độc quyền sản xuất và mua bán muối, sắt."
+    },
+    {
+      "id": 23,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Chính sách đồng hóa của nhà Hán bao gồm việc gì?",
+      "answers": [
+        "Dạy nghề thủ công",
+        "Bắt học chữ Hán, nói tiếng Hán",
+        "Mở trường dạy võ",
+        "Phát triển thương mại"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nhà Hán bắt nhân dân ta học chữ Hán, nói tiếng Hán để đồng hóa."
+    },
+    {
+      "id": 24,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Mục đích của chính sách đồng hóa là gì?",
+      "answers": [
+        "Giúp người Việt văn minh hơn",
+        "Biến người Việt thành người Hán hóa",
+        "Tăng dân số Việt Nam",
+        "Phát triển văn hóa Việt"
+      ],
+      "correctIndex": 1,
+      "explanation": "Mục đích là đồng hóa nhân dân ta về văn hóa, biến người Việt thành 'người Hán hóa'."
+    },
+    {
+      "id": 25,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Công cụ gì ngày càng phổ biến thay thế công cụ đồng trong thời Bắc thuộc?",
+      "answers": [
+        "Công cụ gỗ",
+        "Công cụ sắt",
+        "Công cụ đá",
+        "Công cụ tre"
+      ],
+      "correctIndex": 1,
+      "explanation": "Công cụ sắt ngày càng phổ biến, thay thế công cụ đồng."
+    },
+    {
+      "id": 26,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Người Việt thời Bắc thuộc biết dùng sức kéo của con vật nào trong nông nghiệp?",
+      "answers": [
+        "Ngựa và lừa",
+        "Trâu và bò",
+        "Voi và hươu",
+        "Chó và mèo"
+      ],
+      "correctIndex": 1,
+      "explanation": "Biết dùng cày và sử dụng sức kéo trâu bò trong nông nghiệp."
+    },
+    {
+      "id": 27,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Nghề thủ công mới nào xuất hiện trong thời Bắc thuộc?",
+      "answers": [
+        "Làm giấy, đúc tiền",
+        "Dệt vải, làm gốm",
+        "Đúc đồng, làm rìu",
+        "Làm muối, nấu rượu"
+      ],
+      "correctIndex": 0,
+      "explanation": "Một số nghề thủ công mới xuất hiện như làm giấy, đúc tiền, làm đồ trang sức."
+    },
+    {
+      "id": 28,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Tầng lớp thấp kém nhất trong xã hội Văn Lang, Âu Lạc là gì?",
+      "answers": [
+        "Nông dân",
+        "Nô tì",
+        "Thợ thủ công",
+        "Binh lính"
+      ],
+      "correctIndex": 1,
+      "explanation": "Bộ phận thấp kém nhất trong xã hội là nô tì."
+    },
+    {
+      "id": 29,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Đứng đầu nhà nước Văn Lang là ai?",
+      "answers": [
+        "Lạc hầu",
+        "Lạc tướng",
+        "Vua (Hùng Vương)",
+        "Bồ chính"
+      ],
+      "correctIndex": 2,
+      "explanation": "Tổ chức cơ cấu xã hội thời Văn Lang, Âu Lạc, đứng đầu là vua."
+    },
+    {
+      "id": 30,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Giúp việc cho vua thời Văn Lang có những ai?",
+      "answers": [
+        "Thứ sử, Thái thú",
+        "Lạc hầu, Lạc tướng, Bồ chính",
+        "Địa chủ, hào trưởng",
+        "Quan lại đô hộ"
+      ],
+      "correctIndex": 1,
+      "explanation": "Giúp việc cho vua có Lạc hầu, Lạc tướng và Bồ chính."
+    },
+    {
+      "id": 31,
+      "topic": "Ai Cập cổ đại",
+      "question": "Vì sao Ai Cập trở nên trù phú giữa vùng sa mạc?",
+      "answers": [
+        "Vì có nhiều vàng",
+        "Vì có sông Nin",
+        "Vì có biển lớn",
+        "Vì có rừng rậm"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nhờ sông Nin mà Ai Cập trở nên trù phú giữa vùng sa mạc khô cằn."
+    },
+    {
+      "id": 32,
+      "topic": "Lưỡng Hà cổ đại",
+      "question": "Một vòng tròn có bao nhiêu độ?",
+      "answers": [
+        "100 độ",
+        "180 độ",
+        "360 độ",
+        "60 độ"
+      ],
+      "correctIndex": 2,
+      "explanation": "Theo hệ thống cơ số 60, một vòng tròn có 360 độ (6 x 60)."
+    },
+    {
+      "id": 33,
+      "topic": "Nhà nước Văn Lang - Âu Lạc",
+      "question": "Nhà nước Văn Lang suy yếu phải đối mặt với mối đe dọa nào?",
+      "answers": [
+        "Thiên tai",
+        "Giặc ngoại xâm",
+        "Dịch bệnh",
+        "Nội chiến"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nhà nước Văn Lang suy yếu, đối mặt với giặc ngoại xâm từ phương Bắc."
+    },
+    {
+      "id": 34,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Từ năm 43, ai đứng đầu mỗi huyện, châu?",
+      "answers": [
+        "Người Việt",
+        "Người Hán",
+        "Lạc tướng",
+        "Hào trưởng"
+      ],
+      "correctIndex": 1,
+      "explanation": "Từ năm 43, mỗi huyện, châu, huyện lệnh đứng đầu đều là người Hán."
+    },
+    {
+      "id": 35,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Người Việt biết đắp đê để làm gì?",
+      "answers": [
+        "Làm đường đi",
+        "Phòng lũ lụt, bảo vệ mùa màng",
+        "Nuôi cá",
+        "Xây nhà"
+      ],
+      "correctIndex": 1,
+      "explanation": "Biết đắp đê, phòng lũ lụt, bảo vệ mùa màng."
     }
   ]
 }
