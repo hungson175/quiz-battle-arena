@@ -35,6 +35,7 @@ export class GameScene extends Phaser.Scene {
     this.plantButtons = [];  // UI button sprites
     this.moneyText = null;
     this.waveText = null;
+    this.debugText = null;  // S7-002: Debug overlay
     this.gameOver = false;
     this.quizActive = false;
     this.spawnTimer = null;
@@ -78,6 +79,7 @@ export class GameScene extends Phaser.Scene {
     this.createMoneyDisplay();
     this.createWaveDisplay();
     this.createPlantSelectorUI();
+    this.createDebugUI();  // S7-002: Debug overlay
 
     // Setup input handling
     this.setupInputHandling();
@@ -120,6 +122,69 @@ export class GameScene extends Phaser.Scene {
       const stats = this.waveManager.getStats();
       this.waveText.setText(`Wave: ${stats.currentWave}/${stats.totalWaves}`);
     }
+  }
+
+  /**
+   * S7-002: Create debug overlay showing zombie info per lane
+   */
+  createDebugUI() {
+    // Debug panel background (top-right)
+    const debugX = this.scale.width - 200;
+    const debugY = 20;
+
+    this.add.rectangle(
+      debugX + 90,
+      debugY + 60,
+      180,
+      120,
+      0x000000,
+      0.7
+    );
+
+    // Debug text (multiline, updated each frame)
+    this.debugText = this.add.text(
+      debugX,
+      debugY,
+      'Zombies:\nLane 0: -\nLane 1: -\nLane 2: -',
+      { fontSize: '14px', fill: '#00ff00', fontFamily: 'monospace' }
+    );
+  }
+
+  /**
+   * S7-002: Update debug overlay with current zombie info
+   */
+  updateDebugUI() {
+    if (!this.debugText || !this.zombieManager) return;
+
+    const activeZombies = this.zombieManager.getActiveZombies();
+
+    // Group zombies by lane
+    const laneData = [[], [], []];
+    for (const zombie of activeZombies) {
+      if (zombie.lane >= 0 && zombie.lane < 3) {
+        laneData[zombie.lane].push({
+          col: zombie.col,
+          hp: zombie.hp,
+          state: zombie.state.charAt(0).toUpperCase() // W/A/D
+        });
+      }
+    }
+
+    // Build debug text
+    let text = `Zombies (${activeZombies.length} total):\n`;
+    for (let lane = 0; lane < 3; lane++) {
+      const zombies = laneData[lane];
+      if (zombies.length === 0) {
+        text += `L${lane}: -\n`;
+      } else {
+        // Sort by column (frontmost first)
+        zombies.sort((a, b) => a.col - b.col);
+        const info = zombies.map(z => `c${z.col}:${z.hp}hp(${z.state})`).join(' ');
+        text += `L${lane}: ${info}\n`;
+      }
+    }
+
+    this.debugText.setText(text);
   }
 
   /**
@@ -598,6 +663,9 @@ export class GameScene extends Phaser.Scene {
 
     // Check for wave completion
     this.checkWaveCompletion();
+
+    // S7-002: Update debug overlay
+    this.updateDebugUI();
   }
 
   handleGameOver(zombie) {
