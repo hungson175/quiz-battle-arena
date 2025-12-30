@@ -31,6 +31,13 @@
 | OBS-009 | ✅ POSITIVE: QA found critical bug (questions.json 404) with clear error, impact, what works | 2 | SM | High - QA process working |
 | OBS-010 | ✅ POSITIVE: TL proactively identified root cause + fix options for QA bug | 2 | SM | High - Collaboration |
 | OBS-011 | ✅ POSITIVE: DEV fixed bug in ~2 min, reported with commit hash (fc81c6b) | 2 | SM | High - IMP-001 + Fast response |
+| OBS-012 | ✅ POSITIVE: DEV completed P3 cleanup proactively, reported with commit (0a651f5) | 2 | SM | Med - IMP-001 + Good housekeeping |
+| OBS-013 | ✅ POSITIVE: QA reported comprehensive pass results with all items verified | 2 | SM | High - IMP-001 working |
+| OBS-014 | ✅ RESOLVED: Game loading issue was browser cache on Boss's side - QA verified working | 2 | SM | Med - False alarm |
+| OBS-015 | ✅ POSITIVE: QA quickly re-verified with screenshot evidence when issue reported | 2 | SM | High - Fast response |
+| OBS-016 | ⚠️ ISSUE: DEV killed server during investigation - caused second outage | 2 | SM | Med - Process gap |
+| OBS-017 | ✅ POSITIVE: QA accepted smoke test reminder for Sprint 3 - learning from incident | 3 | SM | High - Process improvement |
+| OBS-018 | ✅ POSITIVE: GD proactively delivered SPRINT3_DESIGN_SPECS.md without being asked | 3 | SM | High - IMP-001 + Initiative |
 
 ---
 

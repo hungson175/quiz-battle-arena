@@ -1,9 +1,10 @@
 # Team Whiteboard
 
-**Sprint:** 2
-**Goal:** Quiz Integration - Earn sun by answering questions
+**Sprint:** 3
+**Goal:** Full Game Loop - Waves, Victory, Question Timing
 **Status:** IN PROGRESS
 
+**Sprint 2 COMPLETE** - Boss Accepted
 **Sprint 1 COMPLETE** - Boss Accepted, Retro Done
 **Active Improvement (IMP-001):** ALWAYS REPORT BACK after completing any task
 
@@ -24,12 +25,12 @@
 
 | Role | Status | Current Task | Last Update |
 |------|--------|--------------|-------------|
-| PO   | Active | Awaiting QA re-test | 10:57 |
-| SM   | Active | Coordinating hotfix review | 10:57 |
-| GD   | DONE   | S2-005: COMPLETE (35 questions) | 10:30 |
-| TL   | Active | Reviewing hotfix fc81c6b | 10:57 |
-| DEV  | DONE   | Hotfix fc81c6b committed | 10:57 |
-| QA   | Waiting | Awaiting TL review for re-test | 10:57 |
+| PO   | Ready  | Available for clarifications | 11:29 |
+| SM   | Active | Monitoring Sprint 3, IMP-001 | 11:29 |
+| GD   | DONE   | Delivered SPRINT3_DESIGN_SPECS.md ✅ | 11:28 |
+| TL   | Ready  | Awaiting S3-001 review | 11:28 |
+| DEV  | Active | Starting S3-001 Wave System | 11:28 |
+| QA   | Ready  | Standing by (smoke test first!) | 11:28 |
 
 ---
 
@@ -72,17 +73,22 @@
 
 ---
 
-## Sprint 2 Items
+## Sprint 3 Items
 
 | Item | Owner | Status | Blocker? |
 |------|-------|--------|----------|
-| S2-001: Money System | DEV | **TL APPROVED** ✅ | Ready for QA |
-| S2-002: Question Loading | DEV | **TL APPROVED** ✅ | Ready for QA |
-| S2-003: Quiz UI | DEV | **TL APPROVED** ✅ | c4b404f - 25 tests |
-| S2-004: Quiz Mechanic | DEV | **TL APPROVED** ✅ | c4b404f |
-| S2-005: Sample Questions | GD | **DONE** ✅ | 35 questions ready |
+| S3-001: Wave System | DEV | TODO | - |
+| S3-002: Victory Condition | DEV | TODO (needs S3-001) | - |
+| S3-003: Question Timing | DEV | TODO (needs S3-001) | - |
+| S3-004: Balance Tuning | GD | TODO (needs S3-001, S3-002) | - |
 
 **See:** `SPRINT_BACKLOG.md` for full details
+
+---
+
+## Sprint 2 Summary (COMPLETE)
+
+All 5 items PO ACCEPTED ✅
 
 ---
 
@@ -92,9 +98,9 @@
 |------|---------|--------|
 | ~~DEV~~ | ~~Need assets from TL~~ | **RESOLVED** - see docs/adr/ASSET_SOURCES.md |
 | ~~ALL~~ | ~~Need GD input on game values~~ | **RESOLVED** - see gd/SPRINT1_BALANCE_VALUES.md |
-| QA | questions.json 404 - returns HTML not JSON | **ACTIVE** - DEV fixing |
+| ~~QA~~ | ~~questions.json 404~~ | **FIXED** - fc81c6b, QA verifying |
 
-**⚠️ ACTIVE BLOCKER: questions.json path/loading issue**
+**Blocker fixed - QA re-testing**
 
 ---
 

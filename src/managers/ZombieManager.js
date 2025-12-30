@@ -26,10 +26,11 @@ export class ZombieManager {
   /**
    * Spawn a zombie in a specific lane
    * @param {number} lane - Lane index (0-2)
+   * @param {number} [speedMultiplier=1.0] - Speed multiplier for wave difficulty
    * @returns {Zombie} The spawned zombie
    */
-  spawnZombie(lane) {
-    const zombie = new Zombie({ lane });
+  spawnZombie(lane, speedMultiplier = 1.0) {
+    const zombie = new Zombie({ lane, speedMultiplier });
 
     // Get screen position for spawn point (right edge of grid)
     const pos = this.gridConfig.getCellCenter(lane, 8);
@@ -61,11 +62,20 @@ export class ZombieManager {
 
   /**
    * Spawn zombie in a random lane
+   * @param {number} [speedMultiplier=1.0] - Speed multiplier for wave difficulty
    * @returns {Zombie}
    */
-  spawnRandomZombie() {
+  spawnRandomZombie(speedMultiplier = 1.0) {
     const lane = Math.floor(Math.random() * this.gridConfig.lanes);
-    return this.spawnZombie(lane);
+    return this.spawnZombie(lane, speedMultiplier);
+  }
+
+  /**
+   * Get count of active zombies (alias for getActiveCount)
+   * @returns {number}
+   */
+  getActiveZombieCount() {
+    return this.getActiveCount();
   }
 
   /**

@@ -9,6 +9,7 @@ import { ProjectileManager } from '../managers/ProjectileManager.js';
 import { MoneyManager, MONEY_CONFIG } from '../utils/MoneyManager.js';
 import { QuestionManager } from '../utils/QuestionManager.js';
 import { QuizUIManager } from '../ui/QuizUIManager.js';
+import { WaveManager, WAVE_CONFIG } from '../utils/WaveManager.js';
 
 // Quiz timing configuration
 const QUIZ_CONFIG = {
@@ -27,9 +28,12 @@ export class GameScene extends Phaser.Scene {
     this.moneyManager = null;
     this.questionManager = null;
     this.quizUIManager = null;
+    this.waveManager = null;
     this.moneyText = null;
+    this.waveText = null;
     this.gameOver = false;
     this.quizActive = false;
+    this.spawnTimer = null;
   }
 
   create() {
@@ -55,21 +59,211 @@ export class GameScene extends Phaser.Scene {
     this.moneyManager = new MoneyManager();
     this.questionManager = new QuestionManager();
     this.quizUIManager = new QuizUIManager(this, this.gridConfig);
+    this.waveManager = new WaveManager();
 
     // Load questions
     this.loadQuestions();
 
     // Create UI
     this.createMoneyDisplay();
+    this.createWaveDisplay();
 
     // Setup input handling
     this.setupInputHandling();
 
-    // Start spawning zombies (for testing)
-    this.startZombieSpawning();
+    // Start wave system
+    this.startWaveSystem();
 
     // Start quiz timer
     this.startQuizTimer();
+  }
+
+  /**
+   * Create wave counter display
+   */
+  createWaveDisplay() {
+    // Wave display background
+    this.add.rectangle(
+      100,
+      30,
+      180,
+      40,
+      0x000000,
+      0.7
+    );
+
+    // Wave text
+    this.waveText = this.add.text(
+      100,
+      30,
+      'Wave: 1/5',
+      { fontSize: '22px', fill: '#ffffff', fontStyle: 'bold' }
+    ).setOrigin(0.5);
+  }
+
+  /**
+   * Update wave display
+   */
+  updateWaveDisplay() {
+    if (this.waveText && this.waveManager) {
+      const stats = this.waveManager.getStats();
+      this.waveText.setText(`Wave: ${stats.currentWave}/${stats.totalWaves}`);
+    }
+  }
+
+  /**
+   * Start wave-based zombie spawning
+   */
+  startWaveSystem() {
+    this.waveManager.startWaves();
+    this.updateWaveDisplay();
+    this.showWaveMessage(`Wave 1 Starting!`);
+
+    // Start spawning for current wave
+    this.scheduleNextSpawn();
+  }
+
+  /**
+   * Schedule next zombie spawn based on wave timing
+   */
+  scheduleNextSpawn() {
+    if (this.gameOver || !this.waveManager.canSpawn()) return;
+
+    const interval = this.waveManager.getSpawnInterval();
+
+    this.spawnTimer = this.time.delayedCall(interval, () => {
+      if (this.gameOver || this.quizActive) {
+        // Retry after quiz
+        this.scheduleNextSpawn();
+        return;
+      }
+
+      // Spawn zombie with wave speed modifier
+      const speedMultiplier = this.waveManager.getSpeedMultiplier();
+      this.zombieManager.spawnRandomZombie(speedMultiplier);
+      this.waveManager.recordSpawn();
+
+      // Check if wave spawning complete
+      if (this.waveManager.isWaveSpawnComplete()) {
+        // Wait for all zombies to be killed, then advance wave
+        // This will be checked in update()
+      } else {
+        this.scheduleNextSpawn();
+      }
+    });
+  }
+
+  /**
+   * Show wave message overlay
+   */
+  showWaveMessage(message) {
+    const waveMessage = this.add.text(
+      this.scale.width / 2,
+      this.scale.height / 2,
+      message,
+      { fontSize: '36px', fill: '#ffffff', fontStyle: 'bold', stroke: '#000000', strokeThickness: 4 }
+    ).setOrigin(0.5).setDepth(500);
+
+    this.tweens.add({
+      targets: waveMessage,
+      alpha: 0,
+      y: this.scale.height / 2 - 50,
+      duration: 2000,
+      onComplete: () => waveMessage.destroy()
+    });
+  }
+
+  /**
+   * Check and handle wave completion
+   */
+  checkWaveCompletion() {
+    if (!this.waveManager.isActive()) return;
+
+    // If spawning complete and all zombies killed
+    if (this.waveManager.isWaveSpawnComplete() &&
+        this.zombieManager.getActiveZombieCount() === 0) {
+
+      if (this.waveManager.getCurrentWave() >= this.waveManager.getTotalWaves()) {
+        // Victory!
+        this.handleVictory();
+      } else {
+        // Start pause before next wave
+        this.startWavePause();
+      }
+    }
+  }
+
+  /**
+   * Start pause between waves
+   */
+  startWavePause() {
+    this.waveManager.startPause();
+    const nextWave = this.waveManager.getCurrentWave() + 1;
+
+    this.showWaveMessage(`Wave ${this.waveManager.getCurrentWave()} Complete!`);
+
+    this.time.delayedCall(WAVE_CONFIG.pauseBetweenWavesMs, () => {
+      if (this.gameOver) return;
+
+      this.waveManager.endPause();
+      this.updateWaveDisplay();
+      this.showWaveMessage(`Wave ${this.waveManager.getCurrentWave()} Starting!`);
+      this.scheduleNextSpawn();
+    });
+  }
+
+  /**
+   * Handle victory (survived all waves)
+   */
+  handleVictory() {
+    this.gameOver = true;
+    console.log('Victory! All waves survived!');
+
+    // Display victory overlay
+    this.add.rectangle(
+      this.scale.width / 2,
+      this.scale.height / 2,
+      400,
+      200,
+      0x000000,
+      0.8
+    ).setDepth(1000);
+
+    this.add.text(
+      this.scale.width / 2,
+      this.scale.height / 2 - 50,
+      'VICTORY!',
+      { fontSize: '48px', fill: '#4CAF50', fontStyle: 'bold' }
+    ).setOrigin(0.5).setDepth(1001);
+
+    this.add.text(
+      this.scale.width / 2,
+      this.scale.height / 2,
+      'You survived all waves!',
+      { fontSize: '20px', fill: '#ffffff' }
+    ).setOrigin(0.5).setDepth(1001);
+
+    // Restart button
+    const restartButton = this.add.rectangle(
+      this.scale.width / 2,
+      this.scale.height / 2 + 60,
+      200,
+      50,
+      0x2196F3
+    ).setDepth(1001);
+    restartButton.setStrokeStyle(2, 0x1976D2);
+    restartButton.setInteractive({ useHandCursor: true });
+
+    this.add.text(
+      this.scale.width / 2,
+      this.scale.height / 2 + 60,
+      'PLAY AGAIN',
+      { fontSize: '24px', fill: '#ffffff', fontStyle: 'bold' }
+    ).setOrigin(0.5).setDepth(1002);
+
+    restartButton.on('pointerover', () => restartButton.setFillStyle(0x42A5F5));
+    restartButton.on('pointerout', () => restartButton.setFillStyle(0x2196F3));
+    restartButton.on('pointerdown', () => this.restartGame());
   }
 
   /**
@@ -229,22 +423,9 @@ export class GameScene extends Phaser.Scene {
     if (zombieEvents.reachedHouse.length > 0) {
       this.handleGameOver(zombieEvents.reachedHouse[0]);
     }
-  }
 
-  startZombieSpawning() {
-    // Spawn a zombie every 3 seconds for testing
-    this.time.addEvent({
-      delay: 3000,
-      callback: () => {
-        if (!this.gameOver) {
-          this.zombieManager.spawnRandomZombie();
-        }
-      },
-      loop: true
-    });
-
-    // Spawn first zombie immediately
-    this.zombieManager.spawnRandomZombie();
+    // Check for wave completion
+    this.checkWaveCompletion();
   }
 
   handleGameOver(zombie) {
@@ -315,6 +496,12 @@ export class GameScene extends Phaser.Scene {
     this.projectileManager.clearAll();
     this.moneyManager.reset();
     this.questionManager.reset();
+    this.waveManager.reset();
+
+    // Cancel spawn timer
+    if (this.spawnTimer) {
+      this.spawnTimer.remove();
+    }
 
     // Reset game state
     this.gameOver = false;

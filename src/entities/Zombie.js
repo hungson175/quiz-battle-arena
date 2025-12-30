@@ -20,12 +20,14 @@ export class Zombie {
    * @param {number} options.lane - Lane index (0-2)
    * @param {number} [options.col=8] - Starting column (default: rightmost)
    * @param {number} [options.hp] - Override HP (for testing)
+   * @param {number} [options.speedMultiplier=1.0] - Speed multiplier for wave difficulty
    */
   constructor(options = {}) {
     this.lane = options.lane ?? 0;
     this.col = options.col ?? 8;  // Spawn at right edge
     this.hp = options.hp ?? ZOMBIE_CONFIG.hp;
     this.maxHp = this.hp;
+    this.speedMultiplier = options.speedMultiplier ?? 1.0;
 
     // Movement tracking
     this.tileProgress = 0;  // 0 to 1, progress through current tile
@@ -77,8 +79,10 @@ export class Zombie {
     }
 
     // Progress is fraction of tile crossed
-    // 1 tile takes ZOMBIE_CONFIG.speed seconds
-    const progressDelta = deltaSeconds / ZOMBIE_CONFIG.speed;
+    // 1 tile takes ZOMBIE_CONFIG.speed seconds, modified by speedMultiplier
+    // Higher multiplier = faster zombie (less time per tile)
+    const effectiveSpeed = ZOMBIE_CONFIG.speed / this.speedMultiplier;
+    const progressDelta = deltaSeconds / effectiveSpeed;
     this.tileProgress += progressDelta;
 
     // Check if we've crossed into the next tile

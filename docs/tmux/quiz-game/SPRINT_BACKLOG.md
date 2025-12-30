@@ -1,6 +1,6 @@
-# Sprint 2 Backlog
+# Sprint 3 Backlog
 
-**Sprint Goal:** Quiz Integration - Earn money by answering questions
+**Sprint Goal:** Full Game Loop - Waves, Victory, Strategic Timing
 **Sprint Start:** 2025-12-30
 **Sprint End:** TBD
 
@@ -8,13 +8,12 @@
 
 ## Sprint Scope
 
-Add quiz mechanics to the tower defense:
-- Questions appear during gameplay
-- Correct answer = earn money
-- Wrong answer = lose money (PUNISHING)
-- Money required to buy plants
+Complete the game loop:
+- Wave system with increasing difficulty
+- Victory condition (survive all waves)
+- Strategic question timing (adds tension)
 
-**Core differentiator:** Learning through frustration - wrong answers hurt!
+**Design Intent:** Make it a complete, playable game with win/lose conditions!
 
 ---
 
@@ -22,118 +21,100 @@ Add quiz mechanics to the tower defense:
 
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
-| Correct answer | +50 money | Reward for learning |
-| Wrong answer | -30 money | HARSH punishment |
-| Starting money | 100 | Just enough for 2 plants |
-| Quiz UI | Phaser native | TL decided in ADR-001 |
+| Number of waves | 5 waves | Good for testing, can adjust later |
+| Difficulty ramp | +1 zombie per wave | Simple, clear progression |
+| Victory reward | Stats screen | Show questions answered, accuracy |
+| Question timing | During waves | Adds pressure/frustration |
 
 ---
 
 ## Sprint Items
 
-### [S2-001]: Money System
+### [S3-001]: Wave System
 **Owner:** DEV
 **Status:** TODO
-**Priority:** FIRST - Foundation for quiz mechanics
+**Priority:** FIRST - Foundation for game loop
 
 **Tasks:**
-- [ ] Create MoneyManager utility
-- [ ] Display money counter in game UI
-- [ ] Plants require money to place
-- [ ] Cannot place plant if insufficient money
-- [ ] Starting money: 100
+- [ ] Create WaveManager utility
+- [ ] Configure wave definitions (zombies per wave, spawn rate)
+- [ ] Wave counter display in UI
+- [ ] Brief pause between waves
+- [ ] Difficulty increases each wave (more/faster zombies)
 
 **Acceptance Criteria:**
-- [ ] Money counter visible on screen
-- [ ] Plant placement checks money
-- [ ] Money deducted when plant placed
-- [ ] Clear feedback when can't afford
+- [ ] Wave number visible on screen
+- [ ] Each wave spawns configured zombies
+- [ ] Pause between waves (3-5 seconds)
+- [ ] Later waves are harder
+- [ ] Clear "Wave X Starting" message
+
+**Wave Config Suggestion:**
+- Wave 1: 3 zombies, slow spawn
+- Wave 2: 5 zombies
+- Wave 3: 7 zombies
+- Wave 4: 9 zombies
+- Wave 5: 12 zombies (final wave)
 
 ---
 
-### [S2-002]: Question Loading from JSON
+### [S3-002]: Victory Condition
 **Owner:** DEV
 **Status:** TODO
-**Depends On:** None (can parallel with S2-001)
+**Depends On:** S3-001
 
 **Tasks:**
-- [ ] Create QuestionManager utility
-- [ ] Load questions from JSON file
-- [ ] Support Vietnamese text
-- [ ] Shuffle/randomize questions
-- [ ] Track answered questions
+- [ ] Detect when all waves completed
+- [ ] Victory screen with stats
+- [ ] Show: waves survived, questions answered, accuracy %
+- [ ] Restart/play again button
+- [ ] Victory sound/effect (if available)
 
 **Acceptance Criteria:**
-- [ ] Questions load from `src/assets/data/questions.json`
-- [ ] Vietnamese displays correctly
-- [ ] No repeat questions until pool exhausted
-- [ ] Graceful handling when questions run out
-
-**Note:** Need to create sample questions JSON (use Claude or manually)
+- [ ] Game ends in victory after wave 5
+- [ ] Victory screen displays
+- [ ] Stats shown (waves, questions, accuracy)
+- [ ] Can restart game
 
 ---
 
-### [S2-003]: Question Display UI
+### [S3-003]: Question Timing Strategy
 **Owner:** DEV
 **Status:** TODO
-**Depends On:** S2-002
+**Depends On:** S3-001
 
 **Tasks:**
-- [ ] Create QuizPanel Phaser container
-- [ ] Display question text (Vietnamese support)
-- [ ] 4 answer buttons
-- [ ] Visual styling (readable, game-feel)
-- [ ] Panel appears/disappears smoothly
+- [ ] Questions trigger during zombie waves (not just timer)
+- [ ] Optional: Time limit per question (10-15 seconds)
+- [ ] Unanswered question = counts as wrong
+- [ ] Questions can interrupt critical moments
 
 **Acceptance Criteria:**
-- [ ] Question panel displays over game
-- [ ] 4 clickable answer options
-- [ ] Clear, readable typography
-- [ ] Smooth show/hide animation
+- [ ] Questions appear strategically during gameplay
+- [ ] Time pressure on answering (visual countdown)
+- [ ] Timeout = wrong answer (-30 money)
+- [ ] Adds tension/frustration
+
+**Design Intent:** Questions interrupt at inconvenient times - FRUSTRATING!
 
 ---
 
-### [S2-004]: Quiz-for-Money Mechanic
-**Owner:** DEV
+### [S3-004]: Game Balance Tuning
+**Owner:** GD
 **Status:** TODO
-**Depends On:** S2-001, S2-002, S2-003
+**Depends On:** S3-001, S3-002
 
 **Tasks:**
-- [ ] Trigger question at intervals (every 10-15 seconds)
-- [ ] Game pauses or slows when question appears
-- [ ] Correct answer: +50 money, success feedback
-- [ ] Wrong answer: -30 money, failure feedback
-- [ ] Visual/audio feedback for both outcomes
+- [ ] Test and tune wave difficulty
+- [ ] Balance zombie speed vs plant fire rate
+- [ ] Ensure game is HARD but beatable
+- [ ] Document final balance values
 
 **Acceptance Criteria:**
-- [ ] Questions appear periodically during gameplay
-- [ ] Correct = +50 money with green flash/sound
-- [ ] Wrong = -30 money with red flash/sound
-- [ ] Money can go to 0 or negative (can't buy plants)
-- [ ] Game resumes after answering
-
-**Design Intent:** FRUSTRATING - wrong answers should hurt badly!
-
----
-
-### [S2-005]: Sample Questions JSON
-**Owner:** GD (with TL support)
-**Status:** TODO
-**Depends On:** None
-
-**Tasks:**
-- [ ] Create 30-50 Vietnamese history questions
-- [ ] Based on outline in `data/output/DC_lichsu.md`
-- [ ] Format: question, 4 answers, correct index, explanation
-- [ ] Mix of difficulty levels
-
-**Acceptance Criteria:**
-- [ ] Valid JSON file at `src/assets/data/questions.json`
-- [ ] 30+ questions minimum
-- [ ] All Vietnamese text correct
-- [ ] Variety of topics from outline
-
-**Note:** Can use Claude to generate from outline
+- [ ] Most players fail first 2-3 attempts
+- [ ] Game is beatable with good answers + strategy
+- [ ] Feels challenging, not impossible
+- [ ] Balance doc updated
 
 ---
 
@@ -145,6 +126,7 @@ Add quiz mechanics to the tower defense:
 - [ ] Game runs without errors (`npm run dev`)
 - [ ] Tests pass (`npm test`)
 - [ ] PO accepts demo
+- [ ] Game is playable from start to victory/defeat
 
 ---
 
@@ -152,33 +134,28 @@ Add quiz mechanics to the tower defense:
 
 | Item | Status | Owner | Notes |
 |------|--------|-------|-------|
-| S2-001 | TODO | DEV | Money system |
-| S2-002 | TODO | DEV | Question loading |
-| S2-003 | TODO | DEV | Quiz UI |
-| S2-004 | TODO | DEV | Quiz mechanics |
-| S2-005 | TODO | GD | Sample questions |
+| S3-001 | TODO | DEV | Wave system |
+| S3-002 | TODO | DEV | Victory condition |
+| S3-003 | TODO | DEV | Question timing |
+| S3-004 | TODO | GD | Balance tuning |
 
 ---
 
 ## Dependencies
 
 ```
-S2-001 (Money) ─────────────────┐
-                                 │
-S2-002 (Question Loading) ──────┼──> S2-004 (Quiz Mechanic)
-                                 │
-S2-003 (Quiz UI) ───────────────┘
-       │
-       └── Depends on S2-002
+S3-001 (Waves) ─────┬──> S3-002 (Victory)
+                    │
+                    └──> S3-003 (Question Timing)
 
-S2-005 (Questions JSON) ── Independent, GD can work in parallel
+S3-004 (Balance) ── Depends on S3-001, S3-002 being testable
 ```
 
 ---
 
 ## Notes
 
-- ADR-001 decided: Use Phaser UI (not React) for quiz panel
-- Questions appear every 10-15 seconds (GD to tune)
-- Wrong answer penalty is HARSH by design (-30 vs +50)
-- Vietnamese text support required
+- After Sprint 3, game should be COMPLETE and PLAYABLE
+- Sprint 4 (M4) will add polish: more plants, zombies, sound, effects
+- Assets still placeholder - acceptable for now
+- Focus on gameplay, not graphics
