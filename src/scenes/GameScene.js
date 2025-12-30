@@ -535,11 +535,9 @@ export class GameScene extends Phaser.Scene {
     // If so, make plants in that lane fire
     for (let lane = 0; lane < this.gridConfig.lanes; lane++) {
       const zombiesInLane = this.zombieManager.getZombiesInLane(lane);
+      const plantsInLane = this.plantManager.getPlantsInLane(lane);
 
-      if (zombiesInLane.length > 0) {
-        // Get plants in this lane
-        const plantsInLane = this.plantManager.getPlantsInLane(lane);
-
+      if (zombiesInLane.length > 0 && plantsInLane.length > 0) {
         for (const plant of plantsInLane) {
           if (plant.canFire()) {
             const damage = plant.fire();
@@ -577,7 +575,6 @@ export class GameScene extends Phaser.Scene {
             const died = this.zombieManager.damageZombie(zombie.id, pea.damage);
 
             if (died) {
-              console.log(`Zombie ${zombie.id} killed by pea!`);
               this.gameStats.recordZombieKilled();
             }
 

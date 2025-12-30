@@ -3,7 +3,7 @@
 
 // Money configuration from PO decisions
 export const MONEY_CONFIG = {
-  startingMoney: 100,   // Just enough for 2 plants initially (but we start with 1 plant cost)
+  startingMoney: 150,   // Enough for 1 plant + buffer for early mistakes
   correctReward: 50,    // Reward for correct answer
   wrongPenalty: 30,     // HARSH penalty for wrong answer
   plantCost: 100        // Cost per plant (Peashooter)

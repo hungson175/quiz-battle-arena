@@ -11,8 +11,8 @@ describe('Zombie', () => {
   });
 
   describe('Configuration', () => {
-    test('should have default HP of 10', () => {
-      expect(ZOMBIE_CONFIG.hp).toBe(10);
+    test('should have default HP of 8', () => {
+      expect(ZOMBIE_CONFIG.hp).toBe(8);
     });
 
     test('should have speed of 5 seconds per tile', () => {
@@ -49,22 +49,22 @@ describe('Zombie', () => {
   describe('Damage', () => {
     test('should take damage and reduce HP', () => {
       zombie.takeDamage(1);
-      expect(zombie.hp).toBe(9);
+      expect(zombie.hp).toBe(7); // 8 - 1 = 7
     });
 
     test('should die when HP reaches 0', () => {
-      zombie.takeDamage(10);
+      zombie.takeDamage(8);
       expect(zombie.hp).toBe(0);
       expect(zombie.isAlive()).toBe(false);
     });
 
     test('should not go below 0 HP', () => {
-      zombie.takeDamage(15);
+      zombie.takeDamage(20);
       expect(zombie.hp).toBe(0);
     });
 
     test('should change state to dead when killed', () => {
-      zombie.takeDamage(10);
+      zombie.takeDamage(8);
       expect(zombie.state).toBe('dead');
     });
   });

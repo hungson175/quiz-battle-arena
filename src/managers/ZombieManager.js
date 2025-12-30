@@ -140,7 +140,9 @@ export class ZombieManager {
    */
   damageZombie(zombieId, damage) {
     const data = this.zombies.get(zombieId);
-    if (!data) return false;
+    if (!data) {
+      return false;
+    }
 
     const { zombie, sprite } = data;
     zombie.takeDamage(damage);

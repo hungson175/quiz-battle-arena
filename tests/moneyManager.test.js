@@ -11,8 +11,8 @@ describe('MoneyManager', () => {
   });
 
   describe('Configuration', () => {
-    test('should have starting money of 100', () => {
-      expect(MONEY_CONFIG.startingMoney).toBe(100);
+    test('should have starting money of 150', () => {
+      expect(MONEY_CONFIG.startingMoney).toBe(150);
     });
 
     test('should have correct answer reward of 50', () => {
@@ -37,23 +37,23 @@ describe('MoneyManager', () => {
   describe('Spending', () => {
     test('should deduct money when spending', () => {
       manager.spend(50);
-      expect(manager.getMoney()).toBe(50);
+      expect(manager.getMoney()).toBe(100); // 150 - 50 = 100
     });
 
     test('should allow spending all money', () => {
-      manager.spend(100);
+      manager.spend(150);
       expect(manager.getMoney()).toBe(0);
     });
 
     test('should check if can afford amount', () => {
-      expect(manager.canAfford(100)).toBe(true);
-      expect(manager.canAfford(101)).toBe(false);
+      expect(manager.canAfford(150)).toBe(true);
+      expect(manager.canAfford(151)).toBe(false);
     });
 
     test('should not allow spending more than available', () => {
-      const result = manager.spend(150);
+      const result = manager.spend(200);
       expect(result).toBe(false);
-      expect(manager.getMoney()).toBe(100); // Unchanged
+      expect(manager.getMoney()).toBe(150); // Unchanged
     });
 
     test('should return true on successful spend', () => {
@@ -65,23 +65,23 @@ describe('MoneyManager', () => {
   describe('Earning', () => {
     test('should add money when earning', () => {
       manager.earn(50);
-      expect(manager.getMoney()).toBe(150);
+      expect(manager.getMoney()).toBe(200); // 150 + 50 = 200
     });
   });
 
   describe('Quiz Rewards', () => {
     test('should reward correct answer with +50', () => {
       manager.correctAnswer();
-      expect(manager.getMoney()).toBe(150);
+      expect(manager.getMoney()).toBe(200); // 150 + 50 = 200
     });
 
     test('should penalize wrong answer with -30', () => {
       manager.wrongAnswer();
-      expect(manager.getMoney()).toBe(70);
+      expect(manager.getMoney()).toBe(120); // 150 - 30 = 120
     });
 
     test('should allow money to go negative', () => {
-      manager.spend(100); // 0
+      manager.spend(150); // 0
       manager.wrongAnswer(); // -30
       expect(manager.getMoney()).toBe(-30);
     });
@@ -90,18 +90,18 @@ describe('MoneyManager', () => {
   describe('Plant Purchase', () => {
     test('should check if can buy plant', () => {
       expect(manager.canBuyPlant()).toBe(true);
-      manager.spend(50);
+      manager.spend(100); // 150 - 100 = 50, can't afford 100
       expect(manager.canBuyPlant()).toBe(false);
     });
 
     test('should buy plant and deduct cost', () => {
       const result = manager.buyPlant();
       expect(result).toBe(true);
-      expect(manager.getMoney()).toBe(0);
+      expect(manager.getMoney()).toBe(50); // 150 - 100 = 50
     });
 
     test('should not buy plant if cannot afford', () => {
-      manager.spend(50);
+      manager.spend(100); // 150 - 100 = 50
       const result = manager.buyPlant();
       expect(result).toBe(false);
       expect(manager.getMoney()).toBe(50); // Unchanged

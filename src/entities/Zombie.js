@@ -3,7 +3,7 @@
 
 // Zombie configuration from GD balance values
 export const ZOMBIE_CONFIG = {
-  hp: 10,           // Dies in 10 pea hits
+  hp: 8,            // Dies in 8 pea hits (balanced for better gameplay)
   speed: 5,         // Seconds per tile
   attackDps: 2      // Damage per second when attacking plants
 };
