@@ -75,29 +75,73 @@ export class GameScene extends Phaser.Scene {
     this.gameOver = true;
     console.log(`Game Over! Zombie ${zombie.id} reached the house in lane ${zombie.lane}`);
 
-    // Display game over text
+    // Display game over overlay
     this.add.rectangle(
       this.scale.width / 2,
       this.scale.height / 2,
       400,
-      150,
+      200,
       0x000000,
       0.8
     );
 
     this.add.text(
       this.scale.width / 2,
-      this.scale.height / 2 - 20,
+      this.scale.height / 2 - 50,
       'GAME OVER',
       { fontSize: '48px', fill: '#ff0000', fontStyle: 'bold' }
     ).setOrigin(0.5);
 
     this.add.text(
       this.scale.width / 2,
-      this.scale.height / 2 + 30,
+      this.scale.height / 2,
       'Zombie reached your house!',
       { fontSize: '20px', fill: '#ffffff' }
     ).setOrigin(0.5);
+
+    // Restart button
+    const restartButton = this.add.rectangle(
+      this.scale.width / 2,
+      this.scale.height / 2 + 60,
+      200,
+      50,
+      0x4CAF50
+    );
+    restartButton.setStrokeStyle(2, 0x2E7D32);
+    restartButton.setInteractive({ useHandCursor: true });
+
+    const restartText = this.add.text(
+      this.scale.width / 2,
+      this.scale.height / 2 + 60,
+      'RESTART',
+      { fontSize: '24px', fill: '#ffffff', fontStyle: 'bold' }
+    ).setOrigin(0.5);
+
+    // Hover effects
+    restartButton.on('pointerover', () => {
+      restartButton.setFillStyle(0x66BB6A);
+    });
+
+    restartButton.on('pointerout', () => {
+      restartButton.setFillStyle(0x4CAF50);
+    });
+
+    // Restart game on click
+    restartButton.on('pointerdown', () => {
+      this.restartGame();
+    });
+  }
+
+  restartGame() {
+    // Clear all managers
+    this.zombieManager.clearAll();
+    this.plantManager.clearAll();
+
+    // Reset game state
+    this.gameOver = false;
+
+    // Restart scene
+    this.scene.restart();
   }
 
   createLawnBackground() {
