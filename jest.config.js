@@ -1,15 +1,11 @@
 export default {
-  testEnvironment: 'jsdom',
+  testEnvironment: 'node',
   transform: {
-    '^.+\\.js$': 'babel-jest',
+    '^.+\\.js$': 'babel-jest'
   },
   moduleFileExtensions: ['js'],
   testMatch: ['**/tests/**/*.test.js'],
-  collectCoverageFrom: [
-    'src/**/*.js',
-    '!src/main.js',
-    '!src/assets/**'
-  ],
+  collectCoverageFrom: ['src/**/*.js'],
   coverageDirectory: 'coverage',
-  verbose: true,
+  verbose: true
 };

@@ -1,18 +1,12 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: './',
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          phaser: ['phaser']
-        }
-      }
-    }
-  },
   server: {
-    port: 3335,
-    open: true
+    port: 3336,
+    open: false
+  },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets'
   }
 });
