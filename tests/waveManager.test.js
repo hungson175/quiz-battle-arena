@@ -30,6 +30,10 @@ describe('WaveManager', () => {
     test('should have speed multipliers per wave', () => {
       expect(WAVE_CONFIG.speedMultipliers).toEqual([1.0, 1.0, 1.1, 1.2, 1.3]);
     });
+
+    test('should have quiz intervals per wave (15s, 12s, 10s, 10s, 8s)', () => {
+      expect(WAVE_CONFIG.quizIntervals).toEqual([15000, 12000, 10000, 10000, 8000]);
+    });
   });
 
   describe('Initialization', () => {
@@ -225,6 +229,44 @@ describe('WaveManager', () => {
       expect(manager.getCurrentWave()).toBe(0);
       expect(manager.isActive()).toBe(false);
       expect(manager.getZombiesSpawned()).toBe(0);
+    });
+  });
+
+  describe('Quiz Intervals', () => {
+    test('should return quiz interval for wave 1', () => {
+      manager.startWaves();
+      expect(manager.getQuizInterval()).toBe(15000);
+    });
+
+    test('should return quiz interval for wave 2', () => {
+      manager.startWaves();
+      for (let i = 0; i < 3; i++) manager.recordSpawn();
+      manager.advanceWave();
+      expect(manager.getQuizInterval()).toBe(12000);
+    });
+
+    test('should return quiz interval for wave 3', () => {
+      manager.startWaves();
+      for (let i = 0; i < 3; i++) manager.recordSpawn();
+      manager.advanceWave();
+      for (let i = 0; i < 5; i++) manager.recordSpawn();
+      manager.advanceWave();
+      expect(manager.getQuizInterval()).toBe(10000);
+    });
+
+    test('should return quiz interval for wave 5', () => {
+      manager.startWaves();
+      // Advance to wave 5
+      for (let wave = 0; wave < 4; wave++) {
+        const zombieCount = WAVE_CONFIG.waves[wave];
+        for (let i = 0; i < zombieCount; i++) manager.recordSpawn();
+        manager.advanceWave();
+      }
+      expect(manager.getQuizInterval()).toBe(8000);
+    });
+
+    test('should return default interval before waves start', () => {
+      expect(manager.getQuizInterval()).toBe(15000);
     });
   });
 });

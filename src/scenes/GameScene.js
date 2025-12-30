@@ -12,10 +12,9 @@ import { QuizUIManager } from '../ui/QuizUIManager.js';
 import { WaveManager, WAVE_CONFIG } from '../utils/WaveManager.js';
 import { GameStats } from '../utils/GameStats.js';
 
-// Quiz timing configuration
+// Quiz timing configuration (per GD specs)
 const QUIZ_CONFIG = {
-  intervalMs: 8000,  // Trigger quiz every 8 seconds
-  firstQuizDelayMs: 3000  // First quiz after 3 seconds
+  firstQuizDelayMs: 15000  // First quiz after 15 seconds (wave 1)
 };
 
 export class GameScene extends Phaser.Scene {
@@ -330,23 +329,29 @@ export class GameScene extends Phaser.Scene {
   }
 
   /**
-   * Start the periodic quiz timer
+   * Start the periodic quiz timer (wave-based intervals)
    */
   startQuizTimer() {
     // First quiz after delay
     this.time.delayedCall(QUIZ_CONFIG.firstQuizDelayMs, () => {
       this.triggerQuiz();
+      this.scheduleNextQuiz();
     });
+  }
 
-    // Periodic quizzes
-    this.time.addEvent({
-      delay: QUIZ_CONFIG.intervalMs,
-      callback: () => {
-        if (!this.gameOver && !this.quizActive) {
-          this.triggerQuiz();
-        }
-      },
-      loop: true
+  /**
+   * Schedule next quiz based on current wave interval
+   */
+  scheduleNextQuiz() {
+    if (this.gameOver) return;
+
+    const interval = this.waveManager.getQuizInterval();
+
+    this.time.delayedCall(interval, () => {
+      if (!this.gameOver && !this.quizActive) {
+        this.triggerQuiz();
+      }
+      this.scheduleNextQuiz();
     });
   }
 
@@ -379,6 +384,12 @@ export class GameScene extends Phaser.Scene {
       this.gameStats.recordCorrectAnswer();
       this.gameStats.recordMoneyEarned(MONEY_CONFIG.correctReward);
       this.showQuizFeedback(true);
+    } else if (result.isTimeout) {
+      // Timeout counts as wrong answer per GD specs
+      this.moneyManager.wrongAnswer();
+      this.gameStats.recordTimeout();
+      this.gameStats.recordMoneyLost(MONEY_CONFIG.wrongPenalty);
+      this.showQuizFeedback(false);
     } else {
       this.moneyManager.wrongAnswer();
       this.gameStats.recordWrongAnswer();

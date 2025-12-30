@@ -9,6 +9,7 @@ export const WAVE_CONFIG = {
   waves: [3, 5, 7, 9, 12],  // Zombie count per wave
   spawnIntervals: [4000, 3500, 3000, 2500, 2000],  // Spawn interval per wave (ms)
   speedMultipliers: [1.0, 1.0, 1.1, 1.2, 1.3],  // Speed modifier per wave
+  quizIntervals: [15000, 12000, 10000, 10000, 8000],  // Quiz interval per wave (ms)
   pauseBetweenWavesMs: 5000,  // 5 seconds between waves (per GD spec)
 };
 
@@ -192,6 +193,15 @@ export class WaveManager {
   getSpawnInterval() {
     if (this.currentWave === 0) return WAVE_CONFIG.spawnIntervals[0];
     return WAVE_CONFIG.spawnIntervals[this.currentWave - 1] || WAVE_CONFIG.spawnIntervals[0];
+  }
+
+  /**
+   * Get quiz interval for current wave (ms)
+   * @returns {number}
+   */
+  getQuizInterval() {
+    if (this.currentWave === 0) return WAVE_CONFIG.quizIntervals[0];
+    return WAVE_CONFIG.quizIntervals[this.currentWave - 1] || WAVE_CONFIG.quizIntervals[0];
   }
 
   /**
