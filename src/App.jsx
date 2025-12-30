@@ -36,6 +36,11 @@ export function App() {
 
   // Mount Phaser game on component mount
   useEffect(() => {
+    // Guard against double initialization (React StrictMode or HMR)
+    if (gameRef.current) {
+      return;
+    }
+
     // Create game instance
     gameRef.current = new Phaser.Game(gameConfig);
 
