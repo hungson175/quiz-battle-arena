@@ -23,7 +23,7 @@ import ProjectileManager from '../systems/ProjectileManager.js';
 
 // --- UI bar boundaries (keep in sync with UIScene) ---
 const TOP_BAR_HEIGHT = 80;
-const BOTTOM_BAR_HEIGHT = 100;
+const BOTTOM_BAR_HEIGHT = 120;  // Increased from 100 to prevent tower button overlap
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
