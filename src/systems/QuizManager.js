@@ -35,19 +35,49 @@ export default class QuizManager {
    * Show the next question
    */
   showNextQuestion() {
-    this.currentQuestion = this.questionManager.getNextQuestion();
+    const originalQuestion = this.questionManager.getNextQuestion();
     this.isWaitingForResult = false;
 
-    if (!this.currentQuestion) {
+    if (!originalQuestion) {
       console.warn('[QuizManager] No questions available');
       return;
     }
 
+    // Shuffle answers and track new correct index
+    const shuffledQuestion = this.shuffleAnswers(originalQuestion);
+    this.currentQuestion = shuffledQuestion;
+
     emitToReact('quiz:show', {
-      question: this.currentQuestion,
+      question: shuffledQuestion,
       streak: this.streak,
       gold: this.economyManager.getMoney()
     });
+  }
+
+  /**
+   * Shuffle answers and update correctIndex
+   * @param {object} question - Original question with answers and correctIndex
+   * @returns {object} Question with shuffled answers and updated correctIndex
+   */
+  shuffleAnswers(question) {
+    // Create array of {answer, isCorrect} pairs
+    const answerPairs = question.answers.map((answer, index) => ({
+      answer,
+      isCorrect: index === question.correctIndex
+    }));
+
+    // Fisher-Yates shuffle
+    for (let i = answerPairs.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [answerPairs[i], answerPairs[j]] = [answerPairs[j], answerPairs[i]];
+    }
+
+    // Reconstruct question with shuffled answers
+    return {
+      ...question,
+      answers: answerPairs.map(pair => pair.answer),
+      correctIndex: answerPairs.findIndex(pair => pair.isCorrect)
+    };
   }
 
   /**
