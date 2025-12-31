@@ -106,6 +106,11 @@ export default class Tower extends Phaser.GameObjects.Container {
       return false;
     }
 
+    // Skip HEALER enemies - they are support units, attacking them wastes ammo
+    if (target.type === 'HEALER') {
+      return false;
+    }
+
     // Check if target is in range
     const distance = Phaser.Math.Distance.Between(
       this.x,
@@ -131,6 +136,9 @@ export default class Tower extends Phaser.GameObjects.Container {
     for (const enemy of enemies) {
       // Skip dead enemies
       if (enemy.isDead()) continue;
+
+      // Skip HEALER enemies - support units, waste of ammo
+      if (enemy.type === 'HEALER') continue;
 
       // Skip flying enemies if tower can't target them
       if (enemy.data.flying && !this.canTargetFlying()) {
