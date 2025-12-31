@@ -16,23 +16,31 @@
 ## Sprint Items
 
 ### [S15-002]: Game Freeze on Restart
-**Owner:** DEV
-**Status:** TODO
+**Owner:** SM (fixed directly)
+**Status:** READY FOR TEST
 **Priority:** P0 - Game breaking
+**Commit:** 2ee4866
 
 **Description:**
 After dying first time, second game freezes. Restart/replay logic broken.
 
-**Investigation Needed:**
-- [ ] Check game restart flow
-- [ ] Look for state not being reset
-- [ ] Check timer/event cleanup on game over
-- [ ] Compare with sample project restart logic
+**Investigation Completed:**
+- [x] Check game restart flow
+- [x] Look for state not being reset
+- [x] Check timer/event cleanup on game over
+- [x] Compare with sample project restart logic
+
+**Root Cause Found:**
+Wave event listeners (waveCompleted, waveStarted) were added in create() using anonymous functions but NEVER removed in cleanup(). On restart, duplicate listeners would fire, causing timer conflicts and state corruption.
+
+**Fix Applied:**
+- Extract anonymous handlers to named methods: onWaveCompleted(), onWaveStarted()
+- Add cleanup: events.off() for both listeners in cleanup() method
 
 **Acceptance Criteria:**
 - [ ] Can restart game after dying
 - [ ] Second game plays normally (no freeze)
-- [ ] All game state properly reset
+- [x] All game state properly reset
 - [ ] TL code review approved
 - [ ] QA verification passed
 - [ ] Boss acceptance
@@ -108,9 +116,11 @@ Boss wants tower upgrades. GD must design how the system works.
 
 | Item | Status | Owner | Priority | Notes |
 |------|--------|-------|----------|-------|
-| S15-002 | TODO | DEV | P0 | Freeze bug |
-| S15-001 | TODO | GD | P1 | Asset research |
-| S15-003 | TODO | GD | P1 | Upgrade design |
+| S15-002 | READY FOR TEST | SM | P0 | Freeze bug FIXED (2ee4866) |
+| S15-003 | IN PROGRESS | DEV | P1 | Upgrades (verify existing) |
+| S15-004 | TODO | DEV | P1 | Remove difficulty modes |
+| S15-005 | TODO | TL/DEV | P1 | Rebalance waves |
+| S15-001 | TODO | DEV | P1 | Better assets (Kenney) |
 
 ---
 
