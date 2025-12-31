@@ -1,7 +1,7 @@
 # Product Backlog - Quiz Tower Defense
 
 **Product Owner:** PO
-**Last Updated:** 2025-12-31
+**Last Updated:** 2026-01-01
 **Game Style:** Tower Defense (sample clone) + Educational Quiz
 
 ---
@@ -242,6 +242,72 @@ Randomize the order of 4 answers for each question. Same answers, different posi
 - [ ] Shuffle answer array before displaying
 - [ ] Track correct answer index after shuffle
 - [ ] Same question shows different answer order each time
+
+---
+
+### P1 - High Priority (Epic)
+
+#### [EPIC-001]: AI Document-to-Quiz Pipeline
+**Priority:** P1 (Epic - Multiple Sprints)
+**Status:** New
+**Estimate:** XL (Break into sub-items)
+
+**Description:**
+Allow users to upload documents (docs, MD, PDF) and use AI/LLM to automatically generate quiz questions. This enables subject-agnostic gameplay where any educational content can become a quiz.
+
+**Scope:**
+- File upload: Support .docx, .md, .pdf formats only
+- Reject unsupported formats with clear error message
+- AI generates 5-10 questions per page → 50-100 questions per document
+- Output: JSON format compatible with existing quiz system
+- Deduplication: Prevent reprocessing identical files
+- Storage: PostgreSQL database for files, hashes, and generated questions
+
+**Sub-Items (to be refined):**
+
+**[EPIC-001-A]: File Upload & Validation**
+- Accept .docx, .md, .pdf only
+- Reject other formats with "Format not supported" message
+- Extract text content from each format
+- Estimate: M
+
+**[EPIC-001-B]: Deduplication System**
+- Content-based check: Compare file bytes before storing
+- Hash-based check: SHA-256 hash after upload, skip if duplicate exists
+- Both checks required (efficiency + accuracy)
+- Estimate: M
+
+**[EPIC-001-C]: PostgreSQL Database Setup**
+- Store uploaded files (or references)
+- Store file hashes for dedup lookup
+- Store generated questions linked to source file
+- Estimate: M
+
+**[EPIC-001-D]: AI/LLM Question Generation**
+- Parse document into pages
+- Generate 5-10 questions per page
+- Output JSON format matching `public/assets/data/questions.json`
+- Handle rate limiting and API costs
+- Estimate: L
+
+**[EPIC-001-E]: Integration with Game**
+- Load questions from database instead of static JSON
+- Select question set before game starts
+- Estimate: S
+
+**Acceptance Criteria:**
+- [ ] Upload .docx → generates 50-100 questions
+- [ ] Upload .md → generates 50-100 questions
+- [ ] Upload .pdf → generates 50-100 questions
+- [ ] Upload .txt → shows "Format not supported"
+- [ ] Upload same file twice → skips processing, uses cached questions
+- [ ] Questions stored in PostgreSQL
+- [ ] Game can load and play with generated questions
+
+**Technical Notes:**
+- Consider using OpenAI/Anthropic API for question generation
+- Implement async processing for large files
+- Add progress indicator for long operations
 
 ---
 
