@@ -353,9 +353,9 @@ export default class UIScene extends Phaser.Scene {
     this.createUIBackground();
     // Create status displays
     this.createStatusDisplays();
-    // Create tower selection buttons
-    this.createTowerButtons();
-    // Create wave control button
+    // REMOVED: Tower buttons now in React TowerSelector component
+    // this.createTowerButtons();
+    // Create wave control button (countdown display)
     this.createWaveButton();
     // Create message display
     this.createMessageDisplay();

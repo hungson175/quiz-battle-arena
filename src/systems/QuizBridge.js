@@ -27,3 +27,29 @@ export function listenFromReact(eventName, callback) {
 export function removeListener(eventName, callback) {
   window.removeEventListener(eventName, callback);
 }
+
+// ==================== TOWER SELECTION EVENTS ====================
+
+/**
+ * React → Phaser: User selected a tower type
+ * @param {string} towerType - Tower type key (e.g., 'BASIC', 'SNIPER')
+ */
+export function selectTower(towerType) {
+  window.dispatchEvent(new CustomEvent('tower:select', { detail: { type: towerType } }));
+}
+
+/**
+ * Phaser → React: Tower selection confirmed, send current state
+ * @param {object} state - { selectedTower, gold, towers }
+ */
+export function emitTowerState(state) {
+  window.dispatchEvent(new CustomEvent('tower:state', { detail: state }));
+}
+
+/**
+ * Listen for tower selection from React (use in Phaser)
+ * @param {function} callback - Handler receiving { type }
+ */
+export function listenForTowerSelect(callback) {
+  window.addEventListener('tower:select', (e) => callback(e.detail));
+}

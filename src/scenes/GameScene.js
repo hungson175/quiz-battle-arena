@@ -6,6 +6,7 @@ import AudioManager from '../systems/AudioManager.js';
 import MapManager from '../systems/MapManager.js';
 import QuestionManager from '../systems/QuestionManager.js';
 import QuizManager from '../systems/QuizManager.js';
+import { listenForTowerSelect, emitTowerState } from '../systems/QuizBridge.js';
 import Tower from '../entities/Tower.js';
 import MultiShotTower from '../entities/MultiShotTower.js';
 import SupportTower from '../entities/SupportTower.js';
@@ -463,6 +464,19 @@ export default class GameScene extends Phaser.Scene {
 
     // Start auto-wave countdown (10 seconds)
     this.waveManager.startAutoWaveCountdown();
+
+    // Listen for tower selection from React
+    listenForTowerSelect(({ type }) => {
+      console.log('[GameScene] Tower selected from React:', type);
+      this.registry.set('selectedTower', type);
+    });
+
+    // Emit initial tower state to React
+    emitTowerState({
+      selectedTower: this.registry.get('selectedTower') || 'BASIC',
+      gold: this.economyManager.getMoney(),
+      towers: window.GAME_SETTINGS.TOWERS
+    });
 
     // Force victory for testing (press V key)
     this.input.keyboard.on('keydown-V', () => {
