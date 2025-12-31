@@ -230,6 +230,21 @@ HEALER enemy health bar not displaying correctly. Visual bug.
 
 ---
 
+#### [PBI-014]: Shuffle Quiz Answer Order
+**Priority:** P1
+**Status:** New
+**Estimate:** S
+
+**Description:**
+Randomize the order of 4 answers for each question. Same answers, different positions each time. Prevents players from memorizing answer positions.
+
+**Acceptance Criteria:**
+- [ ] Shuffle answer array before displaying
+- [ ] Track correct answer index after shuffle
+- [ ] Same question shows different answer order each time
+
+---
+
 ### P3 - Low Priority (Future)
 
 #### [PBI-007]: Multiple Question Sets

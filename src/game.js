@@ -134,7 +134,7 @@ export function initGame(parentId = 'game-container') {
         health: 120,
         speed: 90,
         reward: 30,
-        damage: 1,
+        damage: 0, // Support unit - doesn't damage house
         healRadius: 100,
         healAmount: 10,
         healInterval: 2000,

@@ -78,6 +78,16 @@ PO evaluation:
 
 **Boss should NEVER have to remind PO to add things to backlog.** If Boss says something, PO captures it in the PRODUCT BACKLOG automatically, then prioritizes for future sprints.
 
+### Backlog Ownership
+
+**PO owns PRODUCT BACKLOG. SM owns SPRINT BACKLOG.**
+
+- **PO writes to:** PRODUCT_BACKLOG.md (directly, don't delegate to SM)
+- **SM writes to:** SPRINT_BACKLOG.md (after PO defines sprint scope)
+
+**WRONG:** PO tells SM to add items to product backlog
+**RIGHT:** PO adds items to product backlog directly, then tells SM what's in next sprint
+
 ### Boss Review Process
 
 **Boss only reviews at END OF SPRINT, not after each story.**
