@@ -78,6 +78,18 @@ Boss → PO → SM → [GD, TL, DEV, QA]
                PO reports to Boss
 ```
 
+## ⚠️ MANDATORY: Sprint Transition Checklist
+
+**When Boss accepts a sprint, SM MUST do these IN ORDER:**
+
+1. ✅ **Do Retrospective FIRST** - Write to RETROSPECTIVE_LOG.md
+2. ✅ **Report retro findings to PO** - Key lessons, prompt updates
+3. ✅ **Only THEN create next sprint backlog** - After retro is complete
+
+**NEVER skip the retrospective!** Sprint 12 error: SM jumped straight to Sprint 13 backlog, skipping retro. This loses learnings and breaks the improvement cycle.
+
+---
+
 When PO gives Sprint requirements:
 1. SM creates/updates SPRINT_BACKLOG.md
 2. SM notifies GD for design input (if needed)

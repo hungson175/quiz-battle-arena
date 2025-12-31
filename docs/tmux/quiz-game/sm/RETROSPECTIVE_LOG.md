@@ -289,6 +289,50 @@
 
 ---
 
+## Sprint 12 Retrospective
+
+**Date:** 2026-01-01
+**Duration:** 5 min (Quick)
+**Facilitator:** SM
+
+### Active Improvement Check
+- **Previous:** Sample-first verification (from Sprint 11)
+- **Status:** **EFFECTIVE** - TL verified wave behavior against sample before fixing
+- **Evidence:** TL analyzed WaveManager against sample, found root cause quickly
+
+### What Went Well
+- Fast root cause identification: TL found waveCompleted handler gap in ~10 min
+- Sample-first verification applied: TL compared our code to sample before fixing
+- Clean fix: Single else clause added to trigger next wave countdown
+- Pipeline worked smoothly: TL analysis → DEV fix → TL review → QA → Boss
+
+### What Problems Occurred
+1. **SM skipped retrospective before starting Sprint 13**
+   - Process error: Jumped from Sprint 12 acceptance to Sprint 13 backlog creation
+   - Should have done retrospective FIRST
+   - This retrospective is being done late (corrective action)
+
+2. **Wave progression bug emerged after fix**
+   - Boss found: Wave stuck at 1 second, next wave doesn't spawn
+   - May indicate fix was incomplete or introduced new issue
+
+### Key Lesson
+**Always do retrospective BEFORE starting next sprint.**
+- SM got excited about Sprint 13 and skipped retro process
+- This creates risk of carrying forward unaddressed issues
+
+### Selected for Sprint 13
+- **IMP-002: Retrospective before sprint start** - SM MUST do retrospective immediately after Boss acceptance, BEFORE creating next sprint backlog
+- Update SM_PROMPT.md to enforce this
+
+### Prompt Updates
+- [ ] TODO: Update SM_PROMPT.md with mandatory retro step
+
+### Sprint 12 Commits
+1. e481812: Wave auto-progression fix (waveCompleted → startAutoWaveCountdown)
+
+---
+
 ## Template
 
 ```markdown

@@ -237,18 +237,29 @@ All 3 items Boss Accepted ✅
 
 ## Current Status
 
-**Sprint:** 12
-**Goal:** Fix wave progression bug
-**Status:** 🔴 IN PROGRESS - TL investigating
+**Sprint:** 13
+**Goal:** Remove React UI - pure Phaser game
+**Status:** 🔴 IN PROGRESS
 
 | Role | Status | Current Task | Last Update |
 |------|--------|--------------|-------------|
-| PO   | Active | Defined Sprint 12 | NOW |
-| SM   | Active | Coordinating Sprint 12 | NOW |
+| PO   | Active | Defined Sprint 13 | NOW |
+| SM   | Active | Creating Sprint 13 backlog | NOW |
 | GD   | Standby | - | - |
-| TL   | Active | Investigating wave bug vs sample | NOW |
-| DEV  | Pending | Awaiting TL findings | NOW |
+| TL   | Pending | Awaiting sprint items | NOW |
+| DEV  | Pending | Awaiting sprint items | NOW |
 | QA   | Pending | Awaiting fix | NOW |
+
+---
+
+## ✅ Sprint 12 Summary (COMPLETE)
+
+**BOSS ACCEPTED:**
+- ✅ S12-001: Wave progression fix (e481812)
+- Wave 2+ now auto-spawns after previous wave ends
+
+**Commits:**
+- `e481812` - Fix wave auto-progression
 
 ---
 
@@ -265,14 +276,15 @@ All 3 items Boss Accepted ✅
 
 ---
 
-## 🔴 Sprint 12 Active
+## 🔴 Sprint 13 Active
 
-**S12-001: Wave Progression Bug (P0)**
-- Wave 2 doesn't spawn automatically after Wave 1 ends
-- Game progression broken - unplayable beyond wave 1
+**S13-001: Remove React UI (P0)**
+- Boss: "Remove UI from React part entirely"
+- Keep only Phaser game UI
+- No more React/Phaser sync needed
+- Simplifies architecture
 
-**Status:** TL investigating against sample
-**Approach:** Sample-first verification (Sprint 11 retro lesson)
+**Goal:** Pure Phaser game, no React UI components
 
 ---
 

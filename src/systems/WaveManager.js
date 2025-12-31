@@ -33,6 +33,12 @@ export default class WaveManager {
    * Emits 'waveCountdown' event each second with remaining time
    */
   startAutoWaveCountdown() {
+    // Clear any existing countdown timer to prevent duplicates
+    if (this.countdownTimer) {
+      this.countdownTimer.remove();
+      this.countdownTimer = null;
+    }
+
     this.countdownSeconds = 10;
     this.scene.events.emit('waveCountdown', this.countdownSeconds);
 
