@@ -574,32 +574,32 @@ export default class UIScene extends Phaser.Scene {
     const x = 1280 - buttonWidth - 30;
     const y = 720 - 80;
 
-    // Button background
+    // Countdown display background (no longer interactive)
     this.waveButton = this.add.rectangle(
       x,
       y,
       buttonWidth,
       buttonHeight,
-      0x009900
+      0x333366  // Blue-gray for countdown display
     );
     this.waveButton.setOrigin(0, 0);
-    this.waveButton.setInteractive();
+    // REMOVED: No longer interactive - waves auto-start
 
-    // Button text
+    // Countdown text (replaces "Start Wave" button)
     this.waveButtonText = this.add.text(
       x + buttonWidth / 2,
       y + buttonHeight / 2,
-      'Start Wave',
+      'Wave in 10s',
       {
-        fontSize: '20px', 
-        fontFamily: 'courier', 
+        fontSize: '20px',
+        fontFamily: 'courier',
         fontStyle: 'normal',
-        fill: '#fffbe7', 
+        fill: '#fffbe7',
         align: 'center',
         padding: { left: 24, right: 24, top: 20, bottom: 8 },
-        fixedWidth: buttonWidth + 60, 
+        fixedWidth: buttonWidth + 60,
         fixedHeight: buttonHeight,
-        backgroundColor: null, 
+        backgroundColor: null,
       }
     );
     this.waveButtonText.setOrigin(0.5, 0.5);
@@ -608,23 +608,28 @@ export default class UIScene extends Phaser.Scene {
     this.lowerBarContainer.add(this.waveButton);
     this.lowerBarContainer.add(this.waveButtonText);
 
-    // Set up event handlers
-    this.waveButton.on('pointerover', () => {
-      this.waveButton.setFillStyle(0x00aa00);
+    // Listen for countdown events from WaveManager
+    const gameScene = this.scene.get('GameScene');
+    gameScene.events.on('waveCountdown', (seconds) => {
+      if (seconds > 0) {
+        this.waveButtonText.setText(`Wave in ${seconds}s`);
+        this.waveButton.setFillStyle(0x333366);
+      } else {
+        this.waveButtonText.setText('WAVE!');
+        this.waveButton.setFillStyle(0x009900);
+      }
     });
 
-    this.waveButton.on('pointerout', () => {
-      this.waveButton.setFillStyle(0x009900);
-    });
-
-    this.waveButton.on('pointerdown', () => {
-      const audioManager = this.scene.get('GameScene').audioManager;
-      if (audioManager) audioManager.playSound('ui_click');
-      // Notify game scene to start next wave
-      this.scene.get('GameScene').waveManager.startNextWave();
-
-      // Disable button during wave
-      this.setWaveButtonEnabled(false);
+    // Listen for wave ended to start next countdown
+    gameScene.events.on('waveEnded', () => {
+      // Start countdown for next wave after 3s delay
+      gameScene.time.delayedCall(3000, () => {
+        // Check if more waves remain
+        const wm = gameScene.waveManager;
+        if (wm.currentWave < wm.totalWaves) {
+          wm.startAutoWaveCountdown();
+        }
+      });
     });
   }
 

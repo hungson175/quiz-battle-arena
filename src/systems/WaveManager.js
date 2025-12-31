@@ -22,6 +22,35 @@ export default class WaveManager {
       `WaveManager initialized with difficulty: ${this.difficultyKey}`
     );
     console.log(`Total waves: ${this.totalWaves}`);
+
+    // Auto-start countdown timer
+    this.countdownTimer = null;
+    this.countdownSeconds = 10;
+  }
+
+  /**
+   * Start auto-wave countdown (10 seconds)
+   * Emits 'waveCountdown' event each second with remaining time
+   */
+  startAutoWaveCountdown() {
+    this.countdownSeconds = 10;
+    this.scene.events.emit('waveCountdown', this.countdownSeconds);
+
+    this.countdownTimer = this.scene.time.addEvent({
+      delay: 1000,
+      callback: () => {
+        this.countdownSeconds--;
+        this.scene.events.emit('waveCountdown', this.countdownSeconds);
+
+        if (this.countdownSeconds <= 0) {
+          this.countdownTimer.remove();
+          this.countdownTimer = null;
+          this.startNextWave();
+        }
+      },
+      callbackScope: this,
+      repeat: 9  // 9 more after initial (10 total)
+    });
   }
 
   /**

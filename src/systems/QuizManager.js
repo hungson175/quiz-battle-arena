@@ -69,6 +69,13 @@ export default class QuizManager {
       this.streak = 0;
     }
 
+    // CRITICAL: Emit UI update event to sync Phaser UI with new gold value
+    this.economyManager.scene.events.emit('updateUI', {
+      money: this.economyManager.getMoney(),
+      score: this.economyManager.getScore(),
+      lives: this.economyManager.getLives()
+    });
+
     // Emit result to React
     emitToReact('quiz:result', {
       correct: isCorrect,

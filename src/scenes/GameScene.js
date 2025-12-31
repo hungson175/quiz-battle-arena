@@ -453,11 +453,16 @@ export default class GameScene extends Phaser.Scene {
     });
 
     // Start next wave manually
-    this.input.keyboard.on('keydown-SPACE', () => {
-      if (!this.waveManager.isWaveInProgress()) {
-        this.waveManager.startNextWave();
-      }
-    });
+    // REMOVED: Manual wave start via spacebar
+    // Waves now auto-start after 10s countdown
+    // this.input.keyboard.on('keydown-SPACE', () => {
+    //   if (!this.waveManager.isWaveInProgress()) {
+    //     this.waveManager.startNextWave();
+    //   }
+    // });
+
+    // Start auto-wave countdown (10 seconds)
+    this.waveManager.startAutoWaveCountdown();
 
     // Force victory for testing (press V key)
     this.input.keyboard.on('keydown-V', () => {
