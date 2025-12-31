@@ -1,6 +1,6 @@
-# Sprint 14 Backlog
+# Sprint 15 Backlog
 
-**Sprint Goal:** Improvement Phase - Balance, Visuals, UX
+**Sprint Goal:** Fix freeze bug + research better visuals
 **Sprint Start:** 2026-01-01
 **Sprint End:** TBD
 
@@ -15,97 +15,92 @@
 
 ## Sprint Items
 
-### [S14-002]: Reduce Lives 20 → 3
+### [S15-002]: Game Freeze on Restart
 **Owner:** DEV
 **Status:** TODO
-**Priority:** P0 - Balance (game too easy)
+**Priority:** P0 - Game breaking
 
 **Description:**
-Game is too easy with 20 lives. Reduce to 3 lives for more challenge.
+After dying first time, second game freezes. Restart/replay logic broken.
 
-**Changes Required:**
-- [ ] Find lives config (likely in GameScene or config file)
-- [ ] Change starting lives from 20 to 3
-- [ ] Verify UI shows correct lives count
+**Investigation Needed:**
+- [ ] Check game restart flow
+- [ ] Look for state not being reset
+- [ ] Check timer/event cleanup on game over
+- [ ] Compare with sample project restart logic
 
 **Acceptance Criteria:**
-- [ ] Game starts with 3 lives
-- [ ] Lives display shows 3
-- [ ] Game over triggers after 3 enemies pass
+- [ ] Can restart game after dying
+- [ ] Second game plays normally (no freeze)
+- [ ] All game state properly reset
 - [ ] TL code review approved
 - [ ] QA verification passed
 - [ ] Boss acceptance
 
 ---
 
-### [S14-001]: Add Visual Sprites/Assets
-**Owner:** DEV
+### [S15-001]: Better Visual Assets (Research)
+**Owner:** GD
 **Status:** TODO
 **Priority:** P1 - Visual improvement
 
 **Description:**
-Replace placeholder graphics with proper sprites.
+Boss says towers are UGLY. Research prettier tower sprites.
 
-**Asset Sources (from research):**
-- Zombies: CraftPix zombie sprites
-- Towers: Kenney tower assets
-- Reference: docs/research/GAME_ASSETS.md
-
-**Changes Required:**
-- [ ] Download/integrate zombie sprites
-- [ ] Download/integrate tower sprites
-- [ ] Update sprite references in game code
-- [ ] Ensure animations work if applicable
-
-**Acceptance Criteria:**
-- [ ] Zombies have proper sprite graphics
-- [ ] Towers have proper sprite graphics
-- [ ] No placeholder rectangles visible
-- [ ] Game runs without errors
-- [ ] TL code review approved
-- [ ] QA verification passed
-- [ ] Boss acceptance
-
----
-
-### [S14-003]: Tower Guidance/Tips
-**Owner:** DEV
-**Status:** TODO
-**Priority:** P1 - UX improvement
-
-**Description:**
-Add help for new players to understand tower types.
-
-**Options (Boss to decide):**
-A) Question mark button with tower info popup
-B) Tooltips on hover for each tower
-C) Tips displayed at wave start explaining towers
-D) Combination of above
-
-**Requirements:**
-- [ ] Include 'never show again' option
-- [ ] Explain what each tower type does
-- [ ] Non-intrusive to gameplay
+**Task:**
+- [ ] Review existing research: docs/research/GAME_ASSETS.md
+- [ ] If not sufficient, research more options:
+  - Tower sprites (castles, turrets, cannons)
+  - Airplane/aircraft sprites
+  - General/soldier sprites
+  - Other thematic options
+- [ ] Provide specific recommendations with:
+  - Asset source URLs
+  - License info (CC0/free commercial preferred)
+  - Which tiles map to which tower types
 
 **Acceptance Criteria:**
-- [ ] Tower guidance implemented
-- [ ] 'Never show again' checkbox works
-- [ ] Information is clear and helpful
-- [ ] TL code review approved
-- [ ] QA verification passed
-- [ ] Boss acceptance
+- [ ] Research document updated with better asset options
+- [ ] Clear recommendations for 6 tower types
+- [ ] License-compliant assets
+- [ ] PO approval of recommendations
 
 ---
 
 ## Definition of Done
 
-- [ ] Lives reduced to 3
-- [ ] Visual sprites added
-- [ ] Tower guidance implemented
-- [ ] All TL reviews approved
+- [ ] Game restart works (no freeze)
+- [ ] Asset research complete with recommendations
+- [ ] All TL reviews approved (for code changes)
 - [ ] All QA tests passed
 - [ ] Pushed to remote
 - [ ] Boss acceptance
+
+---
+
+### [S15-003]: Tower Upgrade System Design
+**Owner:** GD
+**Status:** TODO
+**Priority:** P1 - New feature
+
+**Description:**
+Boss wants tower upgrades. GD must design how the system works.
+
+**Design Questions (GD to answer):**
+- [ ] How to trigger upgrade? (click tower? button? menu?)
+- [ ] Cost scaling? (e.g., 1.5x base cost per level?)
+- [ ] What stats improve? (damage, range, fire rate, all?)
+- [ ] Visual change on upgrade? (color, size, effects?)
+- [ ] Max upgrade levels? (2? 3? 5?)
+
+**Reference:**
+- Check sample project: sample_codes/tower-defence/
+- Boss said: "GD figure it out themselves"
+
+**Acceptance Criteria:**
+- [ ] Design document with upgrade system specs
+- [ ] Clear answers to all design questions
+- [ ] PO approval before DEV implements
 
 ---
 
@@ -113,22 +108,22 @@ D) Combination of above
 
 | Item | Status | Owner | Priority | Notes |
 |------|--------|-------|----------|-------|
-| S14-002 | TODO | DEV | P0 | Lives balance |
-| S14-001 | TODO | DEV | P1 | Sprites |
-| S14-003 | TODO | DEV | P1 | Tower tips |
+| S15-002 | TODO | DEV | P0 | Freeze bug |
+| S15-001 | TODO | GD | P1 | Asset research |
+| S15-003 | TODO | GD | P1 | Upgrade design |
 
 ---
 
-## Sprint 13 Summary (COMPLETED)
+## Sprint 14 Summary (COMPLETED)
 
 **All items BOSS ACCEPTED:**
-- ✅ S13-002: Wave countdown timer fix (0db2934)
-- ✅ S13-001: Gold display removed from React (e22d23e)
+- ✅ S14-002: Lives 20 → 3 (f83018e)
+- ✅ S14-001: Sprites (scope reduced - Boss accepted current state)
 
 ---
 
 ## Notes
 
-- S14-002 is P0 - do first (balance fix)
-- S14-001 and S14-003 are P1 - visual/UX improvements
-- Check GAME_ASSETS.md for sprite sources
+- S15-002 is P0 - DEV should start immediately
+- S15-001 is GD research task - no code changes
+- Apply Sprint 14 lesson: Asset tasks need specific specs

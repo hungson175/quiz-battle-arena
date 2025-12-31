@@ -157,8 +157,11 @@ export default class GameScene extends Phaser.Scene {
     this.enemyManager = new EnemyManager(this);
     this.projectileManager = new ProjectileManager(this);
 
-    // Hook cleanup to the 'transitionout' event, which happens BEFORE shutdown
+    // Hook cleanup to both 'transitionout' and 'shutdown' events
+    // 'transitionout' happens during scene transitions
+    // 'shutdown' happens during scene.restart() and scene.stop()
     this.events.on('transitionout', this.cleanup, this);
+    this.events.on('shutdown', this.cleanup, this);
 
     // Initialize quiz system (async)
     this.initQuizSystem();
@@ -796,6 +799,30 @@ export default class GameScene extends Phaser.Scene {
     }
     if (this.projectileManager && this.projectileManager.projectileGroup) {
       this.projectileManager.clear();
+    }
+    // Clean up WaveManager timers
+    if (this.waveManager) {
+      if (this.waveManager.countdownTimer) {
+        this.waveManager.countdownTimer.remove();
+        this.waveManager.countdownTimer = null;
+      }
+      if (this.waveManager.spawnTimer) {
+        this.waveManager.spawnTimer.remove();
+        this.waveManager.spawnTimer = null;
+      }
+    }
+    // Clean up QuizManager (clears setTimeout)
+    if (this.quizManager && this.quizManager.reset) {
+      this.quizManager.reset();
+    }
+    // Reset game state flags
+    this.isGameOver = false;
+    this.gameEnded = false;
+    this.isPaused = false;
+    this.currentWave = 0;
+    // Remove all remaining Phaser time events
+    if (this.time) {
+      this.time.removeAllEvents();
     }
     // Remove placement tiles
     if (this.placementTiles) {

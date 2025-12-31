@@ -385,6 +385,50 @@ if (this.timer) {
 
 ---
 
+## Sprint 14 Retrospective
+
+**Date:** 2026-01-01
+**Duration:** 5 min (Quick)
+**Facilitator:** SM
+
+### Active Improvement Check
+- **Previous:** IMP-002 - Retrospective before sprint start
+- **Status:** **EFFECTIVE** - SM did retro before Sprint 14 AND before Sprint 15
+- **Evidence:** PO reminder worked, SM following process consistently now
+
+### What Went Well
+- **IMP-002 internalized** - SM doing retro automatically now
+- Fast P0 fix (S14-002 lives): Simple config change, quick pipeline
+- Sprint accepted on first Boss test
+- Parallel work: DEV started S14-001 while S14-002 awaited Boss
+
+### What Problems Occurred
+1. **S14-001 (sprites) unclear scope**
+   - DEV downloaded Kenney assets (299 tiles)
+   - Tiles generically named - needed design guidance
+   - GD didn't respond - SM had to make decision to unblock
+   - Lesson: Complex asset tasks need clearer specs upfront
+
+2. **GD non-responsive**
+   - GD didn't respond to tile mapping request
+   - SM unblocked by having DEV use best judgment
+   - May need to check GD availability/prompt
+
+### Key Lesson
+**Asset tasks need clearer specs:** For sprite/asset work, provide specific file names or visual references upfront, not just "use these assets."
+
+### Selected for Sprint 15
+- **Continue IMP-002** - Process is working
+- **Check GD responsiveness** - May need to verify GD is active
+
+### Prompt Updates
+- None needed
+
+### Sprint 14 Commits
+1. f83018e: S14-002 Lives 20 → 3
+
+---
+
 ## Template
 
 ```markdown

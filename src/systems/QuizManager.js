@@ -13,6 +13,7 @@ export default class QuizManager {
     this.wrongPenalty = 10;
     this.resultDisplayTime = 1500; // ms to show result before next question
     this.isWaitingForResult = false;
+    this.resultTimeout = null; // Track setTimeout for cleanup
 
     // Listen for answers from React
     listenFromReact('quiz:answer', (data) => {
@@ -85,8 +86,8 @@ export default class QuizManager {
       gold: this.economyManager.getMoney()
     });
 
-    // Auto-advance after delay
-    setTimeout(() => this.showNextQuestion(), this.resultDisplayTime);
+    // Auto-advance after delay (track for cleanup)
+    this.resultTimeout = setTimeout(() => this.showNextQuestion(), this.resultDisplayTime);
   }
 
   /**
@@ -104,6 +105,11 @@ export default class QuizManager {
    * Reset quiz state
    */
   reset() {
+    // Clear any pending timeout
+    if (this.resultTimeout) {
+      clearTimeout(this.resultTimeout);
+      this.resultTimeout = null;
+    }
     this.streak = 0;
     this.currentQuestion = null;
     this.isWaitingForResult = false;
