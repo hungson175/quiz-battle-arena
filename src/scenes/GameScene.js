@@ -488,34 +488,47 @@ export default class GameScene extends Phaser.Scene {
     });
 
     // Show wave end indicator and check for victory when a wave is completed
-    this.events.on('waveCompleted', (waveNumber) => {
-      console.log(
-        `Wave ${waveNumber} completed. GameScene.currentWave=${
-          this.currentWave
-        }, WaveManager.currentWave=${this.waveManager.getCurrentWave()}`
-      );
-      // Robust, single-responsibility victory check
-      const totalWaves = this.waveManager.getTotalWaves();
-      if (waveNumber >= totalWaves && !this.isGameOver && !this.gameEnded) {
-        console.log(
-          `Victory condition met: waveNumber=${waveNumber}, totalWaves=${totalWaves}`
-        );
-        this.gameOver(true);
-      } else {
-        // Start countdown for next wave
-        this.waveManager.startAutoWaveCountdown();
-      }
-    });
+    // Use named methods for cleanup on restart
+    this.events.on('waveCompleted', this.onWaveCompleted, this);
 
     // Listen for wave started events to update current wave
-    this.events.on('waveStarted', (waveNumber) => {
-      this.currentWave = waveNumber;
+    this.events.on('waveStarted', this.onWaveStarted, this);
+  }
+
+  /**
+   * Handler for wave completed event
+   * @param {number} waveNumber - The completed wave number
+   */
+  onWaveCompleted(waveNumber) {
+    console.log(
+      `Wave ${waveNumber} completed. GameScene.currentWave=${
+        this.currentWave
+      }, WaveManager.currentWave=${this.waveManager.getCurrentWave()}`
+    );
+    // Robust, single-responsibility victory check
+    const totalWaves = this.waveManager.getTotalWaves();
+    if (waveNumber >= totalWaves && !this.isGameOver && !this.gameEnded) {
       console.log(
-        `Wave ${waveNumber} started. GameScene.currentWave=${
-          this.currentWave
-        }, WaveManager.currentWave=${this.waveManager.getCurrentWave()}`
+        `Victory condition met: waveNumber=${waveNumber}, totalWaves=${totalWaves}`
       );
-    });
+      this.gameOver(true);
+    } else {
+      // Start countdown for next wave
+      this.waveManager.startAutoWaveCountdown();
+    }
+  }
+
+  /**
+   * Handler for wave started event
+   * @param {number} waveNumber - The started wave number
+   */
+  onWaveStarted(waveNumber) {
+    this.currentWave = waveNumber;
+    console.log(
+      `Wave ${waveNumber} started. GameScene.currentWave=${
+        this.currentWave
+      }, WaveManager.currentWave=${this.waveManager.getCurrentWave()}`
+    );
   }
 
   /**
@@ -824,6 +837,9 @@ export default class GameScene extends Phaser.Scene {
       this.unsubscribeTowerSelect();
       this.unsubscribeTowerSelect = null;
     }
+    // Remove wave event listeners to prevent duplicates on restart
+    this.events.off('waveCompleted', this.onWaveCompleted, this);
+    this.events.off('waveStarted', this.onWaveStarted, this);
     // Reset game state flags
     this.isGameOver = false;
     this.gameEnded = false;
