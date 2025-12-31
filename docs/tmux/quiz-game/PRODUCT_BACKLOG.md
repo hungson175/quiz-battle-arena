@@ -33,6 +33,10 @@ All team members should reference this codebase for:
 
 ## Completed Sprints
 
+### Sprint 11 (DONE)
+- ✅ PBI-001: Tower behaviors match sample (all 6 types)
+- ✅ +10 gold on enemy kill (balance fix)
+
 ### Sprint 10 (DONE)
 - ✅ Clone sample tower defense as base
 - ✅ React quiz panel (30% right side)
@@ -50,21 +54,36 @@ All team members should reference this codebase for:
 
 #### [PBI-001]: Tower Behaviors from Sample
 **Priority:** P0
-**Status:** Ready for Sprint 11
+**Status:** ✅ DONE (Sprint 11)
 **Estimate:** M
 
 **Description:**
 Implement different behaviors for each tower type, exactly as in sample_codes/tower-defence/
 
 **Acceptance Criteria:**
-- [ ] BASIC tower: Standard single-target damage
-- [ ] AOE tower: Splash damage in radius
-- [ ] SLOW tower: Slows enemies
-- [ ] SNIPER tower: High damage, long range, slow fire
-- [ ] MULTISHOT tower: Hits multiple targets
-- [ ] SUPPORT tower: Buffs nearby towers
+- [x] BASIC tower: Standard single-target damage
+- [x] AOE tower: Splash damage in radius
+- [x] SLOW tower: Slows enemies
+- [x] SNIPER tower: High damage, long range, slow fire
+- [x] MULTISHOT tower: Hits multiple targets
+- [x] SUPPORT tower: Buffs nearby towers
 
 **Reference:** sample_codes/tower-defence/src/entities/Tower.js
+
+---
+
+#### [PBI-NEW]: Wave Auto-Spawn Bug
+**Priority:** P0
+**Status:** Sprint 12
+**Estimate:** S
+
+**Description:**
+Wave 2 doesn't spawn automatically after Wave 1 ends. Game progression is broken.
+
+**Acceptance Criteria:**
+- [ ] Verify sample wave behavior first
+- [ ] All waves spawn automatically after previous wave ends
+- [ ] Boss re-test passed
 
 ---
 

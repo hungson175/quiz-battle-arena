@@ -1,7 +1,7 @@
-# Sprint 11 Backlog
+# Sprint 12 Backlog
 
-**Sprint Goal:** Tower behaviors match sample project
-**Sprint Start:** 2025-12-31
+**Sprint Goal:** Fix wave progression bug
+**Sprint Start:** 2026-01-01
 **Sprint End:** TBD
 
 ---
@@ -10,51 +10,50 @@
 
 **IMPORTANT:** Sample code location: `sample_codes/tower-defence/`
 
-All tower behaviors should match this reference exactly.
+**RETRO LESSON (Sprint 11):** Verify behavior against sample BEFORE implementing fixes.
 
 ---
 
 ## Sprint Items
 
-### [S11-001]: Implement Tower Behaviors from Sample
+### [S12-001]: Wave 2 Not Spawning After Wave 1
 **Owner:** DEV
 **Status:** TODO
-**Priority:** P0 - Critical
+**Priority:** P0 - Critical (game progression broken)
 
 **Description:**
-Each tower type should have unique behavior exactly as in sample project.
+After Wave 1 ends, Wave 2 does not spawn automatically. Game becomes unplayable beyond wave 1.
+
+**Boss Report:**
+- Wave 1 completes (all enemies killed)
+- Wave 2 never starts
+- Player stuck with no enemies
+
+**Investigation Steps:**
+1. [ ] TL: Check sample WaveManager behavior
+2. [ ] TL: Compare our WaveManager to sample
+3. [ ] Identify gap between our code and sample
 
 **Reference Files:**
-- `sample_codes/tower-defence/src/entities/Tower.js`
-- `sample_codes/tower-defence/src/entities/MultiShotTower.js`
-- `sample_codes/tower-defence/src/entities/SupportTower.js`
-- `sample_codes/tower-defence/src/assets/config/towers.json`
-
-**Tasks:**
-- [ ] Study sample tower implementations
-- [ ] BASIC tower: Standard single-target damage
-- [ ] AOE tower: Splash damage in radius (50px)
-- [ ] SLOW tower: Slows enemies 50% for 2s
-- [ ] SNIPER tower: High damage (80), long range (350), slow fire (2500ms)
-- [ ] MULTISHOT tower: Hits 3 targets per shot
-- [ ] SUPPORT tower: Buffs nearby towers +20% fire rate
+- `sample_codes/tower-defence/src/managers/WaveManager.js`
+- `src/managers/WaveManager.js` (our implementation)
 
 **Acceptance Criteria:**
-- [ ] All 6 tower types have unique behaviors
-- [ ] Behaviors match sample project exactly
+- [ ] Wave 2 spawns automatically after Wave 1 ends
+- [ ] All 10 waves progress correctly (match sample)
 - [ ] TL code review approved
-- [ ] QA testing passed (compare with sample on port 3337)
+- [ ] QA verification passed
 - [ ] Boss acceptance
 
 ---
 
 ## Definition of Done
 
-- [ ] All tower behaviors implemented
+- [ ] Wave progression works for all waves
 - [ ] Matches sample project behavior
 - [ ] TL code review approved
-- [ ] QA visual comparison with sample passed
-- [ ] Game is playable
+- [ ] QA testing passed
+- [ ] Game is playable through all waves
 - [ ] Pushed to remote
 - [ ] Boss acceptance
 
@@ -64,28 +63,21 @@ Each tower type should have unique behavior exactly as in sample project.
 
 | Item | Status | Owner | Notes |
 |------|--------|-------|-------|
-| S11-001 | TODO | DEV | Tower behaviors |
+| S12-001 | TODO | DEV | Wave progression bug |
 
 ---
 
-## Sprint 10 Summary (COMPLETED)
+## Sprint 11 Summary (COMPLETED)
 
-**All items done:**
-- ✅ S10-001: Remove old code (49bf0e3)
-- ✅ S10-002: Clone sample + 70/30 layout (49bf0e3)
-- ✅ S10-003: React quiz panel (e3b83f6)
-- ✅ S10-004: Quiz-only gold (e3b83f6)
-- ✅ S10-005: Continuous quiz (e3b83f6)
-- ✅ Layout fixes (f20be59, 4e06b1f)
-- ✅ Auto-start + money bridge (f220819)
-- ✅ Tower selection in React (d6238b4, c417ef5)
-
-**Boss Accepted:** Yes
+**All items BOSS ACCEPTED:**
+- ✅ S11-001: Tower behaviors match sample (5f42535)
+- ✅ SLOW tower confirmed correct
+- ✅ +10 gold on kill balance fix (7fbfe2a)
 
 ---
 
 ## Notes
 
-- Reference sample_codes/tower-defence/ for ALL behavior questions
-- QA must compare with sample project side-by-side
-- Tower stats from sample's towers.json config
+- Apply Sprint 11 retro lesson: verify against sample first
+- P0 priority - game is unplayable beyond wave 1
+- Reference sample_codes/tower-defence/ for correct behavior

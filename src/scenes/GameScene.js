@@ -498,6 +498,9 @@ export default class GameScene extends Phaser.Scene {
           `Victory condition met: waveNumber=${waveNumber}, totalWaves=${totalWaves}`
         );
         this.gameOver(true);
+      } else {
+        // Start countdown for next wave
+        this.waveManager.startAutoWaveCountdown();
       }
     });
 

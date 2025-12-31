@@ -240,6 +240,55 @@
 
 ---
 
+## Sprint 11 Retrospective
+
+**Date:** 2026-01-01
+**Duration:** 5 min (Quick)
+**Facilitator:** SM
+
+### Active Improvement Check
+- **Previous:** Sample code reference + QA screenshot comparison (from Sprint 10)
+- **Status:** **EFFECTIVE** - Team verified SLOW tower against sample before fixing
+- **Evidence:** TL checked sample when Boss reported SLOW tower issue; confirmed our implementation was correct
+
+### What Went Well
+- Tower behaviors already implemented in clone (minimal new work needed)
+- **Clarification before fixing saved effort** - SLOW tower reported as bug, but sample verification showed it was correct
+- Fast pipeline for +10 gold fix: DEV → TL → QA in ~10 min
+- Team reported back consistently (IMP-001 behavior maintained)
+- QA visual verification worked despite Phaser gameplay limitations
+
+### What Problems Occurred
+1. **SLOW tower confusion** - Boss thought it shouldn't shoot, but sample shows it does
+   - Wasted initial investigation time before TL verified against sample
+   - Resolution: TL clarified with Boss, issue closed without code change
+
+2. **QA Playwright limitation** - Cannot test Phaser canvas gameplay
+   - +10 gold behavior required manual Boss testing
+   - Known limitation, documented in Sprint 10
+
+3. **Cache issue after file deletion** - SlowTower.js ghost error
+   - DEV created then deleted file; Vite cache kept stale reference
+   - Fix: Restart dev server
+
+### Key Lesson
+**Verify Boss feedback against sample before implementing fixes.**
+- When stakeholder reports behavior as "wrong", first check if sample does the same thing
+- This sprint: saved implementing unnecessary SLOW tower "fix"
+
+### Selected for Sprint 12
+- **Continue sample-first verification** - Before changing any behavior, verify against sample_codes/tower-defence/
+- No prompt updates needed - team already following this pattern
+
+### Prompt Updates
+- None needed
+
+### Sprint 11 Commits
+1. 5f42535: S11-001 Tower behaviors (AOE/SLOW in CollisionManager)
+2. 7fbfe2a: +10 gold on enemy kill fix
+
+---
+
 ## Template
 
 ```markdown

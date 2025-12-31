@@ -46,7 +46,7 @@
 |--------|-------------|
 | Correct answer | +30 |
 | Wrong answer | -10 |
-| Enemy kill | 0 (removed) |
+| Enemy kill | +10 (added S11) |
 
 **Key Principle:** DON'T TOUCH THE GAME - quiz is separate React panel.
 
@@ -237,38 +237,42 @@ All 3 items Boss Accepted ✅
 
 ## Current Status
 
-**Sprint:** 11
-**Goal:** Tower behaviors match sample project
-**Status:** 🔴 BOSS FEEDBACK - FIXES REQUIRED
+**Sprint:** 12
+**Goal:** Fix wave progression bug
+**Status:** 🔴 IN PROGRESS - TL investigating
 
 | Role | Status | Current Task | Last Update |
 |------|--------|--------------|-------------|
-| PO   | Active | Reported Boss feedback to SM | NOW |
-| SM   | Pending | Creating fix items | NOW |
+| PO   | Active | Defined Sprint 12 | NOW |
+| SM   | Active | Coordinating Sprint 12 | NOW |
 | GD   | Standby | - | - |
-| TL   | Done | S11-001 approved (5f42535) | NOW |
-| DEV  | Pending | Awaiting fix items | NOW |
-| QA   | Done | S11-001 passed | NOW |
+| TL   | Active | Investigating wave bug vs sample | NOW |
+| DEV  | Pending | Awaiting TL findings | NOW |
+| QA   | Pending | Awaiting fix | NOW |
 
 ---
 
-## 🚨 BOSS FEEDBACK - Sprint 11
+## ✅ Sprint 11 Summary (COMPLETE)
 
-**Boss manual test found 2 issues:**
-
-1. **SLOW tower behavior - ✅ CONFIRMED CORRECT**
-   - Sample shows SLOW tower shoots (damage:10, fireRate:1200)
-   - Our implementation matches sample
-   - Boss confirmed: No change needed
-
-2. **Game too hard - need gold from kills - ✅ IN PROGRESS**
-   - Boss: "if you hit an enemy, you should get gold—10 gold"
-   - Add: +10 gold when enemy dies
-   - DEV working on this now
+**All items BOSS ACCEPTED:**
+- ✅ S11-001: Tower behaviors match sample (5f42535)
+- ✅ SLOW tower confirmed correct (matches sample)
+- ✅ +10 gold on kill balance fix (7fbfe2a)
 
 **Commits:**
-- `5f42535` - S11-001: Tower behaviors (needs revision)
-- Sprint 10 commits: 49bf0e3, e3b83f6, f20be59, 4e06b1f, f220819, d6238b4, c417ef5
+- `5f42535` - S11-001: Tower behaviors
+- `7fbfe2a` - Balance fix: +10 gold on kill
+
+---
+
+## 🔴 Sprint 12 Active
+
+**S12-001: Wave Progression Bug (P0)**
+- Wave 2 doesn't spawn automatically after Wave 1 ends
+- Game progression broken - unplayable beyond wave 1
+
+**Status:** TL investigating against sample
+**Approach:** Sample-first verification (Sprint 11 retro lesson)
 
 ---
 
