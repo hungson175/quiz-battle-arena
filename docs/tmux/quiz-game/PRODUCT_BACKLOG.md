@@ -33,6 +33,22 @@ All team members should reference this codebase for:
 
 ## Completed Sprints
 
+### Sprint 15 (IN PROGRESS)
+- ✅ S15-002: Game freeze on restart fix
+- ✅ S15-009: HEALER house damage (set to 0)
+- ✅ S15-006: Tower icons in React selector
+- ✅ S15-010: Expand to 50 Vietnamese history questions
+
+### Sprint 14 (DONE)
+- ✅ Lives 20 → 3
+
+### Sprint 13 (DONE)
+- ✅ Remove gold display from React
+- ✅ Wave countdown timer fix
+
+### Sprint 12 (DONE)
+- ✅ Wave auto-progression fix
+
 ### Sprint 11 (DONE)
 - ✅ PBI-001: Tower behaviors match sample (all 6 types)
 - ✅ +10 gold on enemy kill (balance fix)
@@ -114,11 +130,11 @@ Implement different enemy types with unique behaviors from sample.
 
 #### [PBI-003]: Tower Upgrade System
 **Priority:** P1
-**Status:** Ready
-**Estimate:** M
+**Status:** Ready (Already in sample clone)
+**Estimate:** S (Verify only)
 
 **Description:**
-Allow towers to be upgraded (3 levels max) as in sample.
+Verify tower upgrade system works correctly from sample clone.
 
 **Acceptance Criteria:**
 - [ ] Click tower to show upgrade option
@@ -128,18 +144,50 @@ Allow towers to be upgraded (3 levels max) as in sample.
 
 ---
 
-#### [PBI-004]: Difficulty Selection
+#### [PBI-010]: Remove Difficulty Modes
 **Priority:** P1
-**Status:** Ready
+**Status:** New (From Sprint 15)
 **Estimate:** S
 
 **Description:**
-Allow player to select Easy/Normal/Hard before game.
+Boss wants single difficulty mode, not multiple options. Remove difficulty selector.
 
 **Acceptance Criteria:**
-- [ ] Difficulty selection screen
-- [ ] Each difficulty affects: enemy HP, speed, gold rewards
-- [ ] Starting gold varies by difficulty
+- [ ] Remove difficulty selection UI
+- [ ] Use single balanced difficulty setting
+- [ ] Clean up difficulty-related code
+
+---
+
+#### [PBI-011]: Rebalance Waves
+**Priority:** P1
+**Status:** New (From Sprint 15)
+**Estimate:** M
+
+**Description:**
+Rebalance wave progression for better gameplay experience.
+
+**Acceptance Criteria:**
+- [ ] Review current wave difficulty curve
+- [ ] Adjust enemy counts and types per wave
+- [ ] Progressive difficulty (easier early, harder later)
+- [ ] Playtest and verify balance
+
+---
+
+#### [PBI-012]: Enemy Hints System
+**Priority:** P1
+**Status:** New (From Sprint 15)
+**Estimate:** M
+
+**Description:**
+Show player hints about new enemy types when they first appear. Pause game briefly to explain enemy abilities.
+
+**Acceptance Criteria:**
+- [ ] Detect first appearance of each enemy type
+- [ ] Pause game and show info popup
+- [ ] Explain enemy abilities clearly
+- [ ] Player dismisses to continue
 
 ---
 
@@ -151,7 +199,7 @@ Allow player to select Easy/Normal/Hard before game.
 **Estimate:** M
 
 **Description:**
-Replace placeholder graphics with proper assets from research.
+Replace placeholder graphics with proper assets from research. Use Kenney TD Top-Down assets.
 
 **Reference:** docs/research/GAME_ASSETS.md
 
@@ -164,6 +212,21 @@ Replace placeholder graphics with proper assets from research.
 
 **Description:**
 Add sound effects for tower fire, enemy death, etc.
+
+---
+
+#### [PBI-013]: HEALER Health Bar Display
+**Priority:** P2
+**Status:** New (From Sprint 15)
+**Estimate:** S
+
+**Description:**
+HEALER enemy health bar not displaying correctly. Visual bug.
+
+**Acceptance Criteria:**
+- [ ] Investigate health bar rendering for HEALER enemy
+- [ ] Fix health bar position/visibility
+- [ ] Test with other special enemy types
 
 ---
 

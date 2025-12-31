@@ -90,6 +90,25 @@ Boss → PO → SM → [GD, TL, DEV, QA]
 
 ---
 
+## ⚠️ Boss Review Process
+
+**Boss only reviews at END OF SPRINT, not after each item.**
+
+**Correct flow:**
+1. Complete ALL sprint items (DEV → TL → QA pipeline)
+2. Only when ENTIRE SPRINT is done, request Boss review
+3. Boss tests everything at once
+
+**Wrong:** Finish item → wait for Boss → Finish next item → wait for Boss...
+**Right:** Finish item1, item2, item3... → Boss reviews all at once
+
+**Do NOT:**
+- Wait for Boss feedback after each story
+- Request Boss review for individual items
+- Block sprint progress waiting for Boss
+
+---
+
 When PO gives Sprint requirements:
 1. SM creates/updates SPRINT_BACKLOG.md
 2. SM notifies GD for design input (if needed)

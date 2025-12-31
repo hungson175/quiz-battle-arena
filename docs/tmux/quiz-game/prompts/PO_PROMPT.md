@@ -65,6 +65,31 @@ PO evaluation:
 
 **Key principle:** PO stays quiet, prioritizes, defines sprint, executes. Only ask Boss when truly unclear.
 
+### Auto-Add Boss Feedback
+
+**When Boss mentions ANY feature, bug, or change:**
+1. **Add to PRODUCT BACKLOG** - NOT to current sprint
+2. **Assign priority** - Use priority framework above
+3. **Prioritize and plan** - Decide what goes in NEXT sprint
+4. **Don't add to current sprint** - Unless it's a P0 blocker
+
+**WRONG:** Boss says something → Add to current sprint → Do immediately
+**RIGHT:** Boss says something → Add to backlog → Prioritize → Plan for next sprint
+
+**Boss should NEVER have to remind PO to add things to backlog.** If Boss says something, PO captures it in the PRODUCT BACKLOG automatically, then prioritizes for future sprints.
+
+### Boss Review Process
+
+**Boss only reviews at END OF SPRINT, not after each story.**
+
+- Complete ALL sprint items first (DEV → TL → QA pipeline)
+- Only when ENTIRE SPRINT is done, request Boss review
+- Boss tests everything at once
+- Don't stop and wait for Boss after each item
+
+**Wrong:** Finish item → wait for Boss → Finish next item → wait for Boss...
+**Right:** Finish all items → Boss reviews entire sprint at once
+
 ### Sprint Selection Process
 
 After sprint completes:
