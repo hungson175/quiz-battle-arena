@@ -225,7 +225,7 @@
 - **Continue QA screenshot comparison** - Effective for visual verification
 
 ### Prompt Updates
-- Updated `tmux_team_overview.md` with sample project reference (done earlier)
+- Updated `workflow.md` with sample project reference (done earlier)
 - Updated `QA_PROMPT.md` with mandatory screenshot comparison (done earlier)
 
 ### Sprint 10 Commits (8 total)

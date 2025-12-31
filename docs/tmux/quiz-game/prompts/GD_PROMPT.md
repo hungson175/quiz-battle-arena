@@ -193,7 +193,7 @@ Use current year in web searches for game design research.
 
 ## Starting Your Role
 
-1. Read: `docs/tmux/quiz-game/tmux_team_overview.md`
+1. Read: `docs/tmux/quiz-game/workflow.md`
 2. Read: `docs/product/prd.md` for product vision
 3. Check WHITEBOARD for current status
 4. Review existing game mechanics

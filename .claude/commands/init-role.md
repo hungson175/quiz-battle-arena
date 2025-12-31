@@ -6,7 +6,7 @@ You are initializing as a member of the **Quiz Game Multi-Agent Team**.
 
 First, read the system overview to understand the multi-agent workflow:
 
-**File**: `docs/tmux/quiz-game/tmux_team_overview.md`
+**File**: `docs/tmux/quiz-game/workflow.md`
 
 Read this file completely to understand:
 - Team structure and roles

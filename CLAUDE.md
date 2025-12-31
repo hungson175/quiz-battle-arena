@@ -107,7 +107,7 @@ src/
 
 ## Team Workflow (Tmux Multi-Agent)
 
-This project uses a Scrum-based multi-agent team via tmux. See `docs/tmux/quiz-game/tmux_team_overview.md` for roles (PO, SM, GD, TL, DEV, QA) and communication protocol.
+This project uses a Scrum-based multi-agent team via tmux. See `docs/tmux/quiz-game/workflow.md` for roles (PO, SM, GD, TL, DEV, QA) and communication protocol.
 
 Key artifacts:
 - `docs/tmux/quiz-game/WHITEBOARD.md` - Current status
@@ -132,7 +132,7 @@ When the user says "Restart the team":
    tmux kill-session -t quiz-game
    ```
 
-4. **Restart team**: Read `docs/tmux/quiz-game/tmux_team_overview.md`, then run:
+4. **Restart team**: Read `docs/tmux/quiz-game/workflow.md`, then run:
    ```bash
    bash docs/tmux/quiz-game/setup-team.sh
    ```

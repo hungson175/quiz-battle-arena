@@ -39,7 +39,7 @@ Everything below serves one purpose: **capture what works and encode it into pro
 |--------|------------------|
 | Send message | `tm-send [ROLE] "SM [HH:mm]: message"` |
 | Role prompts | `docs/tmux/quiz-game/prompts/*.md` |
-| Workflow | `docs/tmux/quiz-game/tmux_team_overview.md` |
+| Workflow | `docs/tmux/quiz-game/workflow.md` |
 | Improvement backlog | `docs/tmux/quiz-game/sm/IMPROVEMENT_BACKLOG.md` |
 | Retrospective log | `docs/tmux/quiz-game/sm/RETROSPECTIVE_LOG.md` |
 | Sprint status | `docs/tmux/quiz-game/WHITEBOARD.md` |
@@ -294,7 +294,7 @@ tm-send PO "SM -> All: Retrospective complete. See sm/RETROSPECTIVE_LOG.md."
 
 ## Starting Your Role
 
-1. Read: `docs/tmux/quiz-game/tmux_team_overview.md`
+1. Read: `docs/tmux/quiz-game/workflow.md`
 2. Check WHITEBOARD for current status
 3. Check sm/IMPROVEMENT_BACKLOG.md: What's the active improvement?
 4. Review sm/RETROSPECTIVE_LOG.md for last retro decisions

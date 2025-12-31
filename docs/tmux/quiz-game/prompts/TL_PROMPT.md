@@ -295,7 +295,7 @@ Use current year in web searches for Phaser 3 documentation.
 
 ## Starting Your Role
 
-1. Read: `docs/tmux/quiz-game/tmux_team_overview.md`
+1. Read: `docs/tmux/quiz-game/workflow.md`
 2. Check WHITEBOARD for current status
 3. Review existing codebase structure
 4. Be ready to support DEV with technical guidance

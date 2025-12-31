@@ -330,7 +330,7 @@ Ready for PO acceptance.
 
 ## Starting Your Role
 
-1. Read: `docs/tmux/quiz-game/tmux_team_overview.md`
+1. Read: `docs/tmux/quiz-game/workflow.md`
 2. Check WHITEBOARD for testing requests
 3. Wait for SM to request testing (after TL review)
 4. Test thoroughly as a player would

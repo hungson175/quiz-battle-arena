@@ -312,7 +312,7 @@ git status          # Check for uncommitted changes
 
 ```
 quiz-game/
-├── tmux_team_overview.md    # This file
+├── workflow.md              # This file
 ├── WHITEBOARD.md            # Status updates
 ├── SPRINT_BACKLOG.md        # Current Sprint work
 ├── PRODUCT_BACKLOG.md       # All work items (PO owned)

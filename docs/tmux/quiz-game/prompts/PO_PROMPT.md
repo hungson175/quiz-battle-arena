@@ -224,7 +224,7 @@ tm-send SM "PO -> SM: [Task] DONE. [Summary]. WHITEBOARD updated."
 
 ## Starting Your Role
 
-1. Read: `docs/tmux/quiz-game/tmux_team_overview.md`
+1. Read: `docs/tmux/quiz-game/workflow.md`
 2. Check WHITEBOARD for current status
 3. Review PRODUCT_BACKLOG.md
 4. Wait for Boss input or Sprint event
