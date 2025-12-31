@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Quiz Battle Arena is a **Plants vs Zombies-style tower defense game** combined with educational quizzes built with Phaser 3. Players defend their house from zombie waves by placing plants, with money earned by answering quiz questions correctly. Wrong answers lose money. The game is designed to be challenging and educational for children ages 8-12.
+Quiz Battle Arena is a **tower defense game** combined with educational quizzes built with Phaser 3 and React. Players defend against enemy waves by placing towers, with money earned by answering quiz questions correctly. Wrong answers lose money. Designed for children ages 8-12.
 
 **Key concept**: Subject-agnostic - swap the question JSON (`public/assets/data/questions.json`) to change from history to math to any subject.
 
@@ -26,49 +26,71 @@ npm run build
 
 ## Architecture
 
+### Hybrid Phaser + React
+
+The app uses a 70/30 split layout:
+- **Left (70%)**: Phaser 3 game canvas - tower defense gameplay
+- **Right (30%)**: React panel - quiz questions and answers
+
+Communication between Phaser and React happens via `QuizBridge.js` using window CustomEvents.
+
+**Important**: Do NOT use React.StrictMode - it causes double-mounting which destroys Phaser's WebGL context.
+
+### Source Structure
+
 ```
 src/
-├── main.js              # Phaser game config and entry point
+├── main.jsx             # React entry point (no StrictMode!)
+├── App.jsx              # React wrapper with 70/30 layout
+├── game.js              # Phaser game config and GAME_SETTINGS
 ├── scenes/
-│   └── GameScene.js     # Main game scene - orchestrates all gameplay
+│   ├── MapSelectScene.js  # Map selection screen
+│   ├── GameScene.js       # Main game scene - orchestrates gameplay
+│   └── UIScene.js         # Phaser UI overlay (lives, money, wave)
 ├── entities/            # Game objects
-│   ├── Peashooter.js    # Plant that shoots peas
-│   ├── Pea.js           # Projectile fired by peashooter
-│   └── Zombie.js        # Enemy that walks toward house
-├── managers/            # Game object lifecycle management
-│   ├── PlantManager.js      # Plant placement and updates
-│   ├── ZombieManager.js     # Zombie spawning and state
-│   └── ProjectileManager.js # Pea movement and collisions
-├── utils/               # Game systems and configuration
-│   ├── GridConfig.js     # 3-lane grid layout (lanes x columns)
-│   ├── MoneyManager.js   # Economy (+50 correct, -30 wrong)
-│   ├── QuestionManager.js # Question loading and shuffling
-│   ├── WaveManager.js    # 5 progressive waves with timing
-│   ├── QuizTimer.js      # Countdown timer for questions
-│   └── GameStats.js      # Victory/defeat statistics
-└── ui/
-    ├── QuizUI.js         # Quiz display component
-    └── QuizUIManager.js  # Quiz lifecycle and callbacks
+│   ├── Tower.js           # Base tower class
+│   ├── MultiShotTower.js  # Tower that shoots multiple targets
+│   ├── SupportTower.js    # Buff/support tower
+│   ├── Enemy.js           # Base enemy class
+│   ├── HealerEnemy.js     # Heals nearby enemies
+│   ├── ShieldEnemy.js     # Temporary invulnerability
+│   ├── SplitEnemy.js      # Splits into smaller enemies on death
+│   ├── TeleportEnemy.js   # Teleports forward on path
+│   └── Projectile.js      # Tower projectiles
+├── systems/             # Game systems (manager pattern)
+│   ├── TowerManager.js      # Tower lifecycle and updates
+│   ├── EnemyManager.js      # Enemy spawning and state
+│   ├── ProjectileManager.js # Projectile movement/collisions
+│   ├── WaveManager.js       # Wave progression and spawning
+│   ├── EconomyManager.js    # Gold/score tracking
+│   ├── CollisionManager.js  # Hit detection
+│   ├── PathManager.js       # Enemy pathing
+│   ├── MapManager.js        # Map loading and switching
+│   ├── AudioManager.js      # Sound effects and music
+│   ├── QuizManager.js       # Quiz timing and lifecycle
+│   ├── QuestionManager.js   # Question loading/shuffling
+│   └── QuizBridge.js        # Phaser <-> React communication
+├── components/          # React components
+│   └── QuizPanel.jsx      # Quiz display and answer buttons
+└── hooks/
+    └── useQuizEvents.js   # React hook for quiz state
 ```
-
-### Game Flow
-
-1. **GameScene.create()** initializes all managers and starts wave system
-2. **WaveManager** controls zombie spawn rate and wave progression (5 waves total)
-3. **QuizUIManager** interrupts gameplay periodically with questions
-4. **MoneyManager** tracks economy - plants cost 50, correct answers +50, wrong -30
-5. **GameScene.update()** handles plant firing, collisions, and win/lose conditions
 
 ### Key Patterns
 
-- **Entity pattern**: Entities (Peashooter, Zombie, Pea) are plain objects with state, rendered via managers
-- **Manager pattern**: Managers own entity lifecycle and Phaser graphics/sprites
-- **Grid system**: 3 lanes x 9 columns, column 0 is house zone (not plantable)
-- **TDD approach**: All game logic has corresponding test files in `tests/`
+- **Manager pattern**: Systems own entity lifecycle and Phaser graphics
+- **Entity inheritance**: Specialized enemies/towers extend base classes
+- **Event bridge**: Phaser emits to React via `QuizBridge.emitToReact()`, React responds via window events
+- **Config-driven**: Game settings in `src/game.js` via `window.GAME_SETTINGS`
+
+### Configuration Files
+
+- `src/assets/config/towers.json` - Tower types, stats, upgrade paths
+- `src/assets/config/waves.json` - Wave composition and timing
+- `src/assets/config/extra-waves.json` - Additional waves for harder difficulties
+- `public/assets/data/questions.json` - Quiz questions
 
 ## Question Data Format
-
-Questions are loaded from `public/assets/data/questions.json`:
 
 ```json
 {

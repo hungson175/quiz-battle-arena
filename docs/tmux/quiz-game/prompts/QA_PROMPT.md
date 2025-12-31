@@ -119,6 +119,31 @@ Use the `webapp-testing` skill to verify the game ACTUALLY WORKS:
 
 This prevents the recurring issue of "tests pass but game is broken" (S7-003, S9).
 
+### Step 2b: Screenshot Comparison with Sample Project (MANDATORY)
+
+**⚠️ CRITICAL: Compare our game with the SAMPLE PROJECT visually.**
+
+When testing layout or visual elements:
+
+1. **Run the sample project on a different port:**
+   ```bash
+   cd sample_codes/tower-defence && npm start -- --port 3337 --host 0.0.0.0
+   ```
+
+2. **Take screenshot of sample project** (this is the REFERENCE)
+
+3. **Take screenshot of our game**
+
+4. **Compare side-by-side:**
+   - Layout should match (no overlap)
+   - Game elements should be contained
+   - UI should be visible and usable
+   - Zombies should spawn and walk
+
+5. **If they don't match, FAIL the test** with screenshots showing the difference
+
+**Boss requirement:** "Initialize the original game on a different port and compare side by side."
+
 ### Step 3: Understand Requirements
 - Read the Technical Spec's Acceptance Criteria
 - Each criterion = one test case

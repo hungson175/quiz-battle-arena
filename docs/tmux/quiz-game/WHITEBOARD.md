@@ -19,8 +19,9 @@
 2. ✅ Remove gold from enemy kills (e3b83f6)
 3. ✅ Add React quiz panel 70/30 layout (e3b83f6)
 4. ✅ QuestionManager + QuizManager + QuizBridge (e3b83f6)
+5. ✅ HOTFIX: Layout overflow bug (f20be59)
 
-**Completed:** All items implemented and committed
+**Completed:** All items implemented + layout bug fixed
 
 ---
 

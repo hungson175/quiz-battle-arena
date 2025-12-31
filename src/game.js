@@ -17,11 +17,12 @@ export function initGame(parentId = 'game-container') {
     return game;
   }
 
-  // Game configuration
+  // Game configuration - MUST use 1280x720 (original sample dimensions)
+  // All game coordinates are hardcoded for this size
   const config = {
     type: Phaser.AUTO,
     parent: parentId,
-    width: 896,
+    width: 1280,
     height: 720,
     transparent: true,
     scale: {
