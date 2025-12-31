@@ -21,9 +21,13 @@ export function initGame(parentId = 'game-container') {
   const config = {
     type: Phaser.AUTO,
     parent: parentId,
-    width: 896,  // 70% of 1280
+    width: 896,
     height: 720,
     transparent: true,
+    scale: {
+      mode: Phaser.Scale.FIT,
+      autoCenter: Phaser.Scale.CENTER_BOTH,
+    },
     physics: {
       default: 'arcade',
       arcade: {

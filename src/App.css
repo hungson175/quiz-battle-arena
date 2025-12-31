@@ -20,12 +20,16 @@ html, body, #root {
   height: 100vh;
   max-width: 1280px;
   margin: 0 auto;
+  min-height: 0;
 }
 
 /* Game panel - 70% width */
 .game-panel {
   width: 70%;
   height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,7 +39,10 @@ html, body, #root {
 /* Quiz panel - 30% width */
 .quiz-panel {
   width: 30%;
+  min-width: 320px;
   height: 100%;
+  min-height: 0;
+  flex-shrink: 0;
   background-color: #16213e;
   border-left: 2px solid #0f3460;
   display: flex;
@@ -67,7 +74,17 @@ html, body, #root {
   margin: 5px 0;
 }
 
-/* Canvas styling */
+/* Canvas styling - constrain to container */
+#game-container {
+  width: 100%;
+  height: 100%;
+  max-width: 896px;
+  max-height: 720px;
+  overflow: hidden;
+}
+
 #game-container canvas {
   display: block;
+  max-width: 100%;
+  max-height: 100%;
 }
