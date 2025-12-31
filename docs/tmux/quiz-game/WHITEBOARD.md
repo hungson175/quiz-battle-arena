@@ -238,17 +238,17 @@ All 3 items Boss Accepted ✅
 ## Current Status
 
 **Sprint:** 15
-**Goal:** Fix freeze bug + research better visuals
-**Status:** 🟡 S15-002 FIX READY FOR BOSS TEST
+**Goal:** Fix freeze bug + add tower icons + 50 questions
+**Status:** ✅ SPRINT 15 COMPLETE - Awaiting Boss Review
 
 | Role | Status | Current Task | Last Update |
 |------|--------|--------------|-------------|
-| PO   | Active | Awaiting Boss test of S15-002 | 22:01 |
-| SM   | Active | Fixed S15-002 directly (2ee4866) | 22:01 |
+| PO   | Active | Awaiting Boss end-of-sprint review | Current |
+| SM   | Active | Sprint complete, docs committed | Current |
 | GD   | Unresponsive | - | - |
 | TL   | Unresponsive | - | - |
 | DEV  | Unresponsive | - | - |
-| QA   | Pending | Awaiting S15-002 acceptance | 22:01 |
+| QA   | Pending | Awaiting Boss acceptance | Current |
 
 ---
 
@@ -276,21 +276,21 @@ All 3 items Boss Accepted ✅
 
 ---
 
-## 🟡 Sprint 15 Active
+## ✅ Sprint 15 Summary (COMPLETE)
 
-**S15-002: Game Freeze on Restart (P0) - FIXED**
-- Root cause: Duplicate wave event listeners on restart
-- Fix: Named methods + cleanup in cleanup()
-- Commit: 2ee4866
-- Status: Ready for Boss test
+**All items completed:**
+- ✅ S15-002: Game freeze on restart (P0) - 2ee4866
+- ✅ S15-009: HEALER house damage set to 0 - 7cfad9b
+- ✅ S15-006: Tower icons in React selector - 7cfad9b
+- ✅ S15-010: 50 Vietnamese history questions - e816657
 
-**Other Items (Pending):**
-- S15-003: Tower upgrade system design
-- S15-004: Remove difficulty modes
-- S15-005: Rebalance waves
-- S15-001: Better visual assets
+**Moved to Product Backlog:**
+- PBI-010: Remove difficulty modes (P1)
+- PBI-011: Rebalance waves (P1)
+- PBI-012: Enemy hints system (P1)
+- PBI-013: HEALER health bar display (P2)
 
-**Goal:** Fix freeze bug + improve game experience
+**Goal:** Fix freeze bug + tower icons + questions
 
 ---
 
