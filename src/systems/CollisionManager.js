@@ -58,8 +58,8 @@ export default class CollisionManager {
           if (!projectile.projectileData.aoeRadius && enemy.isDead && enemy.isDead()) {
             if (this.scene.economyManager) {
               this.scene.economyManager.enemiesKilled++;
-              // REMOVED: Gold only from quizzes now
-              // this.scene.economyManager.money += enemy.data.reward || 0;
+              // Award +10 gold per enemy kill
+              this.scene.economyManager.addMoney(10);
               this.scene.economyManager.updateScore && this.scene.economyManager.updateScore();
               // Emit UI update event for money and score
               this.scene.events.emit('updateUI', {
@@ -127,6 +127,8 @@ export default class CollisionManager {
     for (const enemy of enemiesToRemove) {
       if (this.scene.economyManager) {
         this.scene.economyManager.enemiesKilled++;
+        // Award +10 gold per enemy kill
+        this.scene.economyManager.addMoney(10);
         this.scene.economyManager.updateScore && this.scene.economyManager.updateScore();
         this.scene.events.emit('updateUI', {
           money: this.scene.economyManager.money,

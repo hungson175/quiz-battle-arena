@@ -237,18 +237,38 @@ All 3 items Boss Accepted ✅
 
 ## Current Status
 
+**Sprint:** 11
+**Goal:** Tower behaviors match sample project
+**Status:** 🔴 BOSS FEEDBACK - FIXES REQUIRED
+
 | Role | Status | Current Task | Last Update |
 |------|--------|--------------|-------------|
-| PO   | Approved | Sprint 10 complete | NOW |
-| SM   | Active | Sprint 10 complete | NOW |
-| GD   | Standby | Awaiting next sprint | NOW |
-| TL   | Done | Phase 3 approved | NOW |
-| DEV  | Done | **ALL S10 ITEMS COMPLETE** | NOW |
-| QA   | Pending | Ready to verify quiz system | NOW |
+| PO   | Active | Reported Boss feedback to SM | NOW |
+| SM   | Pending | Creating fix items | NOW |
+| GD   | Standby | - | - |
+| TL   | Done | S11-001 approved (5f42535) | NOW |
+| DEV  | Pending | Awaiting fix items | NOW |
+| QA   | Done | S11-001 passed | NOW |
+
+---
+
+## 🚨 BOSS FEEDBACK - Sprint 11
+
+**Boss manual test found 2 issues:**
+
+1. **SLOW tower behavior - ✅ CONFIRMED CORRECT**
+   - Sample shows SLOW tower shoots (damage:10, fireRate:1200)
+   - Our implementation matches sample
+   - Boss confirmed: No change needed
+
+2. **Game too hard - need gold from kills - ✅ IN PROGRESS**
+   - Boss: "if you hit an enemy, you should get gold—10 gold"
+   - Add: +10 gold when enemy dies
+   - DEV working on this now
 
 **Commits:**
-- `49bf0e3` - Phase 1+2: Clone tower defense, React wrapper
-- `e3b83f6` - Phase 3: Quiz system integration
+- `5f42535` - S11-001: Tower behaviors (needs revision)
+- Sprint 10 commits: 49bf0e3, e3b83f6, f20be59, 4e06b1f, f220819, d6238b4, c417ef5
 
 ---
 
