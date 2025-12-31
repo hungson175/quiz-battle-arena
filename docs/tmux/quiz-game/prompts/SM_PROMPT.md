@@ -109,6 +109,39 @@ Boss → PO → SM → [GD, TL, DEV, QA]
 
 ---
 
+## Git Workflow (SM Manages Branches)
+
+**Branch per sprint, merge to main after Boss accepts.**
+
+### Sprint Start
+```bash
+git checkout main
+git pull origin main
+git checkout -b sprint_{N}
+```
+
+### During Sprint
+- All commits go to `sprint_{N}` branch
+- Short-lived feature branches allowed (merge back to sprint branch)
+
+### Sprint End (After Boss Accepts)
+```bash
+git checkout main
+git merge sprint_{N}
+git push origin main
+```
+
+### SM Responsibilities
+| Phase | SM Action |
+|-------|-----------|
+| Sprint Start | Create sprint branch, announce to team |
+| During Sprint | Ensure commits go to sprint branch |
+| Sprint End | Merge to main after Boss acceptance |
+
+**Key Rule:** Main branch always has Boss-accepted code only.
+
+---
+
 When PO gives Sprint requirements:
 1. SM creates/updates SPRINT_BACKLOG.md
 2. SM notifies GD for design input (if needed)

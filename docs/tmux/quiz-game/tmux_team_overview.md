@@ -261,20 +261,49 @@ npm run lint
 
 ## Git Workflow
 
+**Branch Strategy:** One branch per sprint, merge to main when Boss accepts.
+
+### Sprint Lifecycle
+
 ```bash
-# Sprint branch
+# 1. START OF SPRINT: Create sprint branch from main
+git checkout main
+git pull origin main
 git checkout -b sprint_{N}
 
-# Feature branches off sprint
-git checkout -b feature_{story_id}_{description}
-
-# After TL review + QA pass
+# 2. DURING SPRINT: All work happens on sprint branch
+#    - Commits go directly to sprint branch
+#    - Or use short-lived feature branches if needed:
+git checkout -b feature_{story_id}
+# ... work ...
 git checkout sprint_{N}
-git merge feature_{story_id}_{description}
+git merge feature_{story_id}
+git branch -d feature_{story_id}
 
-# After Sprint Review
+# 3. END OF SPRINT: After Boss accepts ALL sprint items
 git checkout main
 git merge sprint_{N}
+git push origin main
+
+# 4. CLEANUP: Delete sprint branch (optional, keep for history)
+git branch -d sprint_{N}
+```
+
+### Key Rules
+
+| Rule | Description |
+|------|-------------|
+| **One sprint = one branch** | Create `sprint_{N}` at sprint start |
+| **Work on sprint branch** | All commits during sprint go here |
+| **Merge after acceptance** | Only merge to main when Boss accepts entire sprint |
+| **Main is stable** | Main always has Boss-accepted code |
+
+### Current State Check
+
+```bash
+git branch          # See current branch
+git log --oneline   # See recent commits
+git status          # Check for uncommitted changes
 ```
 
 ---
