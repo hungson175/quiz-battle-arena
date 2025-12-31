@@ -174,7 +174,7 @@ export function initGame(parentId = 'game-container') {
     EXTRA_WAVES: extraWavesConfig,
     // Player starting stats
     PLAYER: {
-      lives: 20,
+      lives: 3,
       money: 300,
     },
   };

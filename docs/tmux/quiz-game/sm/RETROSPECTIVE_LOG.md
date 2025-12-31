@@ -333,6 +333,58 @@
 
 ---
 
+## Sprint 13 Retrospective
+
+**Date:** 2026-01-01
+**Duration:** 5 min (Quick)
+**Facilitator:** SM
+
+### Active Improvement Check
+- **Previous:** IMP-002 - Retrospective before sprint start (from Sprint 12)
+- **Status:** **EFFECTIVE** - PO reminded SM, SM followed process this time
+- **Evidence:** PO said "Do Sprint 13 retrospective FIRST" and SM is now doing it correctly
+
+### What Went Well
+- **IMP-002 followed** - SM doing retro BEFORE creating Sprint 14 backlog (corrected behavior)
+- Fast bug fix (S13-002): TL found root cause (timer pileup), DEV fixed in one commit
+- Clean parallel work: DEV implemented S13-001 while S13-002 awaited Boss test
+- QA thorough verification: 4/4 requirements checked for S13-001
+- Both items accepted on first Boss test (no rejections)
+
+### What Problems Occurred
+1. **Sprint requirements changed mid-sprint**
+   - Started: Remove ALL React UI
+   - Changed to: Remove ONLY gold display
+   - Not a problem per se, but required backlog revision
+
+2. **Timer bug pattern repeated**
+   - S12-001 fix (wave progression) caused S13-002 (timer pileup)
+   - Root cause: Multiple event handlers creating duplicate timers
+   - Lesson: Timer/event cleanup is critical
+
+### Key Lesson
+**Timer cleanup pattern:** When creating timers in event handlers, always clear existing timer first to prevent pileup.
+```javascript
+if (this.timer) {
+  this.timer.remove();
+  this.timer = null;
+}
+// Then create new timer
+```
+
+### Selected for Sprint 14
+- **Continue IMP-002 monitoring** - SM retro-before-sprint is working
+- No new improvement needed - process is solid
+
+### Prompt Updates
+- None needed (IMP-002 already in SM_PROMPT.md)
+
+### Sprint 13 Commits
+1. 0db2934: S13-002 Wave countdown timer fix
+2. e22d23e: S13-001 Gold display removed from React UI
+
+---
+
 ## Template
 
 ```markdown

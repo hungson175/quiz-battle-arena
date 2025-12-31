@@ -158,7 +158,7 @@ window.GAME_SETTINGS = {
   EXTRA_WAVES: extraWavesConfig,
   // Player starting stats
   PLAYER: {
-    lives: 20,
+    lives: 3,
     money: 300,
   },
 };

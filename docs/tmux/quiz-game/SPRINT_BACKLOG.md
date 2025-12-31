@@ -1,6 +1,6 @@
-# Sprint 13 Backlog
+# Sprint 14 Backlog
 
-**Sprint Goal:** Remove gold sync + fix wave bug
+**Sprint Goal:** Improvement Phase - Balance, Visuals, UX
 **Sprint Start:** 2026-01-01
 **Sprint End:** TBD
 
@@ -9,58 +9,88 @@
 ## Reference Project
 
 **IMPORTANT:** Sample code location: `sample_codes/tower-defence/`
+**Asset Research:** `docs/research/GAME_ASSETS.md`
 
 ---
 
 ## Sprint Items
 
-### [S13-001]: Remove Gold Display from React UI
+### [S14-002]: Reduce Lives 20 → 3
 **Owner:** DEV
 **Status:** TODO
-**Priority:** P1
+**Priority:** P0 - Balance (game too easy)
 
 **Description:**
-Remove ONLY the gold display from React UI. Keep quiz panel, tower selector - just remove gold sync.
-
-**Boss Clarification:**
-- Keep React quiz UI - it's good as is
-- Only remove gold display from React
-- Gold should only show in Phaser game UI
-- No more React/Phaser sync needed for gold
+Game is too easy with 20 lives. Reduce to 3 lives for more challenge.
 
 **Changes Required:**
-- [ ] Remove gold display from QuizPanel.jsx or App.jsx
-- [ ] Remove gold-related event listeners (if any)
-- [ ] Keep quiz panel, tower selector, all other React UI
+- [ ] Find lives config (likely in GameScene or config file)
+- [ ] Change starting lives from 20 to 3
+- [ ] Verify UI shows correct lives count
 
 **Acceptance Criteria:**
-- [ ] Gold display removed from React UI
-- [ ] Gold still shows in Phaser game UI
-- [ ] Quiz panel still works
-- [ ] Tower selector still works
+- [ ] Game starts with 3 lives
+- [ ] Lives display shows 3
+- [ ] Game over triggers after 3 enemies pass
 - [ ] TL code review approved
 - [ ] QA verification passed
 - [ ] Boss acceptance
 
 ---
 
-### [S13-002]: Wave Stuck at 1 Second Bug
+### [S14-001]: Add Visual Sprites/Assets
 **Owner:** DEV
 **Status:** TODO
-**Priority:** P0 - Game breaking
+**Priority:** P1 - Visual improvement
 
 **Description:**
-Boss found: Wave countdown stops at 1 second, next wave doesn't spawn. This is a regression from S12-001 fix.
+Replace placeholder graphics with proper sprites.
 
-**Investigation Needed:**
-- [ ] Check countdown logic in WaveManager.startAutoWaveCountdown()
-- [ ] Verify countdown reaches 0 and triggers startNextWave()
-- [ ] Compare with sample project countdown behavior
+**Asset Sources (from research):**
+- Zombies: CraftPix zombie sprites
+- Towers: Kenney tower assets
+- Reference: docs/research/GAME_ASSETS.md
+
+**Changes Required:**
+- [ ] Download/integrate zombie sprites
+- [ ] Download/integrate tower sprites
+- [ ] Update sprite references in game code
+- [ ] Ensure animations work if applicable
 
 **Acceptance Criteria:**
-- [ ] Wave countdown reaches 0
-- [ ] Next wave spawns automatically
-- [ ] All waves progress correctly
+- [ ] Zombies have proper sprite graphics
+- [ ] Towers have proper sprite graphics
+- [ ] No placeholder rectangles visible
+- [ ] Game runs without errors
+- [ ] TL code review approved
+- [ ] QA verification passed
+- [ ] Boss acceptance
+
+---
+
+### [S14-003]: Tower Guidance/Tips
+**Owner:** DEV
+**Status:** TODO
+**Priority:** P1 - UX improvement
+
+**Description:**
+Add help for new players to understand tower types.
+
+**Options (Boss to decide):**
+A) Question mark button with tower info popup
+B) Tooltips on hover for each tower
+C) Tips displayed at wave start explaining towers
+D) Combination of above
+
+**Requirements:**
+- [ ] Include 'never show again' option
+- [ ] Explain what each tower type does
+- [ ] Non-intrusive to gameplay
+
+**Acceptance Criteria:**
+- [ ] Tower guidance implemented
+- [ ] 'Never show again' checkbox works
+- [ ] Information is clear and helpful
 - [ ] TL code review approved
 - [ ] QA verification passed
 - [ ] Boss acceptance
@@ -69,11 +99,11 @@ Boss found: Wave countdown stops at 1 second, next wave doesn't spawn. This is a
 
 ## Definition of Done
 
-- [ ] Gold removed from React UI only
-- [ ] Wave progression works
-- [ ] All game mechanics still work
-- [ ] TL code review approved
-- [ ] QA testing passed
+- [ ] Lives reduced to 3
+- [ ] Visual sprites added
+- [ ] Tower guidance implemented
+- [ ] All TL reviews approved
+- [ ] All QA tests passed
 - [ ] Pushed to remote
 - [ ] Boss acceptance
 
@@ -83,20 +113,22 @@ Boss found: Wave countdown stops at 1 second, next wave doesn't spawn. This is a
 
 | Item | Status | Owner | Priority | Notes |
 |------|--------|-------|----------|-------|
-| S13-001 | TODO | DEV | P1 | Remove gold from React |
-| S13-002 | TODO | DEV | P0 | Wave countdown bug |
+| S14-002 | TODO | DEV | P0 | Lives balance |
+| S14-001 | TODO | DEV | P1 | Sprites |
+| S14-003 | TODO | DEV | P1 | Tower tips |
 
 ---
 
-## Sprint 12 Summary (COMPLETED)
+## Sprint 13 Summary (COMPLETED)
 
 **All items BOSS ACCEPTED:**
-- ✅ S12-001: Wave progression fix (e481812)
+- ✅ S13-002: Wave countdown timer fix (0db2934)
+- ✅ S13-001: Gold display removed from React (e22d23e)
 
 ---
 
 ## Notes
 
-- S13-002 is P0 (game breaking) - should be fixed first
-- S13-001 is simplification only - not full React removal
-- Quiz feature stays in React
+- S14-002 is P0 - do first (balance fix)
+- S14-001 and S14-003 are P1 - visual/UX improvements
+- Check GAME_ASSETS.md for sprite sources
