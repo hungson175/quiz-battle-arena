@@ -237,18 +237,18 @@ All 3 items Boss Accepted ✅
 
 ## Current Status
 
-**Sprint:** 13
-**Goal:** Remove React UI - pure Phaser game
-**Status:** 🔴 IN PROGRESS
+**Sprint:** 15
+**Goal:** Fix freeze bug + research better visuals
+**Status:** 🟡 S15-002 FIX READY FOR BOSS TEST
 
 | Role | Status | Current Task | Last Update |
 |------|--------|--------------|-------------|
-| PO   | Active | Defined Sprint 13 | NOW |
-| SM   | Active | Creating Sprint 13 backlog | NOW |
-| GD   | Standby | - | - |
-| TL   | Pending | Awaiting sprint items | NOW |
-| DEV  | Pending | Awaiting sprint items | NOW |
-| QA   | Pending | Awaiting fix | NOW |
+| PO   | Active | Awaiting Boss test of S15-002 | 22:01 |
+| SM   | Active | Fixed S15-002 directly (2ee4866) | 22:01 |
+| GD   | Unresponsive | - | - |
+| TL   | Unresponsive | - | - |
+| DEV  | Unresponsive | - | - |
+| QA   | Pending | Awaiting S15-002 acceptance | 22:01 |
 
 ---
 
@@ -276,15 +276,21 @@ All 3 items Boss Accepted ✅
 
 ---
 
-## 🔴 Sprint 13 Active
+## 🟡 Sprint 15 Active
 
-**S13-001: Remove React UI (P0)**
-- Boss: "Remove UI from React part entirely"
-- Keep only Phaser game UI
-- No more React/Phaser sync needed
-- Simplifies architecture
+**S15-002: Game Freeze on Restart (P0) - FIXED**
+- Root cause: Duplicate wave event listeners on restart
+- Fix: Named methods + cleanup in cleanup()
+- Commit: 2ee4866
+- Status: Ready for Boss test
 
-**Goal:** Pure Phaser game, no React UI components
+**Other Items (Pending):**
+- S15-003: Tower upgrade system design
+- S15-004: Remove difficulty modes
+- S15-005: Rebalance waves
+- S15-001: Better visual assets
+
+**Goal:** Fix freeze bug + improve game experience
 
 ---
 
