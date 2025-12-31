@@ -15,8 +15,8 @@ export default class QuizManager {
     this.isWaitingForResult = false;
     this.resultTimeout = null; // Track setTimeout for cleanup
 
-    // Listen for answers from React
-    listenFromReact('quiz:answer', (data) => {
+    // Listen for answers from React (store unsubscribe for cleanup)
+    this.unsubscribeAnswer = listenFromReact('quiz:answer', (data) => {
       this.handleAnswer(data.answerIndex);
     });
 
@@ -114,5 +114,19 @@ export default class QuizManager {
     this.currentQuestion = null;
     this.isWaitingForResult = false;
     this.questionManager.reset();
+  }
+
+  /**
+   * Destroy manager and clean up event listeners
+   * Must be called before scene restart to prevent duplicate listeners
+   */
+  destroy() {
+    this.reset();
+    // Remove window event listener to prevent duplicates on restart
+    if (this.unsubscribeAnswer) {
+      this.unsubscribeAnswer();
+      this.unsubscribeAnswer = null;
+    }
+    console.log('[QuizManager] Destroyed');
   }
 }

@@ -468,8 +468,8 @@ export default class GameScene extends Phaser.Scene {
     // Start auto-wave countdown (10 seconds)
     this.waveManager.startAutoWaveCountdown();
 
-    // Listen for tower selection from React
-    listenForTowerSelect(({ type }) => {
+    // Listen for tower selection from React (store for cleanup)
+    this.unsubscribeTowerSelect = listenForTowerSelect(({ type }) => {
       console.log('[GameScene] Tower selected from React:', type);
       this.registry.set('selectedTower', type);
     });
@@ -811,9 +811,18 @@ export default class GameScene extends Phaser.Scene {
         this.waveManager.spawnTimer = null;
       }
     }
-    // Clean up QuizManager (clears setTimeout)
-    if (this.quizManager && this.quizManager.reset) {
-      this.quizManager.reset();
+    // Clean up QuizManager (clears setTimeout AND removes event listeners)
+    if (this.quizManager) {
+      if (this.quizManager.destroy) {
+        this.quizManager.destroy();
+      } else if (this.quizManager.reset) {
+        this.quizManager.reset();
+      }
+    }
+    // Clean up tower select listener to prevent duplicates on restart
+    if (this.unsubscribeTowerSelect) {
+      this.unsubscribeTowerSelect();
+      this.unsubscribeTowerSelect = null;
     }
     // Reset game state flags
     this.isGameOver = false;

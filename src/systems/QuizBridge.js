@@ -14,9 +14,13 @@ export function emitToReact(eventName, data) {
  * Listen for event from React
  * @param {string} eventName - Event name (e.g., 'quiz:answer')
  * @param {function} callback - Handler function receiving event detail
+ * @returns {function} Unsubscribe function to remove the listener
  */
 export function listenFromReact(eventName, callback) {
-  window.addEventListener(eventName, (e) => callback(e.detail));
+  const handler = (e) => callback(e.detail);
+  window.addEventListener(eventName, handler);
+  // Return unsubscribe function
+  return () => window.removeEventListener(eventName, handler);
 }
 
 /**
@@ -49,7 +53,11 @@ export function emitTowerState(state) {
 /**
  * Listen for tower selection from React (use in Phaser)
  * @param {function} callback - Handler receiving { type }
+ * @returns {function} Unsubscribe function to remove the listener
  */
 export function listenForTowerSelect(callback) {
-  window.addEventListener('tower:select', (e) => callback(e.detail));
+  const handler = (e) => callback(e.detail);
+  window.addEventListener('tower:select', handler);
+  // Return unsubscribe function
+  return () => window.removeEventListener('tower:select', handler);
 }
