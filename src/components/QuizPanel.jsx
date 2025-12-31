@@ -6,7 +6,7 @@ import { useQuizEvents } from '../hooks/useQuizEvents.js';
 import './QuizPanel.css';
 
 export default function QuizPanel() {
-  const { question, result, gold, streak, submitAnswer } = useQuizEvents();
+  const { question, result, streak, submitAnswer } = useQuizEvents();
 
   // Loading state - waiting for first question
   if (!question) {
@@ -15,7 +15,6 @@ export default function QuizPanel() {
         <div className="quiz-header">
           <h2>QUIZ</h2>
           <div className="stats">
-            <div className="gold">Gold: ${gold}</div>
             <div className="streak">Streak: {streak}</div>
           </div>
         </div>
@@ -32,7 +31,6 @@ export default function QuizPanel() {
       <div className="quiz-header">
         <h2>QUIZ</h2>
         <div className="stats">
-          <div className="gold">Gold: ${gold}</div>
           <div className="streak">Streak: {streak} 🔥</div>
         </div>
       </div>
