@@ -1,10 +1,11 @@
 /* src/components/QuizPanel.css */
 /* Styling for the quiz panel */
 
-.quiz-panel {
+.quiz-content {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex: 1;
+  min-height: 0;
   color: #e0e0e0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

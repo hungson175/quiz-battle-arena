@@ -3,25 +3,24 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { selectTower } from '../systems/QuizBridge.js';
+import towersConfig from '../assets/config/towers.json';
 
 export default function useTowerEvents() {
-  const [towers, setTowers] = useState({});
+  // Initialize with tower config directly - no need to wait for Phaser
+  const [towers, setTowers] = useState(towersConfig);
   const [selectedTower, setSelectedTower] = useState('BASIC');
-  const [gold, setGold] = useState(300);
+  const [gold, setGold] = useState(200); // Match starting money from game config
 
   useEffect(() => {
-    // Get tower config from game settings when available
+    // Listen for tower state updates from Phaser (can still override if needed)
     const loadTowers = () => {
       if (window.GAME_SETTINGS?.TOWERS) {
         setTowers(window.GAME_SETTINGS.TOWERS);
-        console.log('[useTowerEvents] Loaded tower config');
+        console.log('[useTowerEvents] Updated tower config from Phaser');
       }
     };
 
-    // Try immediately
-    loadTowers();
-
-    // Also try after a delay (game might not be initialized yet)
+    // Also sync after Phaser initializes (in case config differs)
     const timer = setTimeout(loadTowers, 1000);
 
     // Listen for tower state updates from Phaser

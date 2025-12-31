@@ -11,7 +11,7 @@ export default function QuizPanel() {
   // Loading state - waiting for first question
   if (!question) {
     return (
-      <div className="quiz-panel">
+      <div className="quiz-content">
         <div className="quiz-header">
           <h2>QUIZ</h2>
           <div className="stats">
@@ -28,7 +28,7 @@ export default function QuizPanel() {
   }
 
   return (
-    <div className="quiz-panel">
+    <div className="quiz-content">
       <div className="quiz-header">
         <h2>QUIZ</h2>
         <div className="stats">
