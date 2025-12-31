@@ -52,6 +52,21 @@
 
 ---
 
+## 📁 SAMPLE CODE REFERENCE (MANDATORY)
+
+**Location:** `sample_codes/tower-defence/`
+
+**All team members MUST reference this before making changes.**
+
+This is the original tower defense game our project imitates. When in doubt:
+1. Check how sample does it
+2. Copy the pattern exactly
+3. Only add React quiz panel on top
+
+**DO NOT modify game logic without checking sample first.**
+
+---
+
 ## Previous Project History (ABANDONED)
 
 **Sprint 9** - Phase 1 Foundation (abandoned mid-sprint)

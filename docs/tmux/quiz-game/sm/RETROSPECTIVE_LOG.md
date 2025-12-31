@@ -178,6 +178,68 @@
 
 ---
 
+## Sprint 10 Retrospective
+
+**Date:** 2025-12-31
+**Duration:** 15 min (Full - Major pivot sprint)
+**Facilitator:** SM
+
+### Active Improvement Check
+- **Previous:** QA visual verification (from Sprint 9)
+- **Status:** **EFFECTIVE** - QA used screenshot comparison this sprint
+- **Evidence:** QA caught visual issues and compared against sample project
+
+### What Went Well
+- Major pivot executed successfully (Quiz Battle Arena → Quiz Tower Defense)
+- Sample project reference approach worked well
+- Event bridge pattern (React↔Phaser) established and working
+- Team persisted through multiple rejections until Boss accepted
+- QA screenshot comparison with sample project was valuable
+- Fast fix turnaround for each rejection
+
+### What Problems Occurred
+1. **Multiple rejections before acceptance (5+ iterations)**
+   - Layout overflow (canvas dimensions wrong)
+   - Money bridge not connected (missing emit event)
+   - Auto-start waves missing
+   - Tower selection in Phaser (should be React)
+   - TowerSelector not rendering (CSS collision + Phaser init wait)
+
+2. **Architecture mistakes**
+   - Put tower selection UI in Phaser game grid (should be React)
+   - Changed game dimensions from 1280x720 to 896x720 (broke coordinates)
+   - React component waited for Phaser init instead of importing data directly
+
+3. **CSS class collision**
+   - `.quiz-panel` used in both App.jsx and QuizPanel.jsx
+
+### Key Lessons Learned
+1. **Static UI in React, Dynamic in Phaser** - Tower buttons, menus, quiz panel = React. Game grid, physics = Phaser.
+2. **Don't change game dimensions** - Keep original 1280x720, use Scale.FIT for containment
+3. **React imports data directly** - Don't wait for window.GAME_SETTINGS from Phaser
+4. **overflow:hidden + position:relative** - Required for canvas containment in flex layouts
+5. **QA screenshot comparison** - Compare our game vs sample project side-by-side
+
+### Selected for Sprint 11
+- **Document sample code reference** - Add to team docs that sample_codes/tower-defence/ is our reference
+- **Continue QA screenshot comparison** - Effective for visual verification
+
+### Prompt Updates
+- Updated `tmux_team_overview.md` with sample project reference (done earlier)
+- Updated `QA_PROMPT.md` with mandatory screenshot comparison (done earlier)
+
+### Sprint 10 Commits (8 total)
+1. 49bf0e3: Clone + 70/30 layout
+2. e3b83f6: Quiz system integration
+3. f20be59: Layout overflow fix
+4. 4e06b1f: Dimension fix (1280x720)
+5. f220819: Money bridge + auto-start waves
+6. da8a353: Bottom bar height adjustment
+7. d6238b4: Tower selection → React
+8. c417ef5: TowerSelector render fix
+
+---
+
 ## Template
 
 ```markdown
