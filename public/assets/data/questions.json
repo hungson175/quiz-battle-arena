@@ -3,7 +3,7 @@
     "subject": "Lịch sử",
     "grade": "6",
     "source": "DC_lichsu.md",
-    "totalQuestions": 35,
+    "totalQuestions": 50,
     "topics": [
       "Ai Cập cổ đại",
       "Lưỡng Hà cổ đại",
@@ -466,6 +466,201 @@
       ],
       "correctIndex": 1,
       "explanation": "Biết đắp đê, phòng lũ lụt, bảo vệ mùa màng."
+    },
+    {
+      "id": 36,
+      "topic": "Ai Cập cổ đại",
+      "question": "Lũ sông Nin hằng năm mang lại lợi ích gì cho Ai Cập?",
+      "answers": [
+        "Phá hủy nhà cửa",
+        "Bồi đắp phù sa cho đồng ruộng",
+        "Gây ra dịch bệnh",
+        "Làm ngập đường giao thông"
+      ],
+      "correctIndex": 1,
+      "explanation": "Sông Nin có lũ hằng năm, giúp bồi đắp phù sa và cung cấp nước tưới cho đồng ruộng."
+    },
+    {
+      "id": 37,
+      "topic": "Ai Cập cổ đại",
+      "question": "Việc ướp xác giúp người Ai Cập có kiến thức về lĩnh vực nào?",
+      "answers": [
+        "Thiên văn học",
+        "Giải phẫu cơ thể người",
+        "Kiến trúc",
+        "Hội họa"
+      ],
+      "correctIndex": 1,
+      "explanation": "Việc ướp xác giúp họ có kiến thức giải phẫu, đóng góp vào y học sau này."
+    },
+    {
+      "id": 38,
+      "topic": "Ai Cập cổ đại",
+      "question": "Người Ai Cập cổ đại kế thừa kiến thức toán học nào từ việc xây kim tự tháp?",
+      "answers": [
+        "Phép nhân chia",
+        "Đường thẳng và góc",
+        "Phép cộng trừ",
+        "Số thập phân"
+      ],
+      "correctIndex": 1,
+      "explanation": "Ngày nay kế thừa về đường thẳng, góc và được ứng dụng trong xây dựng công trình."
+    },
+    {
+      "id": 39,
+      "topic": "Lưỡng Hà cổ đại",
+      "question": "Kinh tế Lưỡng Hà phát triển nhờ yếu tố nào?",
+      "answers": [
+        "Nhiều khoáng sản",
+        "Nông nghiệp tạo sản phẩm dư thừa để trao đổi",
+        "Có nhiều biển lớn",
+        "Có rừng rậm"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nông nghiệp phát triển, tạo ra nhiều sản phẩm dư thừa để trao đổi."
+    },
+    {
+      "id": 40,
+      "topic": "Lưỡng Hà cổ đại",
+      "question": "60 phút bằng bao nhiêu giờ?",
+      "answers": [
+        "2 giờ",
+        "1 giờ",
+        "30 phút",
+        "100 phút"
+      ],
+      "correctIndex": 1,
+      "explanation": "Theo hệ thống cơ số 60: 60 phút = 1 giờ."
+    },
+    {
+      "id": 41,
+      "topic": "Nhà nước Văn Lang - Âu Lạc",
+      "question": "Thành Cổ Loa có cấu trúc như thế nào?",
+      "answers": [
+        "Một vòng thành đơn giản",
+        "Nhiều vòng thành với luỹ đất kiên cố",
+        "Hoàn toàn bằng gạch",
+        "Không có tường bao"
+      ],
+      "correctIndex": 1,
+      "explanation": "Quy mô lớn, cấu trúc nhiều vòng thành với luỹ đất, thổ kiên cố."
+    },
+    {
+      "id": 42,
+      "topic": "Nhà nước Văn Lang - Âu Lạc",
+      "question": "Thành Cổ Loa được xây dựng nhằm mục đích gì?",
+      "answers": [
+        "Để tổ chức lễ hội",
+        "Bảo vệ đất nước trước ngoại xâm",
+        "Làm chợ buôn bán",
+        "Trồng cây"
+      ],
+      "correctIndex": 1,
+      "explanation": "Đây là nơi đóng đô và luyện binh của nhà nước Âu Lạc, nhằm bảo vệ đất nước trước ngoại xâm."
+    },
+    {
+      "id": 43,
+      "topic": "Nhà nước Văn Lang - Âu Lạc",
+      "question": "Nhân dân Âu Việt và Lạc Việt cùng chống lại quân xâm lược nào?",
+      "answers": [
+        "Quân Hán",
+        "Quân Tần",
+        "Quân Nguyên",
+        "Quân Minh"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nhân dân Âu Việt và Lạc Việt dưới sự lãnh đạo của Thục Phán đánh bại quân xâm lược Tần."
+    },
+    {
+      "id": 44,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Chính sách đồn điền của nhà Hán nhằm mục đích gì?",
+      "answers": [
+        "Giúp dân có ruộng cày",
+        "Giữ đất đai mới chiếm và nắm đất của nhân dân ta",
+        "Phát triển nông nghiệp cho dân",
+        "Bảo vệ môi trường"
+      ],
+      "correctIndex": 1,
+      "explanation": "Chính sách đồn điền nhằm giữ đất đai mới chiếm được và nắm đất đai của nhân dân ta."
+    },
+    {
+      "id": 45,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Nhà Hán cho người Hán sang sống cùng người Việt nhằm mục đích gì?",
+      "answers": [
+        "Giúp người Việt học nghề",
+        "Đồng hóa về văn hóa",
+        "Phát triển kinh tế",
+        "Bảo vệ an ninh"
+      ],
+      "correctIndex": 1,
+      "explanation": "Cho người Hán sang sống cùng người Việt là một phần của chính sách đồng hóa."
+    },
+    {
+      "id": 46,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Nhà Hán truyền bá điều gì để đồng hóa người Việt?",
+      "answers": [
+        "Đạo Phật",
+        "Nho giáo và quan chế",
+        "Thiên Chúa giáo",
+        "Đạo Hồi"
+      ],
+      "correctIndex": 1,
+      "explanation": "Truyền bá Nho giáo và quan chế nhà Hán để đồng hóa nhân dân ta."
+    },
+    {
+      "id": 47,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Thời Bắc thuộc, đứng đầu xã hội thay thế vua là ai?",
+      "answers": [
+        "Lạc hầu",
+        "Quan lại đô hộ của Trung Quốc",
+        "Bồ chính",
+        "Hào trưởng Việt"
+      ],
+      "correctIndex": 1,
+      "explanation": "Tổ chức cơ cấu xã hội thời Bắc thuộc, đứng đầu là Quan lại đô hộ của Trung Quốc."
+    },
+    {
+      "id": 48,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Thời Bắc thuộc xuất hiện thêm bộ phận nào trong xã hội?",
+      "answers": [
+        "Nông dân công xã",
+        "Nông dân lẻ (tư) thuộc",
+        "Vua",
+        "Lạc tướng"
+      ],
+      "correctIndex": 1,
+      "explanation": "Có thêm bộ phận nông dân lẻ (tư) thuộc trong xã hội thời Bắc thuộc."
+    },
+    {
+      "id": 49,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Việc độc quyền muối và sắt ảnh hưởng như thế nào đến người Việt?",
+      "answers": [
+        "Giúp người Việt giàu có",
+        "Ảnh hưởng đến sức khỏe vì không có nguyên liệu, vũ khí",
+        "Phát triển thương mại",
+        "Cải thiện đời sống"
+      ],
+      "correctIndex": 1,
+      "explanation": "Ảnh hưởng đến sức khỏe dân ta vì không có nguyên liệu, vũ khí."
+    },
+    {
+      "id": 50,
+      "topic": "Thời kì Bắc thuộc",
+      "question": "Nhiều tuyến đường giao thông được mở rộng trong thời kì nào?",
+      "answers": [
+        "Thời Văn Lang",
+        "Thời Bắc thuộc",
+        "Thời Âu Lạc",
+        "Thời Hùng Vương"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nhiều tuyến đường giao thông được mở rộng trong thời kì Bắc thuộc."
     }
   ]
 }
