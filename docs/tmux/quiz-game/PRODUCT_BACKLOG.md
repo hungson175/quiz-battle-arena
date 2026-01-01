@@ -68,6 +68,34 @@ All team members should reference this codebase for:
 
 ### P0 - Critical (Next Sprint)
 
+#### [BUG-001]: Towers Still Targeting HEALER Enemy
+**Priority:** P0
+**Status:** Open (Fix attempted but not working)
+**Estimate:** S
+
+**Description:**
+HEALER enemy (green circle, appears wave 8) is a support unit that heals other enemies but doesn't attack. Towers should NOT target HEALER - it wastes ammo and prevents killing actual threats, making game unwinnable.
+
+**Root Cause (suspected):**
+Case sensitivity mismatch in Tower.js:
+- Tower.js checks: `enemy.type === 'HEALER'` (uppercase)
+- Enemy type stored as: `'healer'` (lowercase)
+
+**Previous Fix Attempt:**
+Commit 4e7f752 added skip logic but used wrong case.
+
+**Acceptance Criteria:**
+- [ ] Towers ignore HEALER enemies completely
+- [ ] Towers target other enemies while HEALER is in range
+- [ ] HEALER walks through to end (does 0 damage - already fixed)
+- [ ] Game is winnable on wave 8+
+
+**Files to Check:**
+- `src/entities/Tower.js` (lines 109-112, 140-141)
+- `src/scenes/GameScene.js` (enemy spawn, check type case)
+
+---
+
 #### [PBI-001]: Tower Behaviors from Sample
 **Priority:** P0
 **Status:** ✅ DONE (Sprint 11)
