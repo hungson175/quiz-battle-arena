@@ -201,6 +201,12 @@ Show player hints about new enemy types when they first appear. Pause game brief
 **Description:**
 Replace placeholder graphics with proper assets from research. Use Kenney TD Top-Down assets.
 
+**Specific Improvements Needed:**
+- Background: Nicer grass texture for playable area
+- Path: Distinct visual for enemy movement path (dirt/stone road)
+- Enemies: Replace zombie sprites with new opponent designs
+- Overall: More polished, child-friendly aesthetic
+
 **Reference:** docs/research/GAME_ASSETS.md
 
 ---
