@@ -106,8 +106,8 @@ export default class Tower extends Phaser.GameObjects.Container {
       return false;
     }
 
-    // Skip HEALER enemies - they are support units, attacking them wastes ammo
-    if (target.type === 'HEALER') {
+    // Skip healer enemies - they are support units, attacking them wastes ammo
+    if (target.type === 'healer') {
       return false;
     }
 
@@ -137,8 +137,8 @@ export default class Tower extends Phaser.GameObjects.Container {
       // Skip dead enemies
       if (enemy.isDead()) continue;
 
-      // Skip HEALER enemies - support units, waste of ammo
-      if (enemy.type === 'HEALER') continue;
+      // Skip healer enemies - support units, waste of ammo
+      if (enemy.type === 'healer') continue;
 
       // Skip flying enemies if tower can't target them
       if (enemy.data.flying && !this.canTargetFlying()) {
