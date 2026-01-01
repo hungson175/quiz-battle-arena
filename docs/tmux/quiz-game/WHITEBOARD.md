@@ -237,18 +237,21 @@ All 3 items Boss Accepted ✅
 
 ## Current Status
 
-**Sprint:** 15
-**Goal:** Fix freeze bug + add tower icons + 50 questions
-**Status:** ✅ SPRINT 15 COMPLETE - Awaiting Boss Review
+**Sprint:** 16
+**Goal:** EPIC-001-A File Upload & Validation (Design Phase)
+**Status:** 🟡 IN PROGRESS - TL designing
 
 | Role | Status | Current Task | Last Update |
 |------|--------|--------------|-------------|
-| PO   | Active | Awaiting Boss end-of-sprint review | Current |
-| SM   | Active | Sprint complete, docs committed | Current |
-| GD   | Unresponsive | - | - |
-| TL   | Unresponsive | - | - |
-| DEV  | Unresponsive | - | - |
-| QA   | Pending | Awaiting Boss acceptance | Current |
+| PO   | Active | Sprint 16 started | Current |
+| SM   | Active | Coordinating S16-001 | Current |
+| GD   | - | No tasks this sprint | - |
+| TL   | ASSIGNED | S16-001: Technical design | Current |
+| DEV  | BLOCKED | Waiting for design + Boss approval | Current |
+| QA   | Pending | Waiting for implementation | Current |
+
+**⚠️ EPIC-001 Special Process:**
+S16-001 (TL design) → STOP → Boss reviews → Then DEV work
 
 ---
 
