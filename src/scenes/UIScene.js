@@ -1003,9 +1003,10 @@ export default class UIScene extends Phaser.Scene {
             message: 'Are you sure you want to\nrestart the game?\n\nAll progress will be lost.',
             onConfirm: () => {
               // Restart the current game
+              // Fix: Stop UIScene first, then restart GameScene (which launches UIScene)
               const gameScene = this.scene.get('GameScene');
-              gameScene.scene.restart();
-              this.scene.restart();
+              this.scene.stop(); // Stop UIScene first to avoid race condition
+              gameScene.scene.restart(); // GameScene.create() will launch UIScene
             },
             ...DIALOG_STYLE
           });
