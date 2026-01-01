@@ -70,7 +70,7 @@ All team members should reference this codebase for:
 
 #### [BUG-001]: Towers Still Targeting HEALER Enemy
 **Priority:** P0
-**Status:** Open (Fix attempted but not working)
+**Status:** ✅ FIXED (f4b1269) - case 'HEALER' → 'healer'
 **Estimate:** S
 
 **Description:**
