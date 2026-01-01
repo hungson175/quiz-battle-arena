@@ -268,6 +268,7 @@ Allow users to upload documents (docs, MD, PDF) and use AI/LLM to automatically 
 **[EPIC-001-A]: File Upload & Validation**
 - Accept .docx, .md, .pdf only
 - Reject other formats with "Format not supported" message
+- **v1 Limit: Max 100 pages** - reject files over 100 pages immediately
 - Extract text content from each format
 - Estimate: M
 
@@ -284,8 +285,9 @@ Allow users to upload documents (docs, MD, PDF) and use AI/LLM to automatically 
 - Estimate: M
 
 **[EPIC-001-D]: AI/LLM Question Generation**
-- Parse document into pages
-- Generate 5-10 questions per page
+- Parse document page by page → convert all to unified MD format
+- **v1 Simplification:** Feed entire text to LLM in one call (not page-by-page)
+- Generate 5-10 questions per page worth of content (50-100 total)
 - Output JSON format matching `public/assets/data/questions.json`
 - Handle rate limiting and API costs
 - Estimate: L
@@ -300,6 +302,7 @@ Allow users to upload documents (docs, MD, PDF) and use AI/LLM to automatically 
 - [ ] Upload .md → generates 50-100 questions
 - [ ] Upload .pdf → generates 50-100 questions
 - [ ] Upload .txt → shows "Format not supported"
+- [ ] Upload 101+ page file → shows "File too large (max 100 pages)"
 - [ ] Upload same file twice → skips processing, uses cached questions
 - [ ] Questions stored in PostgreSQL
 - [ ] Game can load and play with generated questions
@@ -310,6 +313,7 @@ Allow users to upload documents (docs, MD, PDF) and use AI/LLM to automatically 
 - Use standard libraries only (pdf-parse, mammoth, markdown-it, etc.)
 - Implement async processing for large files
 - Add progress indicator for long operations
+- **Progressive development:** Start simple (single LLM call), optimize later if needed
 
 ---
 
