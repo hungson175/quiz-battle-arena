@@ -68,6 +68,37 @@ All team members should reference this codebase for:
 
 ### P0 - Critical (Next Sprint)
 
+#### [BUG-002]: Game Hangs on Restart
+**Priority:** P0
+**Status:** ✅ HOTFIX (12172b1) - race condition in scene restart
+**Estimate:** M
+
+**Description:**
+After playing the game and clicking restart, the game hangs/freezes instead of properly restarting. This may be a regression of S15-002 fix or a new issue.
+
+**Previous Related Fix:**
+S15-002 attempted to fix game freeze on restart via event listener cleanup.
+
+**Possible Causes:**
+- Event listeners not properly cleaned up
+- Scene not properly destroyed/restarted
+- Managers holding stale references
+- Timer/interval not cleared
+
+**Acceptance Criteria:**
+- [ ] Game restarts cleanly after defeat
+- [ ] Game restarts cleanly after victory
+- [ ] No console errors on restart
+- [ ] All game state properly reset
+
+**Files to Investigate:**
+- `src/scenes/GameScene.js` (scene lifecycle, destroy/create)
+- `src/systems/*.js` (manager cleanup)
+- `src/systems/QuizManager.js` (event listener cleanup)
+- `src/systems/WaveManager.js` (timer cleanup)
+
+---
+
 #### [BUG-001]: Towers Still Targeting HEALER Enemy
 **Priority:** P0
 **Status:** ✅ FIXED (f4b1269) - case 'HEALER' → 'healer'
