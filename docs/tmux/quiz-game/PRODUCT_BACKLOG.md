@@ -320,6 +320,7 @@ Allow users to upload documents (docs, MD, PDF) and use AI/LLM to automatically 
 - Implement async processing for large files
 - Add progress indicator for long operations
 - **Progressive development:** Start simple (single LLM call), optimize later if needed
+- **Reference:** Use `/llm-apps-creator` skill for sample code (LangChain, xAI, tool call, structured output patterns)
 
 ---
 
