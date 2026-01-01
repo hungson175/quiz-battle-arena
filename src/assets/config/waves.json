@@ -1,24 +1,25 @@
 [
-  { "enemies": ["BASIC"], "count": 10, "interval": 1500 },
-  { "enemies": ["BASIC", "FAST"], "count": 15, "interval": 1200 },
-  { "enemies": ["BASIC", "FAST", "ARMORED"], "count": 20, "interval": 1000 },
-  { "enemies": ["FAST", "ARMORED"], "count": 15, "interval": 900 },
-  { "enemies": ["ARMORED", "FLYING"], "count": 15, "interval": 1000 },
-  { "enemies": ["FAST", "FLYING"], "count": 20, "interval": 800 },
+  { "enemies": ["BASIC"], "count": 3, "interval": 2500, "_comment": "Wave 1: Tutorial - very easy" },
+  { "enemies": ["BASIC"], "count": 5, "interval": 2000, "_comment": "Wave 2: Still learning" },
+  { "enemies": ["BASIC", "FAST"], "count": 12, "interval": 1200, "_comment": "Wave 3: Introduce FAST" },
+  { "enemies": ["BASIC", "FAST", "ARMORED"], "count": 18, "interval": 1000 },
+  { "enemies": ["FAST", "ARMORED"], "count": 18, "interval": 900 },
+  { "enemies": ["ARMORED", "FLYING"], "count": 18, "interval": 1000 },
+  { "enemies": ["FAST", "FLYING"], "count": 22, "interval": 800 },
   {
     "enemies": ["BASIC", "FAST", "ARMORED", "FLYING"],
-    "count": 25,
+    "count": 28,
     "interval": 700
   },
-  { "enemies": ["ARMORED", "FLYING", "HEALER"], "count": 20, "interval": 600 },
+  { "enemies": ["ARMORED", "FLYING", "HEALER"], "count": 22, "interval": 600 },
   {
     "enemies": ["FAST", "ARMORED", "FLYING", "SHIELD", "SPLIT", "TELEPORT"],
-    "count": 30,
+    "count": 32,
     "interval": 500
   },
   {
     "enemies": ["BOSS", "HEALER", "SHIELD", "SPLIT", "TELEPORT"],
-    "count": 25,
+    "count": 27,
     "interval": 800,
     "bossWave": false
   }
