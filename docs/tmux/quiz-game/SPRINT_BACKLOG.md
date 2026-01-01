@@ -1,114 +1,104 @@
-# Sprint 15 Backlog
+# Sprint 16 Backlog
 
-**Sprint Goal:** Fix freeze bug + research better visuals
+**Sprint Goal:** EPIC-001-A File Upload & Validation (Design Phase)
 **Sprint Start:** 2026-01-01
 **Sprint End:** TBD
+**Epic:** EPIC-001 AI Document-to-Quiz Pipeline
 
 ---
 
-## Reference Project
+## ⚠️ EPIC-001 Special Process
 
-**IMPORTANT:** Sample code location: `sample_codes/tower-defence/`
-**Asset Research:** `docs/research/GAME_ASSETS.md`
+**Boss reviews TL design BEFORE DEV implementation.**
+
+```
+S16-001 (TL design) → STOP → Boss reviews → S16-002, S16-003, S16-004 (DEV)
+```
 
 ---
 
 ## Sprint Items
 
-### [S15-002]: Game Freeze on Restart
-**Owner:** SM (fixed directly)
-**Status:** READY FOR TEST
-**Priority:** P0 - Game breaking
-**Commit:** 2ee4866
-
-**Description:**
-After dying first time, second game freezes. Restart/replay logic broken.
-
-**Investigation Completed:**
-- [x] Check game restart flow
-- [x] Look for state not being reset
-- [x] Check timer/event cleanup on game over
-- [x] Compare with sample project restart logic
-
-**Root Cause Found:**
-Wave event listeners (waveCompleted, waveStarted) were added in create() using anonymous functions but NEVER removed in cleanup(). On restart, duplicate listeners would fire, causing timer conflicts and state corruption.
-
-**Fix Applied:**
-- Extract anonymous handlers to named methods: onWaveCompleted(), onWaveStarted()
-- Add cleanup: events.off() for both listeners in cleanup() method
-
-**Acceptance Criteria:**
-- [ ] Can restart game after dying
-- [ ] Second game plays normally (no freeze)
-- [x] All game state properly reset
-- [ ] TL code review approved
-- [ ] QA verification passed
-- [ ] Boss acceptance
-
----
-
-### [S15-001]: Better Visual Assets (Research)
-**Owner:** GD
+### [S16-001]: Technical Design for File Upload Architecture
+**Owner:** TL
 **Status:** TODO
-**Priority:** P1 - Visual improvement
+**Priority:** P0 - Must complete first
+**Estimate:** M
 
 **Description:**
-Boss says towers are UGLY. Research prettier tower sprites.
+Create technical design document for EPIC-001-A file upload system.
 
-**Task:**
-- [ ] Review existing research: docs/research/GAME_ASSETS.md
-- [ ] If not sufficient, research more options:
-  - Tower sprites (castles, turrets, cannons)
-  - Airplane/aircraft sprites
-  - General/soldier sprites
-  - Other thematic options
-- [ ] Provide specific recommendations with:
-  - Asset source URLs
-  - License info (CC0/free commercial preferred)
-  - Which tiles map to which tower types
+**Design Requirements:**
+- [ ] Architecture: How files are uploaded, processed, stored
+- [ ] API endpoints: Upload endpoint, validation responses
+- [ ] File format handling: .docx, .md, .pdf extraction strategy
+- [ ] Libraries/tools: What packages to use for each format
+- [ ] Error handling: Invalid format, too large, extraction failure
+- [ ] Security: File size limits, content validation
+
+**Deliverable:**
+Technical spec document in `docs/team/sprint-16/EPIC-001-A_DESIGN.md`
 
 **Acceptance Criteria:**
-- [ ] Research document updated with better asset options
-- [ ] Clear recommendations for 6 tower types
-- [ ] License-compliant assets
-- [ ] PO approval of recommendations
+- [ ] Design document complete
+- [ ] All design questions answered
+- [ ] **STOP** - Notify SM for Boss review
+- [ ] Boss approval received
+- [ ] Then proceed to S16-002
 
 ---
 
-## Definition of Done
+### [S16-002]: Accept .docx/.md/.pdf, Reject Others
+**Owner:** DEV
+**Status:** BLOCKED (waiting for S16-001 + Boss approval)
+**Priority:** P1
+**Estimate:** S
 
-- [ ] Game restart works (no freeze)
-- [ ] Asset research complete with recommendations
-- [ ] All TL reviews approved (for code changes)
-- [ ] All QA tests passed
-- [ ] Pushed to remote
-- [ ] Boss acceptance
+**Description:**
+Implement file format validation. Accept only .docx, .md, .pdf files.
+
+**Acceptance Criteria:**
+- [ ] Upload .docx → accepted
+- [ ] Upload .md → accepted
+- [ ] Upload .pdf → accepted
+- [ ] Upload .txt → rejected with "Format not supported"
+- [ ] Upload .jpg → rejected with "Format not supported"
+- [ ] Upload .exe → rejected with "Format not supported"
 
 ---
 
-### [S15-003]: Tower Upgrade System Design
-**Owner:** GD
-**Status:** TODO
-**Priority:** P1 - New feature
+### [S16-003]: Page Count Validation (Max 100 Pages)
+**Owner:** DEV
+**Status:** BLOCKED (waiting for S16-001 + Boss approval)
+**Priority:** P1
+**Estimate:** S
 
 **Description:**
-Boss wants tower upgrades. GD must design how the system works.
-
-**Design Questions (GD to answer):**
-- [ ] How to trigger upgrade? (click tower? button? menu?)
-- [ ] Cost scaling? (e.g., 1.5x base cost per level?)
-- [ ] What stats improve? (damage, range, fire rate, all?)
-- [ ] Visual change on upgrade? (color, size, effects?)
-- [ ] Max upgrade levels? (2? 3? 5?)
-
-**Reference:**
-- Check sample project: sample_codes/tower-defence/
-- Boss said: "GD figure it out themselves"
+Validate uploaded files don't exceed 100 pages.
 
 **Acceptance Criteria:**
-- [ ] Design document with upgrade system specs
-- [ ] Clear answers to all design questions
-- [ ] PO approval before DEV implements
+- [ ] 50-page PDF → accepted
+- [ ] 100-page PDF → accepted
+- [ ] 101-page PDF → rejected with "File too large (max 100 pages)"
+- [ ] Page count works for all supported formats
+
+---
+
+### [S16-004]: Text Extraction from Formats
+**Owner:** DEV
+**Status:** BLOCKED (waiting for S16-001 + Boss approval)
+**Priority:** P1
+**Estimate:** M
+
+**Description:**
+Extract text content from each supported file format.
+
+**Acceptance Criteria:**
+- [ ] .docx → text extracted correctly
+- [ ] .md → text extracted correctly (preserve structure)
+- [ ] .pdf → text extracted correctly
+- [ ] Handle extraction errors gracefully
+- [ ] Output: Plain text or structured markdown
 
 ---
 
@@ -116,24 +106,37 @@ Boss wants tower upgrades. GD must design how the system works.
 
 | Item | Status | Owner | Priority | Notes |
 |------|--------|-------|----------|-------|
-| S15-002 | READY FOR TEST | SM | P0 | Freeze bug FIXED (2ee4866) |
-| S15-003 | IN PROGRESS | DEV | P1 | Upgrades (verify existing) |
-| S15-004 | TODO | DEV | P1 | Remove difficulty modes |
-| S15-005 | TODO | TL/DEV | P1 | Rebalance waves |
-| S15-001 | TODO | DEV | P1 | Better assets (Kenney) |
+| S16-001 | TODO | TL | P0 | Design first, then STOP for Boss |
+| S16-002 | BLOCKED | DEV | P1 | Wait for S16-001 + Boss approval |
+| S16-003 | BLOCKED | DEV | P1 | Wait for S16-001 + Boss approval |
+| S16-004 | BLOCKED | DEV | P1 | Wait for S16-001 + Boss approval |
 
 ---
 
-## Sprint 14 Summary (COMPLETED)
+## Definition of Done
+
+- [ ] S16-001: TL design approved by Boss
+- [ ] S16-002: Format validation working
+- [ ] S16-003: Page count validation working
+- [ ] S16-004: Text extraction working
+- [ ] All code reviewed by TL
+- [ ] All QA tests passed
+- [ ] Boss acceptance
+
+---
+
+## Sprint 15 Summary (COMPLETED)
 
 **All items BOSS ACCEPTED:**
-- ✅ S14-002: Lives 20 → 3 (f83018e)
-- ✅ S14-001: Sprites (scope reduced - Boss accepted current state)
+- ✅ S15-002: Game freeze on restart fix (2ee4866)
+- ✅ S15-009: HEALER targeting fix (f4b1269)
+- ✅ S15-006: Tower icons in React selector (7cfad9b)
+- ✅ S15-010: 50 Vietnamese history questions (e816657)
 
 ---
 
 ## Notes
 
-- S15-002 is P0 - DEV should start immediately
-- S15-001 is GD research task - no code changes
-- Apply Sprint 14 lesson: Asset tasks need specific specs
+- S16-001 is the gate - nothing else starts until Boss approves design
+- TL should reference PRODUCT_BACKLOG.md EPIC-001 for requirements
+- Create design doc in docs/team/sprint-16/
