@@ -109,6 +109,28 @@ Boss → PO → SM → [GD, TL, DEV, QA]
 
 ---
 
+## 🚨 TEMPORARY: EPIC-001 Special Process
+
+**EPIC-001 ONLY: AI Document-to-Quiz Pipeline**
+
+For this epic, Boss requires design review BEFORE implementation:
+
+```
+Normal:  PO → SM → TL (design) → DEV (implement) → QA → Boss review
+EPIC-001: PO → SM → TL (design) → STOP → Boss reviews design → DEV (implement) → QA → Boss review
+```
+
+**SM must enforce:**
+1. TL creates technical design/spec
+2. **STOP** - Do NOT assign to DEV
+3. Report to PO: "Design ready for Boss review"
+4. Wait for Boss approval of design
+5. Only THEN proceed to DEV implementation
+
+**⚠️ REMOVE THIS SECTION after EPIC-001 is complete.**
+
+---
+
 ## Git Workflow (SM Manages Branches)
 
 **Branch per sprint, merge to main after Boss accepts.**
