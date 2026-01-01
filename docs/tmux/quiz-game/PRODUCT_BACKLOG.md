@@ -305,7 +305,9 @@ Allow users to upload documents (docs, MD, PDF) and use AI/LLM to automatically 
 - [ ] Game can load and play with generated questions
 
 **Technical Notes:**
-- Consider using OpenAI/Anthropic API for question generation
+- Use xAI API for question generation
+- Skip images in documents (v1 limitation) - text extraction only, no OCR
+- Use standard libraries only (pdf-parse, mammoth, markdown-it, etc.)
 - Implement async processing for large files
 - Add progress indicator for long operations
 
